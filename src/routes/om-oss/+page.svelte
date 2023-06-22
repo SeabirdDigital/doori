@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from "$lib/utils";
+
 	type DooriLocation = {
 		city: string;
 		openingHours: {
@@ -160,24 +162,23 @@
 	<div>
 		<div class="flex items-center gap-6">
 			<button class="h-fit border-b-2 border-black"> Jobb </button>
-			<a href="/franchising">
-				<button
-					class="relative flex items-center gap-2 bg-black fill-background-500 px-4 py-3 text-background-500"
-				>
-					Franchisetagare
-					<div class="-mr-2">
-						<svg
-							class="-rotate-90"
-							xmlns="http://www.w3.org/2000/svg"
-							height="22"
-							viewBox="0 -960 960 960"
-							width="22"
-						>
-							<path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z" />
-						</svg>
-					</div>
-				</button>
-			</a>
+			<button
+				on:click={() => goto("/franchising")}
+				class="relative flex items-center gap-2 bg-black fill-background-500 px-4 py-3 text-background-500"
+			>
+				Franchisetagare
+				<div class="-mr-2">
+					<svg
+						class="-rotate-90"
+						xmlns="http://www.w3.org/2000/svg"
+						height="22"
+						viewBox="0 -960 960 960"
+						width="22"
+					>
+						<path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z" />
+					</svg>
+				</div>
+			</button>
 		</div>
 	</div>
 </div>

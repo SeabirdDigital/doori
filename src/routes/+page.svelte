@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from "$lib/utils";
+
 	type DooriLocation = {
 		city: string;
 		openingHours: {
@@ -157,7 +159,9 @@
 					</div>
 				</button>
 			</a>
-			<button class="h-fit border-b-2 border-black"> Visa Menyn </button>
+			<button on:click={() => goto("/meny")} class="h-fit border-b-2 border-black">
+				Visa Menyn
+			</button>
 		</div>
 	</div>
 </div>
