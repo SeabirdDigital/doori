@@ -83,17 +83,8 @@
 			id="menu"
 			class="fixed left-0 z-40 flex h-screen w-screen flex-col items-center justify-center gap-4 bg-black text-2xl text-background-500 duration-500 {$menuOpen
 				? 'top-0'
-				: '-top-full'}"
+				: '-top-[calc(100%+6rem)]'}"
 		>
-			<button
-				class="absolute right-12 top-12"
-				on:click={() => {
-					menuOpen.set(false);
-					console.log("click", $menuOpen);
-				}}
-			>
-				<img class="h-6" src="/CloseMenu.svg" alt="" />
-			</button>
 			<button on:click={() => goto("/meny")}>Meny</button>
 			<button on:click={() => goto("/om-oss")}>Om oss</button>
 			<button on:click={() => goto("/#restauranger")}>Restauranger</button>
