@@ -40,19 +40,48 @@
 			<button on:click={() => goto("/franchising")}>Franchising</button>
 		</nav>
 
-		<label id="menuOpen" class="flex cursor-pointer items-center md:hidden">
+		<label
+			id="menuOpen"
+			class="relative flex aspect-square h-12 cursor-pointer items-center md:hidden"
+		>
 			<input
 				type="checkbox"
 				class="h-0 w-0 opacity-0"
 				checked={$menuOpen}
-				on:change={(e) => menuOpen.set(!!e.currentTarget?.value ?? $menuOpen)}
+				on:change={(e) => menuOpen.set(!!e.currentTarget?.checked ?? !$menuOpen)}
 			/>
-			<img class="h-6" src="/Menu.svg" alt="" />
+
+			<svg
+				class="absolute z-[45] h-2 duration-500 {$menuOpen
+					? 'mb-0 mr-0 -rotate-[50deg] fill-background-500 '
+					: 'mb-3 mr-1 -rotate-[25deg] fill-black'}"
+				viewBox="0 0 177 32"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M175.469 31.1465L172.356 1.3493L144.384 2.24472L147.266 28.6552L175.469 31.1465Z"
+				/>
+				<path d="M1.36517 6.8229L2.38282 15.8565L137.865 27.8247L134.295 2.56766L1.36517 6.8229Z" />
+			</svg>
+			<svg
+				class="absolute z-[45] h-2 duration-500 {$menuOpen
+					? 'ml-0 mt-0 rotate-[35deg] fill-background-500'
+					: 'ml-1 mt-3 -rotate-[12deg] fill-black'}"
+				viewBox="0 0 177 32"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M175.469 31.1465L172.356 1.3493L144.384 2.24472L147.266 28.6552L175.469 31.1465Z"
+				/>
+				<path d="M1.36517 6.8229L2.38282 15.8565L137.865 27.8247L134.295 2.56766L1.36517 6.8229Z" />
+			</svg>
 		</label>
 
 		<div
 			id="menu"
-			class="fixed left-0 z-40 h-screen w-screen flex-col items-center justify-center gap-4 bg-black text-2xl text-background-500 duration-500 {$menuOpen
+			class="fixed left-0 z-40 flex h-screen w-screen flex-col items-center justify-center gap-4 bg-black text-2xl text-background-500 duration-500 {$menuOpen
 				? 'top-0'
 				: '-top-full'}"
 		>
