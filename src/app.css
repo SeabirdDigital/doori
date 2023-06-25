@@ -2,6 +2,111 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--background-100: #fefefd;
+	--background-200: #fdfdfb;
+	--background-300: #fcfbf9;
+	--background-400: #fbfaf7;
+	--background-500: #faf9f5;
+	--background-600: #c8c7c4;
+	--background-700: #969593;
+	--background-800: #646462;
+	--background-900: #323231;
+	--background: #faf9f5;
+}
+
 h1 {
 	@apply text-4xl font-bold;
+}
+
+button {
+	height: fit-content;
+	position: relative;
+}
+
+button.link::after {
+	content: "";
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: auto;
+
+	height: 1.5px;
+	width: 100%;
+	background-color: black;
+
+	transition-duration: 400ms;
+}
+
+button.link:hover::after {
+	right: 0;
+	left: auto;
+
+	width: 0;
+}
+
+button.link.inverse::after,
+nav > ul > li > button::after {
+	content: " ";
+
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: auto;
+
+	height: 1.5px;
+	width: 0;
+	background-color: black;
+	transition-duration: 400ms;
+}
+button.link.inverse:hover::after,
+nav > ul > li > button:hover::after {
+	width: 100%;
+	right: auto;
+	left: 0;
+}
+
+button.full {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	background-color: black;
+	color: var(--background);
+	fill: var(--background);
+
+	padding: 0.75rem 1rem;
+}
+
+button.full.to-extend {
+	transition-duration: 200ms;
+}
+button.full.to-extend:hover {
+	gap: 1rem;
+	margin-right: -0.5rem;
+}
+
+button.borders {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	border: 1.5px solid black;
+	color: black;
+	fill: black;
+
+	padding: 0.75rem 1rem;
+}
+button.borders.to-full {
+	transition-duration: 200ms;
+}
+button.borders.to-full:hover {
+	background-color: black;
+	color: var(--background);
+	fill: var(--background);
 }

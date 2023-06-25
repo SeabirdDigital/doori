@@ -100,20 +100,26 @@
 </script>
 
 <div
-	class="container relative flex flex-col items-center justify-end pb-32 pt-24 sm:py-16 lg:justify-center lg:gap-24"
+	class="container relative flex flex-col items-center justify-end gap-24 pb-32 pt-24 sm:py-16 lg:justify-center"
 >
-	<div class="relative hidden items-center justify-center sm:flex">
-		<div class="flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25">
-			<img class="aspect-square h-72 object-cover" src="/kfc.jpeg" alt="" />
-			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+	<div class="relative hidden max-w-xl items-center justify-center sm:flex">
+		<div
+			class="flex aspect-[0.8] rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+		>
+			<img class="aspect-square w-full object-cover" src="/kfc.jpeg" alt="" />
+			<span class="flex flex-1 items-center font-indie text-3xl">K-bowl</span>
 		</div>
-		<div class="flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25">
-			<img class="aspect-square h-72 object-cover" src="/kfc.jpeg" alt="" />
-			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+		<div
+			class="flex aspect-[0.8] -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+		>
+			<img class="aspect-square w-full object-cover" src="/kfc.jpeg" alt="" />
+			<span class="flex flex-1 items-center font-indie text-3xl">K-bowl</span>
 		</div>
-		<div class="flex flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25">
-			<img class="aspect-square h-72 object-cover" src="/kfc.jpeg" alt="" />
-			<span class="py-6 font-indie text-3xl">K-bowl</span>
+		<div
+			class="flex aspect-[0.8] flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+		>
+			<img class="aspect-square w-full object-cover" src="/kfc.jpeg" alt="" />
+			<span class="flex flex-1 items-center font-indie text-3xl">K-bowl</span>
 		</div>
 	</div>
 

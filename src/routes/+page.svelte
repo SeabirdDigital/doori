@@ -142,9 +142,7 @@
 
 		<div class="flex items-center gap-6">
 			<a href="#restauranger">
-				<button
-					class="relative flex items-center gap-2 bg-black fill-background-500 px-4 py-3 text-background-500"
-				>
+				<button class="full to-extend">
 					Beställ nu
 					<div class="-mr-2">
 						<svg
@@ -159,9 +157,7 @@
 					</div>
 				</button>
 			</a>
-			<button on:click={() => goto("/meny")} class="h-fit border-b-2 border-black">
-				Visa Menyn
-			</button>
+			<button on:click={() => goto("/meny")} class="link">Visa Menyn</button>
 		</div>
 	</div>
 </div>
@@ -205,9 +201,7 @@
 			<div class="mt-6 flex gap-6">
 				{#if location.maps}
 					<a href={location.maps}>
-						<button
-							class="relative flex items-center gap-2 border-2 border-black bg-transparent fill-black px-4 py-3 text-black duration-200 hover:bg-black hover:fill-background-500 hover:text-background-500"
-						>
+						<button class="borders to-full">
 							Hitta hit
 							<div class="-mr-2">
 								<svg
@@ -224,9 +218,7 @@
 					</a>
 				{/if}
 				<a href={location.foodora}>
-					<button
-						class="relative flex items-center gap-2 border-2 border-black bg-transparent fill-black px-4 py-3 text-black duration-200 hover:bg-black hover:fill-background-500 hover:text-background-500"
-					>
+					<button class="borders to-full">
 						Foodora
 						<div class="-mr-2">
 							<svg

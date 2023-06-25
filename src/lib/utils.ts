@@ -4,8 +4,8 @@ import { transitionOn } from "./stores/transitionOn";
 
 export const goto = (href: string) => {
 	transitionOn.set(true);
-	setTimeout(() => {
-		svelteGoto(href);
+	setTimeout(async () => {
+		await svelteGoto(href);
 		menuOpen.set(false);
 		transitionOn.set(false);
 	}, 500);
