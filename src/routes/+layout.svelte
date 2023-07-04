@@ -8,6 +8,8 @@
 	import { onMount } from "svelte";
 	import "../app.css";
 
+	export let data;
+
 	onMount(() => {
 		transitionOn.set(false);
 
@@ -20,6 +22,8 @@
 		});
 	});
 </script>
+
+{data.ip}
 
 <div
 	class="fixed left-0 z-50 w-full bg-yellow-500 duration-500 {$transitionOn
@@ -50,11 +54,8 @@
 			</ul>
 		</nav>
 
-		<div>
-			<label
-				id="menuOpen"
-				class="relative flex aspect-square h-12 cursor-pointer items-center md:hidden"
-			>
+		<div class="md:hidden">
+			<label id="menuOpen" class="relative flex aspect-square h-12 cursor-pointer items-center">
 				<input
 					type="checkbox"
 					class="h-0 w-0 opacity-0"
@@ -128,7 +129,7 @@
 </header>
 
 <style>
-	#menuOpen:has(> input:checked) + #menu {
+	#menuOpen:has(> input:checked) + nav > #menu {
 		display: flex;
 	}
 </style>
