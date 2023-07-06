@@ -1,3 +1,15 @@
+<script lang="ts">
+	import { lang } from "$lib/stores/lang";
+	import texts from "$lib/texts";
+
+	let franchising = texts[$lang].franchising;
+	$: franchising = texts[$lang].franchising;
+</script>
+
+<svelte:head>
+	<title>{franchising.title}</title>
+</svelte:head>
+
 <div class="container grid-cols-2 pb-24 pt-14 lg:grid">
 	<div class="flex items-center">
 		<form
@@ -9,35 +21,38 @@
 				<!-- TODO: Add own accessKey from https://www.staticforms.xyz/ -->
 				<input type="hidden" name="accessKey" value="e44fc5d0-0b52-4cb1-9f79-fefc3800d89c" />
 
-				<h1 class="mb-4">Bli<br />Franchisetagare<span class="text-purple-500">.</span></h1>
+				<h1 class="mb-4">{@html franchising.form.heading}<span class="text-purple-500">.</span></h1>
 
 				<div class="grid grid-cols-2 gap-x-8 gap-y-2">
 					<div>
-						<label for="name">Namn</label>
+						<label for="name">{@html franchising.form.name}</label>
 						<input type="text" name="name" id="name" required />
 					</div>
 
 					<div>
-						<label for="email">Email</label>
+						<label for="email">{@html franchising.form.email}</label>
 						<input type="text" name="email" id="email" required />
 					</div>
 
 					<div>
-						<label for="phone">Telefon</label>
+						<label for="phone">{@html franchising.form.phone}</label>
 						<input type="text" name="phone" id="phone" required />
 					</div>
 
 					<div>
-						<label for="$stad">Stad</label>
+						<label for="$stad">{@html franchising.form.city}</label>
 						<input type="text" name="$stad" id="$stad" required />
 					</div>
 
 					<div>
-						<label for="$typ">Typ</label>
+						<label for="$typ">{@html franchising.form.type}</label>
 						<select name="$typ" id="$typ" required>
-							<option value="">--Välj ett alternativ--</option>
-							<option value="Ghost Kitchen">Ghost Kitchen</option>
-							<option value="Restaurang">Restaurang</option>
+							<option value="">{franchising.form.choose}</option>
+							{#each Object.keys(franchising.form.types) as typeId}
+								<option value={texts.sv.franchising.form.types[typeId]}>
+									{franchising.form.types[typeId]}
+								</option>
+							{/each}
 						</select>
 					</div>
 				</div>
@@ -47,7 +62,7 @@
 				<input type="hidden" name="redirectTo" value="https://example.com/contact/success" />
 				<input type="text" name="honeypot" style="display: none;" />
 
-				<input class="mt-6 bg-purple-500 py-8" type="submit" value="Submit" />
+				<input class="mt-6 bg-purple-500 py-8" type="submit" value={franchising.form.submit} />
 			</div>
 		</form>
 	</div>

@@ -1,106 +1,18 @@
 <script lang="ts">
+	import { lang } from "$lib/stores/lang";
+	import texts from "$lib/texts";
 	import { goto } from "$lib/utils";
 
-	type DooriLocation = {
-		city: string;
-		openingHours: {
-			monday: string;
-			tuesday: string;
-			wednesday: string;
-			thursday: string;
-			friday: string;
-			saturday: string;
-			sunday: string;
-		};
-
-		address: string;
-		phone: string;
-		foodora: string;
-		maps?: string;
-	};
-
-	const locations: { [id: string]: DooriLocation } = {
-		malmö: {
-			city: "Malmö",
-			openingHours: {
-				monday: "Stängt",
-				tuesday: "15:45 - 20:30",
-				wednesday: "15:30 - 20:30",
-				thursday: "15:30 - 20:30",
-				friday: "16:00 - 21:00",
-				saturday: "16:00 - 20:45",
-				sunday: "15:30 - 20:30"
-			},
-			address: "Möllevången<br>Endast Hemleverans",
-			phone: "076-167 70 50",
-			foodora: "https://www.foodora.se/restaurant/vf5j/doori-malmo"
-		},
-		helsingborg: {
-			city: "Helsingborg",
-			openingHours: {
-				monday: "Stängt",
-				tuesday: "11:15 - 19:00",
-				wednesday: "11:30 - 19:00",
-				thursday: "11:15 - 20:00",
-				friday: "11:15 - 20:00",
-				saturday: "11:15 - 20:00",
-				sunday: "Stängt"
-			},
-			address: "Roskildegatan 2<br>252 21 Helsingborg",
-			phone: "072-249 11 98",
-			foodora: "https://www.foodora.se/restaurant/pzqr/doori",
-			maps: "https://goo.gl/maps/GpiwtjJ5tXuz5Qfq5"
-		},
-		trelleborg: {
-			city: "Trelleborg",
-			openingHours: {
-				monday: "Stängt",
-				tuesday: "11:00 - 20:45",
-				wednesday: "11:00 - 20:45",
-				thursday: "11:00 - 21:00",
-				friday: "11:00 - 21:00",
-				saturday: "11:45 - 21:00",
-				sunday: "11:30 - 20:45"
-			},
-			address: "Centrala Trelleborg<br>Endast Hemleverans",
-			phone: "041-064 40",
-			foodora: "https://www.foodora.se/restaurant/vf5j/doori-malmo"
-		},
-		lund: {
-			city: "Lund",
-			openingHours: {
-				monday: "11:00 - 20:45",
-				tuesday: "11:00 - 20:45",
-				wednesday: "11:00 - 20:45",
-				thursday: "11:00 - 20:45",
-				friday: "11:00 - 20:45",
-				saturday: "11:30 - 20:45",
-				sunday: "11:30 - 21:00"
-			},
-			address: "Centrala Staden<br>Endast Hemleverans",
-			phone: "076-167 70 50",
-			foodora: "https://www.foodora.se/restaurant/xalr/doori-lund"
-		},
-		växjö: {
-			city: "Växjö",
-			openingHours: {
-				monday: "12:00 - 21:00",
-				tuesday: "12:00 - 21:00",
-				wednesday: "12:00 - 21:00",
-				thursday: "11:30 - 21:00",
-				friday: "12:00 - 20:45",
-				saturday: "11:00 - 21:15",
-				sunday: "11:00 - 21:00"
-			},
-			address: "Endast Hemleverans",
-			phone: "047-02 27 55",
-			foodora: "https://www.foodora.se/restaurant/hst4/doori-vaxjo"
-		}
-	};
+	let about = texts[$lang].about;
+	$: about = texts[$lang].about;
 </script>
 
+<svelte:head>
+	<title>{about.title}</title>
+</svelte:head>
+
 <div
-	class="container relative flex flex-col items-center justify-end gap-24 pb-32 pt-24 sm:py-16 lg:justify-center"
+	class="container relative flex flex-col items-center justify-end gap-24 pb-32 pt-8 sm:py-16 lg:justify-center"
 >
 	<div class="relative hidden max-w-xl items-center justify-center sm:flex">
 		<div
@@ -126,26 +38,10 @@
 	<div class="flex flex-col gap-6">
 		<div class="flex flex-col gap-4">
 			<h1>
-				Om Oss<span class="text-purple-500">.</span>
+				{@html about.main.heading}<span class="text-purple-500">.</span>
 			</h1>
 			<p class="">
-				Med mitt intresse för koreansk mat startade vi vår resa 2021 från en liten men söt food
-				truck och ville genom den introducera hemlagad koreansk mat som är både autentisk och
-				smakrik!
-				<br />
-				<br />
-				På Roskildegatan 2 i Helsingborg fortsätter vi att tillaga vår mest populära maträtt, Korean
-				Fried Chicken. Denna, tillsammans med våra hemlagad såser och andra rätter, hav vi precis gjort
-				tillgängliga genom våra virtuella kök i Malmö, Lund, Trelleborg, och Växjö så att våra kunder
-				kan beställa mat online för leveranser (på foodora) och take away.
-				<br />
-				<br />
-				En av de främsta anledningarna till att vi startade Doori var för att sprida glädje och göra
-				det lätt för våra kunder att njuta av riktigt god koreansk mat. Vi fortsätter därför att expandera
-				till olika delar av Skåne.
-				<br />
-				<br />
-				Följ oss på Instagram och häng med på vår spännande resa!
+				{@html about.main.text}
 			</p>
 		</div>
 	</div>
@@ -162,17 +58,19 @@
 	class="container flex flex-col items-baseline justify-between gap-6 pb-16 md:flex-row md:items-center"
 >
 	<div>
-		<h2 class="text-2xl font-bold">Gillar vad du ser?</h2>
-		<p>Bli en del av familjen och bli<br />anställd eller franchisetagare!</p>
+		<h2 class="mb-2 text-3xl font-bold">
+			{@html about.recruit.heading}<span class="text-yellow-500">?</span>
+		</h2>
+		<p>{@html about.recruit.text}</p>
 	</div>
 	<div>
 		<div class="flex items-center gap-6">
-			<button class="h-fit border-b-2 border-black"> Jobb </button>
+			<button class="h-fit border-b-2 border-black"> {about.recruit.buttons.work} </button>
 			<button
 				on:click={() => goto("/franchising")}
 				class="relative flex items-center gap-2 bg-black fill-background-500 px-4 py-3 text-background-500"
 			>
-				Franchisetagare
+				{about.recruit.buttons.franchisee}
 				<div class="-mr-2">
 					<svg
 						class="-rotate-90"

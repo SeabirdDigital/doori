@@ -1,6 +1,9 @@
 <script lang="ts">
+	import NavItems from "$lib/components/NavItems.svelte";
+	import { lang } from "$lib/stores/lang";
 	import { menuOpen } from "$lib/stores/menuOpen";
 	import { transitionOn } from "$lib/stores/transitionOn";
+	import texts, { langs } from "$lib/texts";
 	import { goto } from "$lib/utils";
 	import "@fontsource/indie-flower";
 	import "@fontsource/space-mono/400.css";
@@ -9,6 +12,9 @@
 	import "../app.css";
 
 	export let data;
+	let dialog: HTMLDialogElement;
+
+	lang.set(data.lang);
 
 	onMount(() => {
 		transitionOn.set(false);
@@ -23,7 +29,7 @@
 	});
 </script>
 
-{data.ip}
+<dialog class="border-2 border-black outline-none" bind:this={dialog} />
 
 <div
 	class="fixed left-0 z-50 w-full bg-yellow-500 duration-500 {$transitionOn
@@ -37,20 +43,9 @@
 			<img class="h-12" src="/logo_w_bg.png" alt="" />
 		</button>
 
-		<nav>
+		<nav class="flex items-center">
 			<ul class="hidden items-center justify-center gap-10 md:flex">
-				<li>
-					<button on:click={() => goto("/meny")}>Meny</button>
-				</li>
-				<li>
-					<button on:click={() => goto("/om-oss")}>Om oss</button>
-				</li>
-				<li>
-					<button on:click={() => goto("/#restauranger")}>Restauranger</button>
-				</li>
-				<li>
-					<button on:click={() => goto("/franchising")}>Franchising</button>
-				</li>
+				<NavItems />
 			</ul>
 		</nav>
 
@@ -102,18 +97,7 @@
 						? 'top-0'
 						: '-top-[calc(100%+6rem)]'}"
 				>
-					<li>
-						<button on:click={() => goto("/meny")}>Meny</button>
-					</li>
-					<li>
-						<button on:click={() => goto("/om-oss")}>Om oss</button>
-					</li>
-					<li>
-						<button on:click={() => goto("/#restauranger")}>Restauranger</button>
-					</li>
-					<li>
-						<button on:click={() => goto("/franchising")}>Franchising</button>
-					</li>
+					<NavItems />
 				</ul>
 			</nav>
 		</div>
@@ -124,7 +108,7 @@
 	</main>
 
 	<footer class="flex justify-center bg-black py-4 text-center text-background-500">
-		Copyright 2023 &copy; Seabird Digital UD. Alla rättigheter förbehållna.
+		Copyright 2023 &copy; {texts[$lang].layout.copyright}
 	</footer>
 </header>
 

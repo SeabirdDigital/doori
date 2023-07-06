@@ -1,5 +1,10 @@
 <script lang="ts">
+	import { lang } from "$lib/stores/lang";
+	import texts from "$lib/texts";
 	import { goto } from "$lib/utils";
+
+	let home = texts[$lang].home;
+	$: home = texts[$lang].home;
 
 	type DooriLocation = {
 		city: string;
@@ -23,7 +28,7 @@
 		malmö: {
 			city: "Malmö",
 			openingHours: {
-				monday: "Stängt",
+				monday: home.restaurants.closed,
 				tuesday: "15:45 - 20:30",
 				wednesday: "15:30 - 20:30",
 				thursday: "15:30 - 20:30",
@@ -31,20 +36,20 @@
 				saturday: "16:00 - 20:45",
 				sunday: "15:30 - 20:30"
 			},
-			address: "Möllevången<br>Endast Hemleverans",
+			address: `Möllevången<br>${home.restaurants.onlyHomeDelivery}`,
 			phone: "076-167 70 50",
 			foodora: "https://www.foodora.se/restaurant/vf5j/doori-malmo"
 		},
 		helsingborg: {
 			city: "Helsingborg",
 			openingHours: {
-				monday: "Stängt",
+				monday: home.restaurants.closed,
 				tuesday: "11:15 - 19:00",
 				wednesday: "11:30 - 19:00",
 				thursday: "11:15 - 20:00",
 				friday: "11:15 - 20:00",
 				saturday: "11:15 - 20:00",
-				sunday: "Stängt"
+				sunday: home.restaurants.closed
 			},
 			address: "Roskildegatan 2<br>252 21 Helsingborg",
 			phone: "072-249 11 98",
@@ -54,7 +59,7 @@
 		trelleborg: {
 			city: "Trelleborg",
 			openingHours: {
-				monday: "Stängt",
+				monday: home.restaurants.closed,
 				tuesday: "11:00 - 20:45",
 				wednesday: "11:00 - 20:45",
 				thursday: "11:00 - 21:00",
@@ -62,7 +67,7 @@
 				saturday: "11:45 - 21:00",
 				sunday: "11:30 - 20:45"
 			},
-			address: "Centrala Trelleborg<br>Endast Hemleverans",
+			address: `Centrala Trelleborg<br>${home.restaurants.onlyHomeDelivery}`,
 			phone: "041-064 40",
 			foodora: "https://www.foodora.se/restaurant/vf5j/doori-malmo"
 		},
@@ -77,7 +82,7 @@
 				saturday: "11:30 - 20:45",
 				sunday: "11:30 - 21:00"
 			},
-			address: "Centrala Staden<br>Endast Hemleverans",
+			address: `Centrala Staden<br>${home.restaurants.onlyHomeDelivery}`,
 			phone: "076-167 70 50",
 			foodora: "https://www.foodora.se/restaurant/xalr/doori-lund"
 		},
@@ -92,12 +97,16 @@
 				saturday: "11:00 - 21:15",
 				sunday: "11:00 - 21:00"
 			},
-			address: "Endast Hemleverans",
+			address: `${home.restaurants.onlyHomeDelivery}`,
 			phone: "047-02 27 55",
 			foodora: "https://www.foodora.se/restaurant/hst4/doori-vaxjo"
 		}
 	};
 </script>
+
+<svelte:head>
+	<title>{home.title}</title>
+</svelte:head>
 
 <div
 	class="container relative flex flex-row-reverse justify-end pb-32 pt-24 sm:py-16 lg:flex-row lg:justify-center lg:gap-24"
@@ -131,19 +140,17 @@
 	<div class="flex flex-col gap-6">
 		<div class="flex flex-col gap-4">
 			<h1>
-				Korean fried <br /> chicken & beyond<span class="text-purple-500">.</span>
+				{@html home.hero.heading}<span class="text-purple-500">.</span>
 			</h1>
 			<p class="hidden max-w-lg sm:block">
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-				been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-				galley of type and scrambled it to make a type specimen book.
+				{@html home.hero.text}
 			</p>
 		</div>
 
 		<div class="flex items-center gap-6">
 			<a href="#restauranger">
 				<button class="full to-extend">
-					Beställ nu
+					{home.hero.buttons.order}
 					<div class="-mr-2">
 						<svg
 							class="-rotate-90"
@@ -157,7 +164,7 @@
 					</div>
 				</button>
 			</a>
-			<button on:click={() => goto("/meny")} class="link">Visa Menyn</button>
+			<button on:click={() => goto("/meny")} class="link"> {home.hero.buttons.menu}</button>
 		</div>
 	</div>
 </div>
@@ -177,16 +184,19 @@
 			</h3>
 			<div class="text-xs text-black/60 lg:text-base xl:text-lg">
 				<div>
-					Mån: {location.openingHours.monday} Tis: {location.openingHours.tuesday}
+					{home.restaurants.weekdays.mon}: {location.openingHours.monday}
+					{home.restaurants.weekdays.tue}: {location.openingHours.tuesday}
 				</div>
 				<div>
-					Ons: {location.openingHours.wednesday} Tors: {location.openingHours.thursday}
+					{home.restaurants.weekdays.wed}: {location.openingHours.wednesday}
+					{home.restaurants.weekdays.thu}: {location.openingHours.thursday}
 				</div>
 				<div>
-					Fre: {location.openingHours.friday} Lör: {location.openingHours.saturday}
+					{home.restaurants.weekdays.fri}: {location.openingHours.friday}
+					{home.restaurants.weekdays.sat}: {location.openingHours.saturday}
 				</div>
 				<div>
-					Sön: {location.openingHours.sunday}
+					{home.restaurants.weekdays.sun}: {location.openingHours.sunday}
 				</div>
 			</div>
 			<div class="my-4 flex justify-between text-sm lg:justify-start">
