@@ -2,7 +2,7 @@ import { goto as svelteGoto } from "$app/navigation";
 import { menuOpen } from "./stores/menuOpen";
 import { transitionOn } from "./stores/transitionOn";
 
-export const getDistanceFromLatLonInKm = (
+export const getDistanceFromLatLngInKm = (
 	pos1: readonly [number, number],
 	pos2: readonly [number, number]
 ) => {
@@ -22,6 +22,10 @@ export const getDistanceFromLatLonInKm = (
 
 export const deg2rad = (deg: number) => {
 	return deg * (Math.PI / 180);
+};
+
+export const latLng2LngLat = (latLng: [number, number] | readonly [number, number]) => {
+	return [...latLng].reverse() as [number, number];
 };
 
 export const goto = (href: string) => {

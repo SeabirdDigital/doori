@@ -67,7 +67,8 @@ nav > ul > li > button:hover::after {
 	left: 0;
 }
 
-button.full {
+button.full,
+button.borders.to-full:hover {
 	position: relative;
 
 	display: flex;
@@ -89,7 +90,8 @@ button.full.to-extend:hover {
 	margin-right: -0.5rem;
 }
 
-button.borders {
+button.borders,
+button.full.to-borders:hover {
 	position: relative;
 
 	display: flex;
@@ -99,14 +101,10 @@ button.borders {
 	border: 1.5px solid black;
 	color: black;
 	fill: black;
+	background-color: transparent;
 
 	padding: 0.75rem 1rem;
 }
 button.borders.to-full {
 	transition-duration: 200ms;
-}
-button.borders.to-full:hover {
-	background-color: black;
-	color: var(--background);
-	fill: var(--background);
 }

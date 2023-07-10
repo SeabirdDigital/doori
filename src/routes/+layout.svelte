@@ -5,7 +5,7 @@
 	import { menuOpen } from "$lib/stores/menuOpen";
 	import { transitionOn } from "$lib/stores/transitionOn";
 	import texts, { langs } from "$lib/texts";
-	import { goto } from "$lib/utils";
+	import { goto, latLng2LngLat } from "$lib/utils";
 	import "@fontsource/indie-flower";
 	import "@fontsource/space-mono/400.css";
 	import "@fontsource/space-mono/700.css";
@@ -42,24 +42,44 @@
 		document.getElementById(type)!.style.display = "block";
 	};
 
+	const onDialogClick = (e: MouseEvent) => {
+		var rect = dialog.getBoundingClientRect();
+		var isInDialog =
+			rect.top <= e.clientY &&
+			e.clientY <= rect.top + rect.height &&
+			rect.left <= e.clientX &&
+			e.clientX <= rect.left + rect.width;
+		if (!isInDialog) {
+			dialog.close();
+		}
+	};
+
 	const onCloseDialog = () => {
 		for (const child of dialog.children) {
 			(child as HTMLElement).style.display = "block";
 		}
 	};
 
-	let center: [number, number] = [13.8504088, 56.2436179];
+	let center: [number, number] = latLng2LngLat(locations[$selectedLocation].latLng);
 	let zoom = 5.5;
+
+	const switchLocation = (location: string) => {
+		newSelectedLocation = location;
+		center = latLng2LngLat(locations[location].latLng);
+	};
 </script>
 
+<!-- onclick event is for close on click on bg -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <dialog
 	on:close={onCloseDialog}
+	on:click={onDialogClick}
 	class="border-2 border-black bg-background-500 p-0 outline-none"
 	bind:this={dialog}
 >
 	<div id="locationSelect" class="">
 		<div class="grid-cols-2 sm:grid">
-			<div class="relative hidden sm:block">
+			<div aria-hidden="true" class="relative hidden sm:block">
 				<MapLibre
 					class="aspect-[5/7] w-64"
 					style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
@@ -70,7 +90,7 @@
 					{#each Object.keys(locations) as location}
 						<Marker
 							lngLat={[locations[location].latLng[1], locations[location].latLng[0]]}
-							on:click={() => (newSelectedLocation = location)}
+							on:click={() => switchLocation(location)}
 							class="grid aspect-square h-8 place-items-center rounded-full bg-black"
 						>
 							<span>
@@ -89,7 +109,7 @@
 			<div class="flex flex-col justify-between border-black sm:border-l-2">
 				<ul>
 					{#each Object.keys(locations) as location}
-						<li class="px-4 py-1 {newSelectedLocation === location ? 'font-bold' : ''}">
+						<li class="item px-4 py-2 {newSelectedLocation === location ? 'font-bold' : ''}">
 							<label class="cursor-pointer">
 								<input
 									type="radio"
@@ -97,9 +117,7 @@
 									value={location}
 									checked={newSelectedLocation === location}
 									class="hidden"
-									on:change={() => {
-										newSelectedLocation = location;
-									}}
+									on:change={() => switchLocation(location)}
 								/>
 								{locations[location].city}
 							</label>
@@ -109,7 +127,7 @@
 				<form method="dialog" class="m-4">
 					<button
 						on:click={() => selectedLocation.set(newSelectedLocation)}
-						class="borders to-full flex w-full justify-center">Välj</button
+						class="full to-borders flex w-full justify-center">Välj</button
 					>
 				</form>
 			</div>
@@ -217,5 +235,13 @@
 <style>
 	#menuOpen:has(> input:checked) + nav > #menu {
 		display: flex;
+	}
+
+	#locationSelect li + li {
+		border-top: 2px solid black;
+	}
+
+	#locationSelect li:last-child {
+		border-bottom: 2px solid black;
 	}
 </style>
