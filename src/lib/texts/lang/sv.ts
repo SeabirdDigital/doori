@@ -2,6 +2,9 @@ import type { Texts } from "..";
 
 export const sv: Texts = {
 	layout: {
+		banner: {
+			chosen: "Vald"
+		},
 		nav: {
 			menu: "Meny",
 			about: "Om oss",
@@ -9,18 +12,9 @@ export const sv: Texts = {
 			franchising: "Franchising",
 			language: "Språk"
 		},
-		copyright: "Seabird Digital UD. Alla rättigheter förbehållna."
-	},
-	home: {
-		title: "Doori | Korean Fried Chicken & Beyond",
-		hero: {
-			heading: "Korean fried<br>chicken & beyond",
-			text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-			buttons: { order: "Beställ nu", menu: "Visa meny" }
-		},
 		restaurants: {
 			closed: "Stängt",
-			onlyHomeDelivery: "Endast hemleverans",
+			onlyDelivery: "Endast hemleverans",
 			weekdays: {
 				mon: "Mån",
 				tue: "Tis",
@@ -30,6 +24,15 @@ export const sv: Texts = {
 				sat: "Lör",
 				sun: "Sön"
 			}
+		},
+		copyright: "Seabird Digital UD. Alla rättigheter förbehållna."
+	},
+	home: {
+		title: "Doori | Korean Fried Chicken & Beyond",
+		hero: {
+			heading: "Korean fried<br>chicken & beyond",
+			text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+			buttons: { order: "Beställ nu", menu: "Visa meny" }
 		}
 	},
 	menu: {

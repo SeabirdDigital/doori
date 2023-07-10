@@ -34,6 +34,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/indie-flower": "^5.0.3",
-		"@fontsource/space-mono": "^5.0.3"
+		"@fontsource/space-mono": "^5.0.3",
+		"svelte-maplibre": "^0.3.2"
 	}
 }

@@ -1,107 +1,14 @@
 <script lang="ts">
 	import { lang } from "$lib/stores/lang";
+	import { locations, selectedLocation } from "$lib/stores/locations";
 	import texts from "$lib/texts";
 	import { goto } from "$lib/utils";
 
+	let layout = texts[$lang].layout;
+	$: layout = texts[$lang].layout;
+
 	let home = texts[$lang].home;
 	$: home = texts[$lang].home;
-
-	type DooriLocation = {
-		city: string;
-		openingHours: {
-			monday: string;
-			tuesday: string;
-			wednesday: string;
-			thursday: string;
-			friday: string;
-			saturday: string;
-			sunday: string;
-		};
-
-		address: string;
-		phone: string;
-		foodora: string;
-		maps?: string;
-	};
-
-	const locations: { [id: string]: DooriLocation } = {
-		malmö: {
-			city: "Malmö",
-			openingHours: {
-				monday: home.restaurants.closed,
-				tuesday: "15:45 - 20:30",
-				wednesday: "15:30 - 20:30",
-				thursday: "15:30 - 20:30",
-				friday: "16:00 - 21:00",
-				saturday: "16:00 - 20:45",
-				sunday: "15:30 - 20:30"
-			},
-			address: `Möllevången<br>${home.restaurants.onlyHomeDelivery}`,
-			phone: "076-167 70 50",
-			foodora: "https://www.foodora.se/restaurant/vf5j/doori-malmo"
-		},
-		helsingborg: {
-			city: "Helsingborg",
-			openingHours: {
-				monday: home.restaurants.closed,
-				tuesday: "11:15 - 19:00",
-				wednesday: "11:30 - 19:00",
-				thursday: "11:15 - 20:00",
-				friday: "11:15 - 20:00",
-				saturday: "11:15 - 20:00",
-				sunday: home.restaurants.closed
-			},
-			address: "Roskildegatan 2<br>252 21 Helsingborg",
-			phone: "072-249 11 98",
-			foodora: "https://www.foodora.se/restaurant/pzqr/doori",
-			maps: "https://goo.gl/maps/GpiwtjJ5tXuz5Qfq5"
-		},
-		trelleborg: {
-			city: "Trelleborg",
-			openingHours: {
-				monday: home.restaurants.closed,
-				tuesday: "11:00 - 20:45",
-				wednesday: "11:00 - 20:45",
-				thursday: "11:00 - 21:00",
-				friday: "11:00 - 21:00",
-				saturday: "11:45 - 21:00",
-				sunday: "11:30 - 20:45"
-			},
-			address: `Centrala Trelleborg<br>${home.restaurants.onlyHomeDelivery}`,
-			phone: "041-064 40",
-			foodora: "https://www.foodora.se/restaurant/vf5j/doori-malmo"
-		},
-		lund: {
-			city: "Lund",
-			openingHours: {
-				monday: "11:00 - 20:45",
-				tuesday: "11:00 - 20:45",
-				wednesday: "11:00 - 20:45",
-				thursday: "11:00 - 20:45",
-				friday: "11:00 - 20:45",
-				saturday: "11:30 - 20:45",
-				sunday: "11:30 - 21:00"
-			},
-			address: `Centrala Staden<br>${home.restaurants.onlyHomeDelivery}`,
-			phone: "076-167 70 50",
-			foodora: "https://www.foodora.se/restaurant/xalr/doori-lund"
-		},
-		växjö: {
-			city: "Växjö",
-			openingHours: {
-				monday: "12:00 - 21:00",
-				tuesday: "12:00 - 21:00",
-				wednesday: "12:00 - 21:00",
-				thursday: "11:30 - 21:00",
-				friday: "12:00 - 20:45",
-				saturday: "11:00 - 21:15",
-				sunday: "11:00 - 21:00"
-			},
-			address: `${home.restaurants.onlyHomeDelivery}`,
-			phone: "047-02 27 55",
-			foodora: "https://www.foodora.se/restaurant/hst4/doori-vaxjo"
-		}
-	};
 </script>
 
 <svelte:head>
@@ -148,7 +55,7 @@
 		</div>
 
 		<div class="flex items-center gap-6">
-			<a href="#restauranger">
+			<a href={locations[$selectedLocation].foodora}>
 				<button class="full to-extend">
 					{home.hero.buttons.order}
 					<div class="-mr-2">
@@ -184,24 +91,32 @@
 			</h3>
 			<div class="text-xs text-black/60 lg:text-base xl:text-lg">
 				<div>
-					{home.restaurants.weekdays.mon}: {location.openingHours.monday}
-					{home.restaurants.weekdays.tue}: {location.openingHours.tuesday}
+					{layout.restaurants.weekdays.mon}: {location.openingHours.monday ??
+						layout.restaurants.closed}
+					{layout.restaurants.weekdays.tue}: {location.openingHours.tuesday ??
+						layout.restaurants.closed}
 				</div>
 				<div>
-					{home.restaurants.weekdays.wed}: {location.openingHours.wednesday}
-					{home.restaurants.weekdays.thu}: {location.openingHours.thursday}
+					{layout.restaurants.weekdays.wed}: {location.openingHours.wednesday ??
+						layout.restaurants.closed}
+					{layout.restaurants.weekdays.thu}: {location.openingHours.thursday ??
+						layout.restaurants.closed}
 				</div>
 				<div>
-					{home.restaurants.weekdays.fri}: {location.openingHours.friday}
-					{home.restaurants.weekdays.sat}: {location.openingHours.saturday}
+					{layout.restaurants.weekdays.fri}: {location.openingHours.friday ??
+						layout.restaurants.closed}
+					{layout.restaurants.weekdays.sat}: {location.openingHours.saturday ??
+						layout.restaurants.closed}
 				</div>
 				<div>
-					{home.restaurants.weekdays.sun}: {location.openingHours.sunday}
+					{layout.restaurants.weekdays.sun}: {location.openingHours.sunday ??
+						layout.restaurants.closed}
 				</div>
 			</div>
 			<div class="my-4 flex justify-between text-sm lg:justify-start">
 				<div class="h-12 w-auto lg:w-64">
 					{@html location.address}
+					<span>{location.onlyDelivery ? layout.restaurants.onlyDelivery : ""}</span>
 				</div>
 				<div>
 					{location.phone}

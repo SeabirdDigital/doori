@@ -1,4 +1,6 @@
+import { locations } from "$lib/stores/locations";
 import type { langs } from "$lib/texts";
+import { getDistanceFromLatLonInKm } from "$lib/utils";
 import type { ServerLoad } from "@sveltejs/kit";
 
 export type IpInfo = {
@@ -17,6 +19,19 @@ export const load: ServerLoad = async ({ locals, cookies }) => {
 	const ipInfoResponse = await fetch(`https://ipinfo.io/${locals.ip}?token=d0eac2491f7841`);
 	const ipInfo: IpInfo = await ipInfoResponse.json();
 
+	const loc = ipInfo.loc.split(",").map((x) => parseFloat(x)) as [number, number];
+
+	let nearestLocation: string | undefined;
+	let nearestDistance = 0;
+	Object.keys(locations).map((key) => {
+		const location = locations[key];
+		const d = getDistanceFromLatLonInKm(loc, location.latLng);
+		if (nearestLocation && d > nearestDistance) return;
+
+		nearestLocation = key;
+		nearestDistance = d;
+	});
+
 	let lang = cookies.get("lang") as keyof typeof langs | undefined;
 	if (!lang) {
 		if (ipInfo.country === "SE") {
@@ -30,5 +45,5 @@ export const load: ServerLoad = async ({ locals, cookies }) => {
 		});
 	}
 
-	return { lang };
+	return { lang, nearestLocation };
 };

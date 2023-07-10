@@ -1,6 +1,7 @@
 <script lang="ts">
 	import NavItems from "$lib/components/NavItems.svelte";
 	import { lang } from "$lib/stores/lang";
+	import { locations, selectedLocation } from "$lib/stores/locations";
 	import { menuOpen } from "$lib/stores/menuOpen";
 	import { transitionOn } from "$lib/stores/transitionOn";
 	import texts, { langs } from "$lib/texts";
@@ -9,12 +10,17 @@
 	import "@fontsource/space-mono/400.css";
 	import "@fontsource/space-mono/700.css";
 	import { onMount } from "svelte";
+	import { MapLibre, Marker, Popup } from "svelte-maplibre";
 	import "../app.css";
 
 	export let data;
 	let dialog: HTMLDialogElement;
 
 	lang.set(data.lang);
+	if (data.nearestLocation) selectedLocation.set(data.nearestLocation);
+
+	let layout = texts[$lang].layout;
+	$: layout = texts[$lang].layout;
 
 	onMount(() => {
 		transitionOn.set(false);
@@ -27,15 +33,111 @@
 			}
 		});
 	});
+
+	let newSelectedLocation = $selectedLocation;
+
+	const openDialog = (type: "locationSelect") => {
+		dialog.showModal();
+
+		document.getElementById(type)!.style.display = "block";
+	};
+
+	const onCloseDialog = () => {
+		for (const child of dialog.children) {
+			(child as HTMLElement).style.display = "block";
+		}
+	};
+
+	let center: [number, number] = [13.8504088, 56.2436179];
+	let zoom = 5.5;
 </script>
 
-<dialog class="border-2 border-black outline-none" bind:this={dialog} />
+<dialog
+	on:close={onCloseDialog}
+	class="border-2 border-black bg-background-500 p-0 outline-none"
+	bind:this={dialog}
+>
+	<div id="locationSelect" class="">
+		<div class="grid-cols-2 sm:grid">
+			<div class="relative hidden sm:block">
+				<MapLibre
+					class="aspect-[5/7] w-64"
+					style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+					standardControls
+					{center}
+					{zoom}
+				>
+					{#each Object.keys(locations) as location}
+						<Marker
+							lngLat={[locations[location].latLng[1], locations[location].latLng[0]]}
+							on:click={() => (newSelectedLocation = location)}
+							class="grid aspect-square h-8 place-items-center rounded-full bg-black"
+						>
+							<span>
+								<img src="/doori-d.png" class="h-4" alt="" />
+							</span>
+
+							<Popup openOn="hover" offset={[0, -10]}>
+								<div class="-my-2">
+									{locations[location].city}
+								</div>
+							</Popup>
+						</Marker>
+					{/each}
+				</MapLibre>
+			</div>
+			<div class="flex flex-col justify-between border-black sm:border-l-2">
+				<ul>
+					{#each Object.keys(locations) as location}
+						<li class="px-4 py-1 {newSelectedLocation === location ? 'font-bold' : ''}">
+							<label class="cursor-pointer">
+								<input
+									type="radio"
+									name="location"
+									value={location}
+									checked={newSelectedLocation === location}
+									class="hidden"
+									on:change={() => {
+										newSelectedLocation = location;
+									}}
+								/>
+								{locations[location].city}
+							</label>
+						</li>
+					{/each}
+				</ul>
+				<form method="dialog" class="m-4">
+					<button
+						on:click={() => selectedLocation.set(newSelectedLocation)}
+						class="borders to-full flex w-full justify-center">Välj</button
+					>
+				</form>
+			</div>
+		</div>
+	</div>
+</dialog>
 
 <div
 	class="fixed left-0 z-50 w-full bg-yellow-500 duration-500 {$transitionOn
 		? 'top-0 h-full'
 		: 'bottom-0 h-0'}"
 />
+
+<div class="bg-black py-2 text-sm text-white">
+	<div class="container flex justify-between">
+		<div>
+			{#if locations[$selectedLocation].onlyDelivery}
+				{layout.restaurants.onlyDelivery}
+			{/if}
+		</div>
+		<div class="text-left">
+			📍
+			<button on:click={() => openDialog("locationSelect")} class="link after:!bg-white">
+				{locations[$selectedLocation].city}
+			</button>
+		</div>
+	</div>
+</div>
 
 <header class="overflow-x-hidden">
 	<div class="container flex justify-between py-8">
@@ -108,7 +210,7 @@
 	</main>
 
 	<footer class="flex justify-center bg-black py-4 text-center text-background-500">
-		Copyright 2023 &copy; {texts[$lang].layout.copyright}
+		Copyright 2023 &copy; {layout.copyright}
 	</footer>
 </header>
 
