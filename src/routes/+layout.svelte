@@ -37,9 +37,11 @@
 	let newSelectedLocation = $selectedLocation;
 
 	const openDialog = (type: "locationSelect") => {
-		dialog.showModal();
-
 		document.getElementById(type)!.style.display = "block";
+
+		if (type == "locationSelect") newSelectedLocation = $selectedLocation;
+
+		dialog.showModal();
 	};
 
 	const onDialogClick = (e: MouseEvent) => {
@@ -81,7 +83,7 @@
 		<div class="grid-cols-2 sm:grid">
 			<div aria-hidden="true" class="relative hidden sm:block">
 				<MapLibre
-					class="aspect-[5/7] w-64"
+					class="relative aspect-[5/7] w-64"
 					style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
 					standardControls
 					{center}
@@ -91,11 +93,17 @@
 						<Marker
 							lngLat={[locations[location].latLng[1], locations[location].latLng[0]]}
 							on:click={() => switchLocation(location)}
-							class="grid aspect-square h-8 place-items-center rounded-full bg-black"
 						>
-							<span>
-								<img src="/doori-d.png" class="h-4" alt="" />
-							</span>
+							<div
+								class="absolute right-1/2 top-1/2 grid aspect-square h-8 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full duration-200 {newSelectedLocation ==
+								location
+									? 'z-30 scale-110 bg-black'
+									: 'z-10 scale-100 bg-background-900 hover:scale-110'}"
+							>
+								<span>
+									<img src="/doori-d.png" class="h-4" alt="" />
+								</span>
+							</div>
 
 							<Popup openOn="hover" offset={[0, -10]}>
 								<div class="-my-2">
@@ -109,17 +117,23 @@
 			<div class="flex flex-col justify-between border-black sm:border-l-2">
 				<ul>
 					{#each Object.keys(locations) as location}
-						<li class="item px-4 py-2 {newSelectedLocation === location ? 'font-bold' : ''}">
-							<label class="cursor-pointer">
+						<li class="item mt-2 px-4 {newSelectedLocation === location ? 'font-bold' : ''}">
+							<label class="flex cursor-pointer">
 								<input
 									type="radio"
 									name="location"
 									value={location}
 									checked={newSelectedLocation === location}
-									class="hidden"
+									class="h-0 w-0 opacity-0"
 									on:change={() => switchLocation(location)}
 								/>
-								{locations[location].city}
+								<span class="flex flex-1 justify-between">
+									{locations[location].city}
+
+									{#if newSelectedLocation == location}
+										<img src="/star.svg" width="16px" alt="" />
+									{/if}
+								</span>
 							</label>
 						</li>
 					{/each}
@@ -237,11 +251,7 @@
 		display: flex;
 	}
 
-	#locationSelect li + li {
-		border-top: 2px solid black;
-	}
-
-	#locationSelect li:last-child {
-		border-bottom: 2px solid black;
+	#locationSelect .item:focus {
+		font-weight: bold;
 	}
 </style>
