@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { lang } from "$lib/stores/lang";
+	import lang from "$lib/stores/lang";
 	import texts from "$lib/texts";
 
 	let franchising = texts[$lang].franchising;

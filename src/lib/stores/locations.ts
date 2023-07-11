@@ -109,4 +109,7 @@ export const locations: { [id: string]: DooriLocation } = {
 	}
 } as const;
 
-export const selectedLocation = writable<string>("malmö");
+export const newSelectedLocation = writable<string>("malmö");
+
+const selectedLocation = writable<string>("malmö");
+export default selectedLocation;

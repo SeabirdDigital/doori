@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { lang } from "$lib/stores/lang";
-	import { locations, selectedLocation } from "$lib/stores/locations";
+	import lang from "$lib/stores/lang";
+	import selectedLocation, { locations } from "$lib/stores/locations";
 	import texts from "$lib/texts";
 	import { goto } from "$lib/utils";
 

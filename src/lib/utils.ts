@@ -1,6 +1,6 @@
 import { goto as svelteGoto } from "$app/navigation";
-import { menuOpen } from "./stores/menuOpen";
-import { transitionOn } from "./stores/transitionOn";
+import menuOpen from "./stores/menuOpen";
+import transitionOn from "./stores/transitionOn";
 
 export const getDistanceFromLatLngInKm = (
 	pos1: readonly [number, number],

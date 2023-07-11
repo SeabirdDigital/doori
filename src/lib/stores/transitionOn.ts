@@ -1,3 +1,4 @@
 import { writable } from "svelte/store";
 
-export const transitionOn = writable(true);
+const transitionOn = writable(true);
+export default transitionOn;
