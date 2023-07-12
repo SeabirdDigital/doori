@@ -77,7 +77,7 @@
 								class="h-0 w-0 opacity-0"
 								on:change={() => switchLocation(location.id)}
 							/>
-							<span class="flex flex-1 items-end justify-between">
+							<span class="flex min-w-[250px] flex-1 items-end justify-between">
 								<span>
 									<span class="link reverse">
 										{location.city}
@@ -88,7 +88,9 @@
 								</span>
 
 								{#if $newSelectedLocation == location.id}
-									<img src="/star.svg" width="16px" alt="" />
+									<span class="flex h-full items-center">
+										<img src="/star.svg" width="16px" alt="" />
+									</span>
 								{/if}
 							</span>
 						</label>
