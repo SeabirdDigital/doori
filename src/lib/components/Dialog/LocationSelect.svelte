@@ -1,9 +1,15 @@
 <script lang="ts">
-	import selectedLocation, { locations, newSelectedLocation } from "$lib/stores/locations";
-	import { latLng2LngLat } from "$lib/utils";
+	import selectedLocation, {
+		currentLocation,
+		ipInfo,
+		locations,
+		locationsInOrder,
+		newSelectedLocation
+	} from "$lib/stores/locations";
+	import { getDistanceFromLatLngInKm, latLng2LngLat } from "$lib/utils";
 	import { MapLibre, Marker, Popup } from "svelte-maplibre";
 
-	let center: [number, number] = latLng2LngLat(locations[$selectedLocation].latLng);
+	let center: [number, number] = latLng2LngLat($currentLocation);
 	let zoom = 5.5;
 
 	const switchLocation = (location: string) => {
@@ -22,6 +28,14 @@
 				{center}
 				{zoom}
 			>
+				<Marker lngLat={latLng2LngLat($currentLocation)}>
+					<div
+						class="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-full border-2 border-blue-400"
+					>
+						<div class="m-[2px] grid aspect-square h-3 rounded-full bg-blue-400 duration-200" />
+					</div>
+				</Marker>
+
 				{#each Object.keys(locations) as location}
 					<Marker
 						lngLat={[locations[location].latLng[1], locations[location].latLng[0]]}
@@ -49,21 +63,31 @@
 		</div>
 		<div class="flex flex-col justify-between border-black sm:border-l-2">
 			<ul>
-				{#each Object.keys(locations) as location}
-					<li class="item mt-2 px-4 {$newSelectedLocation === location ? 'font-bold' : ''}">
+				<li class="item border-b-2 border-black px-4 py-2 text-xs">
+					📍 {$ipInfo?.city}
+				</li>
+				{#each $locationsInOrder as location}
+					<li class="item mt-2 px-4 {$newSelectedLocation === location.id ? 'font-bold' : ''}">
 						<label class="flex cursor-pointer">
 							<input
 								type="radio"
 								name="location"
-								value={location}
-								checked={$newSelectedLocation === location}
+								value={location.id}
+								checked={$newSelectedLocation === location.id}
 								class="h-0 w-0 opacity-0"
-								on:change={() => switchLocation(location)}
+								on:change={() => switchLocation(location.id)}
 							/>
-							<span class="flex flex-1 justify-between">
-								{locations[location].city}
+							<span class="flex flex-1 items-end justify-between">
+								<span>
+									<span class="link reverse">
+										{location.city}
+									</span>
+									<span class="-ml-1 mb-[3px] text-xs font-normal opacity-80">
+										{getDistanceFromLatLngInKm(location.latLng, $currentLocation).toFixed(1)}km
+									</span>
+								</span>
 
-								{#if $newSelectedLocation == location}
+								{#if $newSelectedLocation == location.id}
 									<img src="/star.svg" width="16px" alt="" />
 								{/if}
 							</span>

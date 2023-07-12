@@ -24,7 +24,10 @@ button {
 	position: relative;
 }
 
-button.link::after {
+.link {
+	position: relative;
+}
+.link::after {
 	content: "";
 
 	position: absolute;
@@ -38,15 +41,35 @@ button.link::after {
 
 	transition-duration: 400ms;
 }
-
-button.link:hover::after {
+.link:hover::after {
 	right: 0;
 	left: auto;
 
 	width: 0;
 }
 
-button.link.inverse::after,
+.link.reverse::after {
+	content: "";
+
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: auto;
+
+	height: 1.5px;
+	width: 0;
+	background-color: black;
+
+	transition-duration: 400ms;
+}
+.link.reverse:hover::after {
+	right: auto;
+	left: 0;
+
+	width: 100%;
+}
+
+.link.inverse::after,
 nav > ul > li > button::after {
 	content: " ";
 
@@ -60,7 +83,7 @@ nav > ul > li > button::after {
 	background-color: black;
 	transition-duration: 400ms;
 }
-button.link.inverse:hover::after,
+.link.inverse:hover::after,
 nav > ul > li > button:hover::after {
 	width: 100%;
 	right: auto;

@@ -2,7 +2,13 @@
 	import Dialog from "$lib/components/Dialog/Dialog.svelte";
 	import NavItems from "$lib/components/NavItems.svelte";
 	import lang from "$lib/stores/lang";
-	import selectedLocation, { locations, newSelectedLocation } from "$lib/stores/locations";
+	import selectedLocation, {
+		currentLocation,
+		ipInfo,
+		locations,
+		locationsInOrder,
+		newSelectedLocation
+	} from "$lib/stores/locations";
 	import menuOpen from "$lib/stores/menuOpen";
 	import transitionOn from "$lib/stores/transitionOn";
 	import texts, { langs } from "$lib/texts";
@@ -16,8 +22,12 @@
 	export let data;
 	let dialog: HTMLDialogElement;
 
+	locationsInOrder.set(data.locationsInOrder);
+	selectedLocation.set(data.locationsInOrder[0].id);
+
 	lang.set(data.lang);
-	if (data.nearestLocation) selectedLocation.set(data.nearestLocation);
+	ipInfo.set(data.ipInfo!);
+	currentLocation.set(data.ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
 
 	let layout = texts[$lang].layout;
 	$: layout = texts[$lang].layout;

@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
+import type { IpInfo } from "../../routes/proxy+layout.server";
 
-type DooriLocation = {
+export type DooriLocation = {
 	city: string;
 	latLng: readonly [number, number];
 	openingHours: {
@@ -110,6 +111,10 @@ export const locations: { [id: string]: DooriLocation } = {
 } as const;
 
 export const newSelectedLocation = writable<string>("malmö");
+
+export const ipInfo = writable<IpInfo>();
+export const currentLocation = writable<[number, number]>();
+export const locationsInOrder = writable<(DooriLocation & { id: string })[]>([]);
 
 const selectedLocation = writable<string>("malmö");
 export default selectedLocation;
