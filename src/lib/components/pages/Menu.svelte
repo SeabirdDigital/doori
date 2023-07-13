@@ -1,9 +1,12 @@
 <script lang="ts">
 	import lang from "$lib/stores/lang";
-	import texts from "$lib/texts";
+	import texts, { pageMeta } from "$lib/texts";
 
 	let menu = texts[$lang].menu;
 	$: menu = texts[$lang].menu;
+
+	let title = pageMeta[$lang].Menu?.title;
+	$: title = pageMeta[$lang].Menu?.title;
 </script>
 
 <div class="flex justify-center">
@@ -13,7 +16,7 @@
 </div>
 
 <svelte:head>
-	<title>{menu.title}</title>
+	<title>{title}</title>
 </svelte:head>
 
 <div class="container mb-12">

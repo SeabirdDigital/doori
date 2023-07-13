@@ -1,5 +1,6 @@
 <script lang="ts">
 	import lang from "$lib/stores/lang";
+	import pageId from "$lib/stores/pageId";
 	import texts, { langs } from "$lib/texts";
 	import { goto } from "$lib/utils";
 
@@ -8,26 +9,29 @@
 
 	const langsArray = Object.keys(langs) as (keyof typeof langs)[];
 
-	const switchLang = () => {
+	const switchLang = async () => {
 		const currentIndex = langsArray.findIndex((l) => l == $lang);
 		const nextIndex = currentIndex + 1 >= langsArray.length ? 0 : currentIndex + 1;
 
-		lang.set(langsArray[nextIndex]);
-		fetch(`/api/lang/${langsArray[nextIndex]}`, { method: "POST" });
+		await fetch(`/api/lang/${langsArray[nextIndex]}`, { method: "POST" });
+
+		goto($pageId, { lang: langsArray[nextIndex] });
 	};
 </script>
 
 <li>
-	<button on:click={() => goto("/meny")}>{itemNames.menu}</button>
+	<button on:click={() => goto("Menu")}>{itemNames.menu}</button>
 </li>
 <li>
-	<button on:click={() => goto("/om-oss")}>{itemNames.about}</button>
+	<button on:click={() => goto("About")}>{itemNames.about}</button>
 </li>
 <li>
-	<button on:click={() => goto("/#restauranger")}>{itemNames.restaurants}</button>
+	<button on:click={() => goto(`/${$lang}/#restauranger`, { href: true })}>
+		{itemNames.restaurants}
+	</button>
 </li>
 <li>
-	<button on:click={() => goto("/franchising")}>{itemNames.franchising}</button>
+	<button on:click={() => goto("Franchising")}>{itemNames.franchising}</button>
 </li>
 
 <button class="flex items-center gap-4 sm:-ml-4" on:click={switchLang}>

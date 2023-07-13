@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { page } from "$app/stores";
 	import Dialog from "$lib/components/Dialog/Dialog.svelte";
 	import NavItems from "$lib/components/NavItems.svelte";
+	import pages from "$lib/components/pages";
 	import lang from "$lib/stores/lang";
 	import selectedLocation, {
 		currentLocation,
@@ -10,20 +12,22 @@
 		newSelectedLocation
 	} from "$lib/stores/locations";
 	import menuOpen from "$lib/stores/menuOpen";
+	import pageId from "$lib/stores/pageId";
 	import transitionOn from "$lib/stores/transitionOn";
-	import texts, { langs } from "$lib/texts";
+	import texts, { langs, pageMeta } from "$lib/texts";
 	import { goto, latLng2LngLat } from "$lib/utils";
 	import "@fontsource/indie-flower";
 	import "@fontsource/space-mono/400.css";
 	import "@fontsource/space-mono/700.css";
-	import { onMount } from "svelte";
-	import "../app.css";
+	import { SvelteComponent, onMount } from "svelte";
+	import "../../app.css";
 
 	export let data;
 	let dialog: HTMLDialogElement;
 
 	locationsInOrder.set(data.locationsInOrder);
 	selectedLocation.set(data.locationsInOrder[0].id);
+	pageId.set(data.pageId);
 
 	lang.set(data.lang);
 	ipInfo.set(data.ipInfo!);
@@ -81,7 +85,7 @@
 
 <header class="overflow-x-hidden">
 	<div class="container flex justify-between py-8">
-		<button on:click={() => goto("/")}>
+		<button on:click={() => goto("Home")}>
 			<img class="h-12" src="/logo_w_bg.png" alt="" />
 		</button>
 
@@ -146,6 +150,13 @@
 	</div>
 
 	<main>
+		{#each Object.keys(pages) as pageKey}
+			{#if pageMeta[$lang][pageKey]}
+				{#if data.slug == pageMeta[$lang][pageKey].slug}
+					<svelte:component this={pages[pageKey]} />
+				{/if}
+			{/if}
+		{/each}
 		<slot />
 	</main>
 

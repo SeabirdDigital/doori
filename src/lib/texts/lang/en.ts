@@ -28,7 +28,6 @@ export const en = {
 		copyright: "Seabird Digital UD. All rights reserved."
 	},
 	home: {
-		title: "Doori | Korean fried chicken & beyond",
 		hero: {
 			heading: "Korean fried<br>chicken & beyond",
 			text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
@@ -36,7 +35,6 @@ export const en = {
 		}
 	},
 	menu: {
-		title: "Menu | Doori",
 		heading: "Menu",
 		menu: [
 			{
@@ -106,7 +104,6 @@ export const en = {
 		] as Menu
 	},
 	about: {
-		title: "About Us | Doori",
 		main: {
 			heading: "About Us",
 			text: "With my interest in Korean food, we started our journey in 2021 from a small but cute food truck and wanted to introduce through it homemade Korean food that is both authentic and tasty!<br><br>At Roskildegatan 2 in Helsingborg, we continue to prepare our most popular dish, Korean Fried Chicken. This, together with our homemade sauces and other dishes, we have just made available through our virtual kitchens in Malmö, Lund, Trelleborg, and Växjö so that our customers can order food online for deliveries (on foodora) and take away.<br><br>One of the main reasons we started Doori was to spread joy and make it easy for our customers to enjoy really good Korean food. We therefore continue to expand to different parts of Skåne.<br><br>Follow us on Instagram and join us on our exciting journey!"
@@ -121,7 +118,6 @@ export const en = {
 		}
 	},
 	franchising: {
-		title: "Franchising | Doori",
 		form: {
 			heading: "Become a Franchisee",
 			name: "Name",

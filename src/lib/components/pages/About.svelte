@@ -1,14 +1,17 @@
 <script lang="ts">
 	import lang from "$lib/stores/lang";
-	import texts from "$lib/texts";
+	import texts, { pageMeta } from "$lib/texts";
 	import { goto } from "$lib/utils";
 
 	let about = texts[$lang].about;
 	$: about = texts[$lang].about;
+
+	let title = pageMeta[$lang]["About"]?.title;
+	$: title = pageMeta[$lang]["About"]?.title;
 </script>
 
 <svelte:head>
-	<title>{about.title}</title>
+	<title>{title}</title>
 </svelte:head>
 
 <div

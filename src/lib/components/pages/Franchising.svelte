@@ -1,13 +1,16 @@
 <script lang="ts">
 	import lang from "$lib/stores/lang";
-	import texts from "$lib/texts";
+	import texts, { pageMeta } from "$lib/texts";
 
 	let franchising = texts[$lang].franchising;
 	$: franchising = texts[$lang].franchising;
+
+	let title = pageMeta[$lang].Franchising?.title;
+	$: title = pageMeta[$lang].Franchising?.title;
 </script>
 
 <svelte:head>
-	<title>{franchising.title}</title>
+	<title>{title}</title>
 </svelte:head>
 
 <div class="container grid-cols-2 pb-24 pt-14 lg:grid">
