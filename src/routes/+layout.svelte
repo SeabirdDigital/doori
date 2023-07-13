@@ -20,7 +20,7 @@
 	import "@fontsource/space-mono/400.css";
 	import "@fontsource/space-mono/700.css";
 	import { SvelteComponent, onMount } from "svelte";
-	import "../../app.css";
+	import "../app.css";
 
 	export let data;
 	let dialog: HTMLDialogElement;

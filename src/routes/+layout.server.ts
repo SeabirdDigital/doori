@@ -16,15 +16,14 @@ export type IpInfo = {
 };
 
 export const load: ServerLoad = async ({ locals, cookies, fetch, params }) => {
-	let lang = params.lang as keyof typeof langs;
+	let lang = params.path?.split("/")[0] as keyof typeof langs;
+	let rest = params.path?.split("/").slice(1).join("/");
+	if (rest === "") rest = "/";
 
 	if (Object.keys(langs).indexOf(lang) === -1) {
 		lang = (cookies.get("lang") as "sv" | "en" | undefined) ?? "sv";
 
-		throw redirect(
-			302,
-			`/${lang}${params.rest ? "/" + params.lang : ""}${params.rest ? "/" + params.rest : ""}`
-		);
+		throw redirect(302, `/${lang}${rest ? "/" + rest : ""}`);
 	}
 
 	let pageId: string | undefined;
@@ -33,7 +32,7 @@ export const load: ServerLoad = async ({ locals, cookies, fetch, params }) => {
 		if (Object.prototype.hasOwnProperty.call(pageMeta[lang], key)) {
 			const page = pageMeta[lang][key as keyof typeof pageMeta.en];
 
-			const slug = params.rest ?? "/";
+			const slug = rest;
 			foundPage = page?.slug == slug;
 			pageId = key;
 		}
@@ -70,5 +69,5 @@ export const load: ServerLoad = async ({ locals, cookies, fetch, params }) => {
 
 	cookies.set("lang", lang);
 
-	return { lang, locationsInOrder, ipInfo, slug: params.rest ?? "/", pageId };
+	return { lang, locationsInOrder, ipInfo, slug: rest, pageId };
 };

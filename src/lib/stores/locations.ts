@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { IpInfo } from "../../routes/[lang]/+layout.server";
+import type { IpInfo } from "../../routes/+page.server";
 
 export type DooriLocation = {
 	city: string;
