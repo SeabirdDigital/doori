@@ -74,7 +74,7 @@
 					</div>
 				</button>
 			</a>
-			<button on:click={() => goto("/meny")} class="link"> {home.hero.buttons.menu}</button>
+			<button on:click={() => goto("Menu")} class="link"> {home.hero.buttons.menu}</button>
 		</div>
 	</div>
 </div>
