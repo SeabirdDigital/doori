@@ -19,12 +19,28 @@
 <div
 	class="container relative flex flex-row-reverse justify-end pb-32 pt-24 sm:py-16 lg:flex-row lg:justify-center lg:gap-24"
 >
+	<img
+		class="absolute bottom-0 left-2 w-24 rotate-[204deg] sm:-bottom-5 sm:-left-6 lg:bottom-16 lg:left-auto lg:right-32 lg:-rotate-[204deg]"
+		src="/Explode.svg"
+		alt=""
+	/>
+	<img
+		class="absolute left-[42%] top-6 block w-12 -rotate-12 sm:left-auto sm:right-[15%] sm:hidden lg:block"
+		src="/Wavy.svg"
+		alt=""
+	/>
+
 	<div class="sm:hidden">
 		<img class="absolute -left-36 -top-12 h-44" src="/mobile/bowl1.webp" alt="" />
 		<img class="absolute -bottom-8 -right-8 h-36" src="/mobile/bowl2.webp" alt="" />
 		<img class="absolute -right-24 -top-20 h-56 rotate-12" src="/mobile/chopsticks.webp" alt="" />
 	</div>
 	<div class="relative hidden sm:block">
+		<div
+			class="absolute -right-28 -top-24 left-auto z-20 aspect-[116/152] h-20 -rotate-3 lg:-left-4 lg:-top-20 lg:right-auto"
+		>
+			<img class="aspect-[116/152] h-20" src="/Stars.svg" alt="" />
+		</div>
 		<div
 			class="absolute -right-96 -top-12 flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0"
 		>
@@ -77,14 +93,78 @@
 	</div>
 </div>
 
-<div class="flex items-center gap-8 py-12">
-	<div class="h-px flex-1 bg-black lg:w-12 lg:flex-none" />
-	<a href="https://www.instagram.com/doori_koreanskmat/" class="hover:text-yellow-500">Instagram</a>
-	<a href="https://www.facebook.com/Doorikoreanskmat/" class="hover:text-purple-500">Facebook</a>
-	<div class="h-px flex-1 bg-black" />
+<div>
+	<div class="mt-24 flex flex-col items-center">
+		<div class="z-20 -mb-4 rotate-1 bg-yellow-100 px-4 py-3 text-2xl">
+			<h2 class="font-indie leading-none">{home.favourites}</h2>
+		</div>
+	</div>
+	<div
+		class="flex h-48 -rotate-1 scale-110 gap-4 bg-contain bg-repeat-x py-6"
+		style="background-image: url(/Film.svg);"
+	>
+		<div
+			class="aspect-[4/3] h-full rounded-md bg-cover"
+			style="background-image: url(/kfc.webp);"
+		/>
+		<div
+			class="aspect-[4/3] h-full rounded-md bg-cover"
+			style="background-image: url(/kfc.webp);"
+		/>
+		<div
+			class="aspect-[4/3] h-full rounded-md bg-cover"
+			style="background-image: url(/kfc.webp);"
+		/>
+		<div
+			class="aspect-[4/3] h-full rounded-md bg-cover"
+			style="background-image: url(/kfc.webp);"
+		/>
+		<div
+			class="aspect-[4/3] h-full rounded-md bg-cover"
+			style="background-image: url(/kfc.webp);"
+		/>
+		<div
+			class="aspect-[4/3] h-full rounded-md bg-cover"
+			style="background-image: url(/kfc.webp);"
+		/>
+		<div
+			class="aspect-[4/3] h-full rounded-md bg-cover"
+			style="background-image: url(/kfc.webp);"
+		/>
+	</div>
 </div>
 
-<div id={home.restaurants.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
+<div class="container bg-yellow-50 pb-12 pt-16 sm:pb-24 sm:pt-28">
+	<div class="flex justify-center gap-8">
+		<div class="hidden sm:block">
+			<img class="aspect-[4/3] max-h-64 rounded-lg object-cover" src="/kfc.webp" alt="" />
+		</div>
+		<div class="flex flex-col gap-6">
+			<div>
+				<h3 class="mb-2 text-4xl font-bold">{@html home.newsArticle.heading}</h3>
+				<p class="max-w-md">
+					{@html home.newsArticle.text}
+				</p>
+			</div>
+
+			<div>
+				<a href="https://www.instagram.com/doori_koreanskmat/">
+					<button class="link">{home.newsArticle.learnMore}</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="flex gap-2 whitespace-nowrap bg-black py-3 text-2xl text-white">
+	<span class="relative block" id="first-kfc">Korean fried chicken & beyond </span> ✨
+	<span class="relative block">Korean fried chicken & beyond </span> ✨
+	<span class="relative block">Korean fried chicken & beyond </span> ✨
+	<span class="relative block">Korean fried chicken & beyond </span> ✨
+	<span class="relative block">Korean fried chicken & beyond </span> ✨
+</div>
+
+<div id={home.restaurants.toLowerCase()} class="container my-16 grid gap-8 md:grid-cols-2">
 	{#each locationsArray as location}
 		<div class="">
 			<h3 class="mb-2 text-4xl font-bold sm:text-5xl lg:mb-4 lg:text-[6vw]">
@@ -163,3 +243,20 @@
 		</div>
 	{/each}
 </div>
+
+<div class="" />
+
+<style>
+	@keyframes kfcRoll {
+		0% {
+			margin-left: 0;
+		}
+		100% {
+			margin-left: -474px;
+		}
+	}
+
+	#first-kfc {
+		animation: kfcRoll 10s linear infinite;
+	}
+</style>

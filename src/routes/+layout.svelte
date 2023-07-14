@@ -51,7 +51,7 @@
 
 <Header />
 
-<main>
+<main class="-mt-28 overflow-auto overflow-x-hidden pt-28">
 	{#if $pageId}
 		<svelte:component this={pages[$pageId]} />
 	{/if}
