@@ -1,7 +1,8 @@
 <script lang="ts">
+	import locations, { locationsArray } from "$lib/data/locations";
+	import texts from "$lib/data/texts";
 	import lang from "$lib/stores/lang";
-	import selectedLocation, { locations } from "$lib/stores/locations";
-	import texts, { pageMeta } from "$lib/texts";
+	import selectedLocation from "$lib/stores/locations";
 	import { goto } from "$lib/utils";
 
 	let layout = texts[$lang].layout;
@@ -9,13 +10,10 @@
 
 	let home = texts[$lang].home;
 	$: home = texts[$lang].home;
-
-	let title = pageMeta[$lang].Home?.title;
-	$: title = pageMeta[$lang].Home?.title;
 </script>
 
 <svelte:head>
-	<title>{title}</title>
+	<title>{home.title}</title>
 </svelte:head>
 
 <div
@@ -74,7 +72,7 @@
 					</div>
 				</button>
 			</a>
-			<button on:click={() => goto("Menu")} class="link"> {home.hero.buttons.menu}</button>
+			<button on:click={() => goto("menu")} class="link"> {home.hero.buttons.menu}</button>
 		</div>
 	</div>
 </div>
@@ -86,8 +84,8 @@
 	<div class="h-px flex-1 bg-black" />
 </div>
 
-<div id="restauranger" class="container grid gap-8 pb-16 md:grid-cols-2">
-	{#each Object.values(locations) as location}
+<div id={home.restaurants.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
+	{#each locationsArray as location}
 		<div class="">
 			<h3 class="mb-2 text-4xl font-bold sm:text-5xl lg:mb-4 lg:text-[6vw]">
 				{location.city}

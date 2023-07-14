@@ -1,13 +1,15 @@
 import type { SvelteComponent } from "svelte";
-import About from "./About.svelte";
-import Franchising from "./Franchising.svelte";
-import Home from "./Home.svelte";
-import Menu from "./Menu.svelte";
+import about from "./About.svelte";
+import franchising from "./Franchising.svelte";
+import home from "./Home.svelte";
+import menu from "./Menu.svelte";
+import work from "./Work.svelte";
 
 const pages: { [id: string]: typeof SvelteComponent } = {
-	Home,
-	Menu,
-	About,
-	Franchising
+	home,
+	menu,
+	about,
+	franchising,
+	work
 };
 export default pages;

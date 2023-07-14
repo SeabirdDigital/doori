@@ -1,10 +1,12 @@
 import { goto as svelteGoto } from "$app/navigation";
 import { get } from "svelte/store";
+import texts, { isPageId } from "./data/texts";
+import type { LocationInArray } from "./data/types/locations";
+import type { LanguageId, PageIds } from "./data/types/texts";
 import langStore from "./stores/lang";
 import menuOpen from "./stores/menuOpen";
 import pageId from "./stores/pageId";
 import transitionOn from "./stores/transitionOn";
-import { langs, pageMeta } from "./texts";
 
 export const getDistanceFromLatLngInKm = (
 	pos1: readonly [number, number],
@@ -32,26 +34,35 @@ export const latLng2LngLat = (latLng: [number, number] | readonly [number, numbe
 	return [...latLng].reverse() as [number, number];
 };
 
-type GotoOptions = { href?: boolean; lang?: keyof typeof langs };
-export const goto = (id: string, options?: Partial<GotoOptions>) => {
+type GotoOptions = { lang?: LanguageId; sectionId: string };
+export const goto = (id: PageIds, options?: Partial<GotoOptions>) => {
 	const lang = options?.lang ?? get(langStore);
 
 	transitionOn.set(true);
-	const gotoHref = options?.href ? id : `/${lang}/${pageMeta[lang][id].slug}`;
+
+	if (!isPageId(id)) throw new Error("No page found");
+
+	const gotoHref = `/${lang}/${texts[lang][id].slug}`;
 
 	setTimeout(async () => {
 		if (options?.lang) langStore.set(options.lang);
 
-		await svelteGoto(gotoHref);
+		await svelteGoto(gotoHref + (options?.sectionId ? `#${options.sectionId}` : ""));
 
-		const newId = options?.href
-			? Object.keys(pageMeta[lang]).find((pageId) => pageMeta[lang][pageId].slug)
-			: id;
-		if (!newId) throw new Error("No page found");
-
-		pageId.set(newId);
+		pageId.set(id);
 
 		menuOpen.set(false);
 		transitionOn.set(false);
 	}, 500);
+};
+
+export const sortLocations = (
+	locationsArray: LocationInArray[],
+	currentLatLng: [number, number]
+) => {
+	return locationsArray.sort(
+		(l1, l2) =>
+			getDistanceFromLatLngInKm(currentLatLng, l1.latLng) -
+			getDistanceFromLatLngInKm(currentLatLng, l2.latLng)
+	);
 };

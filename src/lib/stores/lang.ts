@@ -1,5 +1,5 @@
-import type { langs } from "$lib/texts";
+import type { LanguageId } from "$lib/data/types/texts";
 import { writable } from "svelte/store";
 
-const lang = writable<keyof typeof langs>("sv");
+const lang = writable<LanguageId>("sv");
 export default lang;

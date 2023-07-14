@@ -1,18 +1,16 @@
 <script lang="ts">
-	import selectedLocation, {
-		currentLocation,
-		ipInfo,
-		locations,
-		locationsInOrder,
-		newSelectedLocation
-	} from "$lib/stores/locations";
-	import { getDistanceFromLatLngInKm, latLng2LngLat } from "$lib/utils";
+	import locations, { locationsArray } from "$lib/data/locations";
+	import type { LocationId } from "$lib/data/types/locations";
+	import { currentLatLng } from "$lib/stores/currentLatLng";
+	import { ipInfo } from "$lib/stores/ipInfo";
+	import selectedLocation, { newSelectedLocation } from "$lib/stores/locations";
+	import { getDistanceFromLatLngInKm, latLng2LngLat, sortLocations } from "$lib/utils";
 	import { MapLibre, Marker, Popup } from "svelte-maplibre";
 
-	let center: [number, number] = latLng2LngLat($currentLocation);
+	let center: [number, number] = latLng2LngLat($currentLatLng);
 	let zoom = 5.5;
 
-	const switchLocation = (location: string) => {
+	const switchLocation = (location: LocationId) => {
 		newSelectedLocation.set(location);
 		center = latLng2LngLat(locations[location].latLng);
 	};
@@ -28,7 +26,7 @@
 				{center}
 				{zoom}
 			>
-				<Marker lngLat={latLng2LngLat($currentLocation)}>
+				<Marker lngLat={latLng2LngLat($currentLatLng)}>
 					<div
 						class="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-full border-2 border-blue-400"
 					>
@@ -36,14 +34,14 @@
 					</div>
 				</Marker>
 
-				{#each Object.keys(locations) as location}
+				{#each locationsArray as location}
 					<Marker
-						lngLat={[locations[location].latLng[1], locations[location].latLng[0]]}
-						on:click={() => switchLocation(location)}
+						lngLat={latLng2LngLat(location.latLng)}
+						on:click={() => switchLocation(location.id)}
 					>
 						<div
 							class="absolute right-1/2 top-1/2 grid aspect-square h-8 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full duration-200 {$newSelectedLocation ==
-							location
+							location.id
 								? 'z-30 scale-110 bg-black'
 								: 'z-10 scale-100 bg-background-900 hover:scale-110'}"
 						>
@@ -54,7 +52,7 @@
 
 						<Popup openOn="hover" offset={[0, -10]}>
 							<div class="-my-2">
-								{locations[location].city}
+								{location.city}
 							</div>
 						</Popup>
 					</Marker>
@@ -66,7 +64,7 @@
 				<li class="item border-b-2 border-black px-4 py-2 text-xs">
 					📍 {$ipInfo?.city}
 				</li>
-				{#each $locationsInOrder as location}
+				{#each sortLocations(locationsArray, $currentLatLng) as location}
 					<li class="item mt-2 px-4 {$newSelectedLocation === location.id ? 'font-bold' : ''}">
 						<label class="flex cursor-pointer">
 							<input
@@ -83,7 +81,7 @@
 										{location.city}
 									</span>
 									<span class="-ml-1 mb-[3px] text-xs font-normal opacity-80">
-										{getDistanceFromLatLngInKm(location.latLng, $currentLocation).toFixed(1)}km
+										{getDistanceFromLatLngInKm(location.latLng, $currentLatLng).toFixed(1)}km
 									</span>
 								</span>
 

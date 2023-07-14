@@ -1,17 +1,14 @@
 <script lang="ts">
+	import texts from "$lib/data/texts";
 	import lang from "$lib/stores/lang";
-	import texts, { pageMeta } from "$lib/texts";
 	import { goto } from "$lib/utils";
 
 	let about = texts[$lang].about;
 	$: about = texts[$lang].about;
-
-	let title = pageMeta[$lang]["About"]?.title;
-	$: title = pageMeta[$lang]["About"]?.title;
 </script>
 
 <svelte:head>
-	<title>{title}</title>
+	<title>{about.title}</title>
 </svelte:head>
 
 <div
@@ -70,7 +67,7 @@
 		<div class="flex items-center gap-6">
 			<button class="h-fit border-b-2 border-black"> {about.recruit.buttons.work} </button>
 			<button
-				on:click={() => goto("Franchising")}
+				on:click={() => goto("franchising")}
 				class="relative flex items-center gap-2 bg-black fill-background-500 px-4 py-3 text-background-500"
 			>
 				{about.recruit.buttons.franchisee}

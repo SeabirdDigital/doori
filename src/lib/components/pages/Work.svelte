@@ -1,13 +1,16 @@
 <script lang="ts">
+	import { locationsArray } from "$lib/data/locations";
 	import texts from "$lib/data/texts";
+	import { currentLatLng } from "$lib/stores/currentLatLng";
 	import lang from "$lib/stores/lang";
+	import { sortLocations } from "$lib/utils";
 
-	let franchising = texts[$lang].franchising;
-	$: franchising = texts[$lang].franchising;
+	let work = texts[$lang].work;
+	$: work = texts[$lang].work;
 </script>
 
 <svelte:head>
-	<title>{franchising.title}</title>
+	<title>{work.title}</title>
 </svelte:head>
 
 <div class="container grid-cols-2 pb-24 pt-14 lg:grid">
@@ -21,39 +24,39 @@
 				<!-- TODO: Add own accessKey from https://www.staticforms.xyz/ -->
 				<input type="hidden" name="accessKey" value="e44fc5d0-0b52-4cb1-9f79-fefc3800d89c" />
 
-				<h1 class="mb-4">{@html franchising.form.heading}<span class="text-purple-500">.</span></h1>
+				<h1 class="mb-4">{@html work.form.heading}<span class="text-purple-500">.</span></h1>
 
 				<div class="grid grid-cols-2 gap-x-8 gap-y-2">
 					<div>
-						<label for="name">{@html franchising.form.name}</label>
+						<label for="name">{@html work.form.name}</label>
 						<input type="text" name="name" id="name" required />
 					</div>
 
 					<div>
-						<label for="email">{@html franchising.form.email}</label>
+						<label for="email">{@html work.form.email}</label>
 						<input type="text" name="email" id="email" required />
 					</div>
 
 					<div>
-						<label for="phone">{@html franchising.form.phone}</label>
+						<label for="phone">{@html work.form.phone}</label>
 						<input type="text" name="phone" id="phone" required />
 					</div>
 
 					<div>
-						<label for="$stad">{@html franchising.form.city}</label>
-						<input type="text" name="$stad" id="$stad" required />
-					</div>
-
-					<div>
-						<label for="$typ">{@html franchising.form.type}</label>
-						<select name="$typ" id="$typ" required>
-							<option value="">{franchising.form.choose}</option>
-							{#each Object.keys(franchising.form.types) as typeId}
-								<option value={texts.sv.franchising.form.types[typeId]}>
-									{franchising.form.types[typeId]}
+						<label for="$where">{@html work.form.where}</label>
+						<select name="$where" id="$where" required>
+							<option value="">{work.form.choose}</option>
+							{#each sortLocations(locationsArray, $currentLatLng) as location}
+								<option value={location.city}>
+									{location.city}
 								</option>
 							{/each}
 						</select>
+					</div>
+
+					<div>
+						<label for="cv">{@html work.form.cv}</label>
+						<input type="file" name="cv" id="cv" required />
 					</div>
 				</div>
 
@@ -62,7 +65,7 @@
 				<input type="hidden" name="redirectTo" value="https://example.com/contact/success" />
 				<input type="text" name="honeypot" style="display: none;" />
 
-				<input class="mt-6 bg-purple-500 py-8" type="submit" value={franchising.form.submit} />
+				<input class="mt-6 bg-purple-500 py-8" type="submit" value={work.form.submit} />
 			</div>
 		</form>
 	</div>

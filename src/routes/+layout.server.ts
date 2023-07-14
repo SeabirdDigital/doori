@@ -1,6 +1,6 @@
-import { locations, type DooriLocation } from "$lib/stores/locations";
-import { langs, pageMeta } from "$lib/texts";
-import { getDistanceFromLatLngInKm } from "$lib/utils";
+import { isLanguageId, pages } from "$lib/data/texts";
+import type { DooriLocation } from "$lib/data/types/locations";
+import type { LanguageId } from "$lib/data/types/texts";
 import { error, redirect, type ServerLoad } from "@sveltejs/kit";
 
 export type IpInfo = {
@@ -16,21 +16,21 @@ export type IpInfo = {
 };
 
 export const load: ServerLoad = async ({ locals, cookies, fetch, params }) => {
-	let lang = params.path?.split("/")[0] as keyof typeof langs;
+	let lang = params.path?.split("/")[0] as LanguageId;
 	let rest = params.path?.split("/").slice(1).join("/");
 	if (rest === "") rest = "/";
 
-	if (Object.keys(langs).indexOf(lang) === -1) {
-		lang = (cookies.get("lang") as "sv" | "en" | undefined) ?? "sv";
+	if (!isLanguageId(lang)) {
+		lang = (cookies.get("lang") as LanguageId) ?? "sv";
 
 		throw redirect(302, `/${lang}${rest ? "/" + rest : ""}`);
 	}
 
 	let pageId: string | undefined;
 	let foundPage = false;
-	for (const key in pageMeta[lang]) {
-		if (Object.prototype.hasOwnProperty.call(pageMeta[lang], key)) {
-			const page = pageMeta[lang][key as keyof typeof pageMeta.en];
+	for (const key in pages[lang]) {
+		if (Object.prototype.hasOwnProperty.call(pages[lang], key)) {
+			const page = pages[lang][key as keyof typeof pages.en];
 
 			const slug = rest;
 			foundPage = page?.slug == slug;
@@ -43,8 +43,7 @@ export const load: ServerLoad = async ({ locals, cookies, fetch, params }) => {
 		throw error(404, "Page not found");
 	}
 
-	let ipInfo: IpInfo | undefined;
-	let locationsInOrder: (DooriLocation & { id: string })[] = [];
+	const locationsInOrder: (DooriLocation & { id: string })[] = [];
 
 	const ipInfoResponse = await fetch(`https://ipinfo.io/${locals.ip}?token=d0eac2491f7841`).catch(
 		() => {
@@ -53,21 +52,9 @@ export const load: ServerLoad = async ({ locals, cookies, fetch, params }) => {
 		}
 	);
 
-	if (ipInfoResponse) {
-		ipInfo = await ipInfoResponse.json();
-
-		const currentLocation = ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number];
-
-		locationsInOrder = Object.entries(locations)
-			.sort(
-				(l1, l2) =>
-					getDistanceFromLatLngInKm(currentLocation, l1[1].latLng) -
-					getDistanceFromLatLngInKm(currentLocation, l2[1].latLng)
-			)
-			.map((l) => ({ ...l[1], id: l[0] }));
-	}
+	const ipInfo: IpInfo | undefined = await ipInfoResponse?.json();
 
 	cookies.set("lang", lang);
 
-	return { lang, locationsInOrder, ipInfo, slug: rest, pageId };
+	return { lang, locationsInOrder, ipInfo, pageId };
 };

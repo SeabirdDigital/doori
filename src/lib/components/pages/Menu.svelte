@@ -1,23 +1,20 @@
 <script lang="ts">
+	import texts from "$lib/data/texts";
 	import lang from "$lib/stores/lang";
-	import texts, { pageMeta } from "$lib/texts";
 
 	let menu = texts[$lang].menu;
 	$: menu = texts[$lang].menu;
-
-	let title = pageMeta[$lang].Menu?.title;
-	$: title = pageMeta[$lang].Menu?.title;
 </script>
+
+<svelte:head>
+	<title>{menu.title}</title>
+</svelte:head>
 
 <div class="flex justify-center">
 	<h1 class="my-12 text-6xl">
 		{menu.heading}<span class="text-purple-500">.</span>
 	</h1>
 </div>
-
-<svelte:head>
-	<title>{title}</title>
-</svelte:head>
 
 <div class="container mb-12">
 	{#each menu.menu as category}

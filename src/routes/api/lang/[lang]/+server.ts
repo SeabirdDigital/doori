@@ -1,8 +1,9 @@
-import texts, { langs } from "$lib/texts";
+import texts from "$lib/data/texts";
+import type { LanguageId } from "$lib/data/types/texts";
 import type { RequestHandler } from "@sveltejs/kit";
 
 export const POST: RequestHandler = async (event) => {
-	const lang = event.params.lang as keyof typeof langs;
+	const lang = event.params.lang as LanguageId;
 	if (!lang)
 		return new Response(undefined, {
 			status: 400

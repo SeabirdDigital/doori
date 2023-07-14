@@ -1,5 +1,5 @@
 <script lang="ts">
-	import selectedLocation, { locations, newSelectedLocation } from "$lib/stores/locations";
+	import selectedLocation, { newSelectedLocation } from "$lib/stores/locations";
 	import { latLng2LngLat } from "$lib/utils";
 	import { MapLibre, Marker, Popup } from "svelte-maplibre";
 	import LocationSelect from "./LocationSelect.svelte";

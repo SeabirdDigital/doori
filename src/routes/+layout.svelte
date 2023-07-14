@@ -3,35 +3,33 @@
 	import Dialog from "$lib/components/Dialog/Dialog.svelte";
 	import NavItems from "$lib/components/NavItems.svelte";
 	import pages from "$lib/components/pages";
+	import locations, { locationsArray } from "$lib/data/locations";
+	import texts from "$lib/data/texts";
+	import type { LanguageId } from "$lib/data/types/texts";
+	import { currentLatLng } from "$lib/stores/currentLatLng";
+	import { ipInfo } from "$lib/stores/ipInfo";
 	import lang from "$lib/stores/lang";
-	import selectedLocation, {
-		currentLocation,
-		ipInfo,
-		locations,
-		locationsInOrder,
-		newSelectedLocation
-	} from "$lib/stores/locations";
+	import selectedLocation, { newSelectedLocation } from "$lib/stores/locations";
 	import menuOpen from "$lib/stores/menuOpen";
 	import pageId from "$lib/stores/pageId";
 	import transitionOn from "$lib/stores/transitionOn";
-	import texts, { langs, pageMeta } from "$lib/texts";
-	import { goto, latLng2LngLat } from "$lib/utils";
+	import { goto, latLng2LngLat, sortLocations } from "$lib/utils";
 	import "@fontsource/indie-flower";
 	import "@fontsource/space-mono/400.css";
 	import "@fontsource/space-mono/700.css";
+	import { json } from "@sveltejs/kit";
 	import { SvelteComponent, onMount } from "svelte";
 	import "../app.css";
 
 	export let data;
 	let dialog: HTMLDialogElement;
 
-	locationsInOrder.set(data.locationsInOrder);
-	selectedLocation.set(data.locationsInOrder[0].id);
-	pageId.set(data.pageId);
+	lang.set(data.lang as LanguageId);
+	ipInfo.set(data.ipInfo);
+	currentLatLng.set(data.ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
 
-	lang.set(data.lang);
-	ipInfo.set(data.ipInfo!);
-	currentLocation.set(data.ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
+	selectedLocation.set(sortLocations(locationsArray, $currentLatLng)[0].id);
+	pageId.set(data.pageId);
 
 	let layout = texts[$lang].layout;
 	$: layout = texts[$lang].layout;
@@ -85,7 +83,7 @@
 
 <header class="overflow-x-hidden">
 	<div class="container flex justify-between py-8">
-		<button on:click={() => goto("Home")}>
+		<button on:click={() => goto("home")}>
 			<img class="h-12" src="/logo_w_bg.png" alt="" />
 		</button>
 
@@ -150,13 +148,9 @@
 	</div>
 
 	<main>
-		{#each Object.keys(pages) as pageKey}
-			{#if pageMeta[$lang][pageKey]}
-				{#if data.slug == pageMeta[$lang][pageKey].slug}
-					<svelte:component this={pages[pageKey]} />
-				{/if}
-			{/if}
-		{/each}
+		{#if $pageId}
+			<svelte:component this={pages[$pageId]} />
+		{/if}
 		<slot />
 	</main>
 
