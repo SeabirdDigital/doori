@@ -37,7 +37,7 @@
 	currentLatLng.set($ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
 
 	selectedLocation.set(sortLocations(locationsArray, $currentLatLng)[0].id);
-	pageId.set(data.pageId);
+	pageId.set(data.id);
 
 	onMount(() => {
 		transitionOn.set(false);

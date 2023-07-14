@@ -25,24 +25,15 @@ export const load: ServerLoad = async ({ locals, cookies, params }) => {
 		throw redirect(302, `/${lang}${rest ? "/" + rest : ""}`);
 	}
 
-	let pageId: PageId | undefined;
-	let foundPage = false;
-	for (const key in pages[lang]) {
-		if (Object.prototype.hasOwnProperty.call(pages[lang], key)) {
-			const page = pages[lang][key as keyof typeof pages.en];
-
-			const slug = rest;
-			foundPage = page?.slug == slug;
-			pageId = key as PageId;
-		}
-
-		if (foundPage) break;
-	}
-	if (!foundPage || !pageId) {
+	const pagesInLang = pages[lang];
+	const id: PageId | undefined = (Object.keys(pagesInLang) as PageId[]).find(
+		(key) => pagesInLang[key].slug == rest
+	);
+	if (!id) {
 		throw error(404, "Page not found");
 	}
 
 	cookies.set("lang", lang);
 
-	return { lang, pageId, ip: locals.ip };
+	return { lang, id, ip: locals.ip };
 };
