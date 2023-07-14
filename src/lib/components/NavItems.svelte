@@ -35,5 +35,9 @@
 
 <button class="flex items-center gap-4 sm:-ml-4" on:click={switchLang}>
 	<span class="sm:hidden">{itemNames.language}</span>
-	<img class="h-6" src="/flags/{$lang}.svg" alt="{$lang} flag. Click to switch language." />
+	<img
+		class="aspect-square h-6"
+		src="/flags/{$lang}.svg"
+		alt="{$lang} flag. Click to switch language."
+	/>
 </button>
