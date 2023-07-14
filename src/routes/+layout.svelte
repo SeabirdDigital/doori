@@ -26,18 +26,22 @@
 
 	lang.set(data.lang as LanguageId);
 	ipInfo.set(data.ipInfo);
-	currentLatLng.set(data.ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
 
-	selectedLocation.set(sortLocations(locationsArray, $currentLatLng!)[0].id);
+	currentLatLng.set($ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
 
-	transitionOn.set(false);
+	selectedLocation.set(sortLocations(locationsArray, $currentLatLng)[0].id);
+	pageId.set(data.id);
 
-	menuOpen.subscribe((value) => {
-		if (value) {
-			document.body.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "auto";
-		}
+	onMount(() => {
+		transitionOn.set(false);
+
+		menuOpen.subscribe((value) => {
+			if (value) {
+				document.body.style.overflow = "hidden";
+			} else {
+				document.body.style.overflow = "auto";
+			}
+		});
 	});
 </script>
 
