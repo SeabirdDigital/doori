@@ -25,30 +25,19 @@
 	export let data;
 
 	lang.set(data.lang as LanguageId);
+	ipInfo.set(data.ipInfo);
+	currentLatLng.set(data.ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
 
-	pageId.set(data.id);
+	selectedLocation.set(sortLocations(locationsArray, $currentLatLng!)[0].id);
 
-	onMount(async () => {
-		const ipInfoResponse = await fetch(`https://ipinfo.io/${data.ip}?token=d0eac2491f7841`).catch(
-			() => {
-				console.log("No Internet");
-				return undefined;
-			}
-		);
-		ipInfo.set(await ipInfoResponse?.json());
-		currentLatLng.set($ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
+	transitionOn.set(false);
 
-		selectedLocation.set(sortLocations(locationsArray, $currentLatLng!)[0].id);
-
-		transitionOn.set(false);
-
-		menuOpen.subscribe((value) => {
-			if (value) {
-				document.body.style.overflow = "hidden";
-			} else {
-				document.body.style.overflow = "auto";
-			}
-		});
+	menuOpen.subscribe((value) => {
+		if (value) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "auto";
+		}
 	});
 </script>
 
