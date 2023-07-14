@@ -25,8 +25,16 @@
 	export let data;
 
 	lang.set(data.lang as LanguageId);
-	ipInfo.set(data.ipInfo);
-	currentLatLng.set(data.ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
+
+	fetch(`https://ipinfo.io/${data.ip}?token=d0eac2491f7841`)
+		.catch(() => {
+			console.log("No Internet");
+			return undefined;
+		})
+		.then((res) => res?.json())
+		.then((res) => ipInfo.set(res));
+
+	currentLatLng.set($ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
 
 	selectedLocation.set(sortLocations(locationsArray, $currentLatLng)[0].id);
 	pageId.set(data.pageId);
