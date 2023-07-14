@@ -30,8 +30,8 @@ export const deg2rad = (deg: number) => {
 	return deg * (Math.PI / 180);
 };
 
-export const latLng2LngLat = (latLng: [number, number] | readonly [number, number]) => {
-	return [...latLng].reverse() as [number, number];
+export const latLng2LngLat = (latLng: [number, number]) => {
+	return latLng.reverse() as [number, number];
 };
 
 type GotoOptions = { lang?: LanguageId; sectionId: string };

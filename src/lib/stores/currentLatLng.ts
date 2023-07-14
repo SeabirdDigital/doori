@@ -1,3 +1,3 @@
 import { writable } from "svelte/store";
 
-export const currentLatLng = writable<[number, number]>();
+export const currentLatLng = writable<[number, number] | undefined>();

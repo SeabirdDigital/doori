@@ -1,3 +1,5 @@
+import { locationsArray } from "../locations";
+
 export type DooriLocation = {
 	city: string;
 	latLng: readonly [number, number];

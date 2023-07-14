@@ -26,20 +26,20 @@
 
 	lang.set(data.lang as LanguageId);
 
-	fetch(`https://ipinfo.io/${data.ip}?token=d0eac2491f7841`)
-		.catch(() => {
-			console.log("No Internet");
-			return undefined;
-		})
-		.then((res) => res?.json())
-		.then((res) => ipInfo.set(res));
-
-	currentLatLng.set($ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
-
-	selectedLocation.set(sortLocations(locationsArray, $currentLatLng)[0].id);
 	pageId.set(data.id);
 
-	onMount(() => {
+	onMount(async () => {
+		const ipInfoResponse = await fetch(`https://ipinfo.io/${data.ip}?token=d0eac2491f7841`).catch(
+			() => {
+				console.log("No Internet");
+				return undefined;
+			}
+		);
+		ipInfo.set(await ipInfoResponse?.json());
+		currentLatLng.set($ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
+
+		selectedLocation.set(sortLocations(locationsArray, $currentLatLng!)[0].id);
+
 		transitionOn.set(false);
 
 		menuOpen.subscribe((value) => {
