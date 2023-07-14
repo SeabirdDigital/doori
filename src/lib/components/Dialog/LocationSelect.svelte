@@ -3,7 +3,7 @@
 	import type { LocationId } from "$lib/data/types/locations";
 	import { currentLatLng } from "$lib/stores/currentLatLng";
 	import { ipInfo } from "$lib/stores/ipInfo";
-	import selectedLocation, { newSelectedLocation } from "$lib/stores/locations";
+	import selectedLocation, { locationsInOrder, newSelectedLocation } from "$lib/stores/locations";
 	import { getDistanceFromLatLngInKm, latLng2LngLat, sortLocations } from "$lib/utils";
 	import { MapLibre, Marker, Popup } from "svelte-maplibre";
 
@@ -64,7 +64,7 @@
 				<li class="item border-b-2 border-black px-4 py-2 text-xs">
 					📍 {$ipInfo?.city}
 				</li>
-				{#each sortLocations(locationsArray, $currentLatLng) as location}
+				{#each $locationsInOrder as location}
 					<li class="item mt-2 px-4 {$newSelectedLocation === location.id ? 'font-bold' : ''}">
 						<label class="flex cursor-pointer">
 							<input

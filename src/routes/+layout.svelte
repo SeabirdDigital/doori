@@ -10,7 +10,7 @@
 	import { currentLatLng } from "$lib/stores/currentLatLng";
 	import { ipInfo } from "$lib/stores/ipInfo";
 	import lang from "$lib/stores/lang";
-	import selectedLocation, { newSelectedLocation } from "$lib/stores/locations";
+	import selectedLocation, { locationsInOrder, newSelectedLocation } from "$lib/stores/locations";
 	import menuOpen from "$lib/stores/menuOpen";
 	import pageId from "$lib/stores/pageId";
 	import transitionOn from "$lib/stores/transitionOn";
@@ -28,13 +28,11 @@
 	ipInfo.set(data.ipInfo);
 
 	currentLatLng.set($ipInfo?.loc.split(",").map((x) => parseFloat(x)) as [number, number]);
-
-	selectedLocation.set(sortLocations(locationsArray, $currentLatLng)[0].id);
+	locationsInOrder.set(sortLocations(locationsArray, $currentLatLng));
+	selectedLocation.set($locationsInOrder[0].id);
 	pageId.set(data.id);
 
 	onMount(() => {
-		transitionOn.set(false);
-
 		menuOpen.subscribe((value) => {
 			if (value) {
 				document.body.style.overflow = "hidden";
