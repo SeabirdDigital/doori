@@ -18,4 +18,4 @@ type Item = {
 
 type LanguageId = keyof typeof textObject;
 
-type PageIds = keyof Omit<typeof textObject.en, "layout">;
+type PageId = keyof Omit<typeof textObject.en, "layout">;

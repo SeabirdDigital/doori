@@ -1,4 +1,4 @@
-import type { LanguageId, PageIds, Pages, Texts } from "../types/texts";
+import type { LanguageId, PageId, Pages, Texts } from "../types/texts";
 import en from "./lang/en";
 import sv from "./lang/sv";
 
@@ -17,6 +17,6 @@ export const languages: LanguageId[] = Object.keys(texts) as LanguageId[];
 export const isLanguageId = (lang: string): lang is LanguageId => {
 	return Object.keys(textObject).includes(lang);
 };
-export const isPageId = (pageId: string): pageId is PageIds => {
+export const isPageId = (pageId: string): pageId is PageId => {
 	return Object.keys(textObject.en).includes(pageId);
 };

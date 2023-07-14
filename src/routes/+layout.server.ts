@@ -1,6 +1,6 @@
 import { isLanguageId, pages } from "$lib/data/texts";
 import type { DooriLocation } from "$lib/data/types/locations";
-import type { LanguageId, PageIds } from "$lib/data/types/texts";
+import type { LanguageId, PageId } from "$lib/data/types/texts";
 import { error, redirect, type ServerLoad } from "@sveltejs/kit";
 
 export type IpInfo = {
@@ -26,7 +26,7 @@ export const load: ServerLoad = async ({ locals, cookies, fetch, params }) => {
 		throw redirect(302, `/${lang}${rest ? "/" + rest : ""}`);
 	}
 
-	let pageId: PageIds | undefined;
+	let pageId: PageId | undefined;
 	let foundPage = false;
 	for (const key in pages[lang]) {
 		if (Object.prototype.hasOwnProperty.call(pages[lang], key)) {
@@ -34,7 +34,7 @@ export const load: ServerLoad = async ({ locals, cookies, fetch, params }) => {
 
 			const slug = rest;
 			foundPage = page?.slug == slug;
-			pageId = key as PageIds;
+			pageId = key as PageId;
 		}
 
 		if (foundPage) break;

@@ -2,7 +2,7 @@ import { goto as svelteGoto } from "$app/navigation";
 import { get } from "svelte/store";
 import texts, { isPageId } from "./data/texts";
 import type { LocationInArray } from "./data/types/locations";
-import type { LanguageId, PageIds } from "./data/types/texts";
+import type { LanguageId, PageId } from "./data/types/texts";
 import langStore from "./stores/lang";
 import menuOpen from "./stores/menuOpen";
 import pageId from "./stores/pageId";
@@ -35,7 +35,7 @@ export const latLng2LngLat = (latLng: [number, number] | readonly [number, numbe
 };
 
 type GotoOptions = { lang?: LanguageId; sectionId: string };
-export const goto = (id: PageIds, options?: Partial<GotoOptions>) => {
+export const goto = (id: PageId, options?: Partial<GotoOptions>) => {
 	const lang = options?.lang ?? get(langStore);
 
 	transitionOn.set(true);
