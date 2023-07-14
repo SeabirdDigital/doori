@@ -71,19 +71,19 @@
 		<div
 			class="absolute flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.jpeg" alt="" />
+			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="absolute flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.jpeg" alt="" />
+			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="relative flex h-fit w-fit flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.jpeg" alt="" />
+			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
 			<span class="py-6 font-indie text-3xl">K-bowl</span>
 		</div>
 	</div>

@@ -43,7 +43,7 @@
 <header class="overflow-x-hidden">
 	<div class="container flex justify-between py-8">
 		<button on:click={() => goto("home")}>
-			<img class="aspect-[85/44] h-12" src="/logo_w_bg.png" alt="" />
+			<img class="aspect-[85/44] h-12" src="/logo.webp" alt="" />
 		</button>
 
 		<nav class="flex items-center">

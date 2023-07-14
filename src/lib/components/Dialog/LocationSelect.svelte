@@ -46,7 +46,7 @@
 								: 'z-10 scale-100 bg-background-900 hover:scale-110'}"
 						>
 							<span>
-								<img src="/doori-d.png" class="h-4" alt="" />
+								<img src="/doori-d.webp" class="h-4" alt="" />
 							</span>
 						</div>
 

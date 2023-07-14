@@ -20,27 +20,27 @@
 	class="container relative flex flex-row-reverse justify-end pb-32 pt-24 sm:py-16 lg:flex-row lg:justify-center lg:gap-24"
 >
 	<div class="sm:hidden">
-		<img class="absolute -left-36 -top-12 h-44" src="/bowl1.png" alt="" />
-		<img class="absolute -bottom-8 -right-8 h-36" src="/bowl2.png" alt="" />
-		<img class="absolute -right-24 -top-20 h-56 rotate-12" src="/chopsticks.png" alt="" />
+		<img class="absolute -left-36 -top-12 h-44" src="/mobile/bowl1.webp" alt="" />
+		<img class="absolute -bottom-8 -right-8 h-36" src="/mobile/bowl2.webp" alt="" />
+		<img class="absolute -right-24 -top-20 h-56 rotate-12" src="/mobile/chopsticks.webp" alt="" />
 	</div>
 	<div class="relative hidden sm:block">
 		<div
 			class="absolute -right-96 -top-12 flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.jpeg" alt="" />
+			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="absolute -right-96 -top-12 flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.jpeg" alt="" />
+			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="absolute -right-96 -top-12 flex flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:relative lg:right-0"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.jpeg" alt="" />
+			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
 			<span class="py-6 font-indie text-3xl">K-bowl</span>
 		</div>
 	</div>
