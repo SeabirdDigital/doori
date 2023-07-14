@@ -2,6 +2,7 @@
 	import { page } from "$app/stores";
 	import Dialog from "$lib/components/Dialog/Dialog.svelte";
 	import NavItems from "$lib/components/NavItems.svelte";
+	import Header from "$lib/components/layout/Header.svelte";
 	import pages from "$lib/components/pages";
 	import locations, { locationsArray } from "$lib/data/locations";
 	import texts from "$lib/data/texts";
@@ -22,7 +23,6 @@
 	import "../app.css";
 
 	export let data;
-	let dialog: HTMLDialogElement;
 
 	lang.set(data.lang as LanguageId);
 	ipInfo.set(data.ipInfo);
@@ -31,12 +31,7 @@
 	selectedLocation.set(sortLocations(locationsArray, $currentLatLng)[0].id);
 	pageId.set(data.pageId);
 
-	let layout = texts[$lang].layout;
-	$: layout = texts[$lang].layout;
-
 	onMount(() => {
-		dialog = document.querySelector("dialog")!;
-
 		transitionOn.set(false);
 
 		menuOpen.subscribe((value) => {
@@ -47,17 +42,7 @@
 			}
 		});
 	});
-
-	const openDialog = (type: "locationSelect") => {
-		document.getElementById(type)!.style.display = "block";
-
-		if (type == "locationSelect") newSelectedLocation.set($selectedLocation);
-
-		dialog.showModal();
-	};
 </script>
-
-<Dialog />
 
 <div
 	class="fixed left-0 z-50 w-full bg-yellow-500 duration-500 {$transitionOn
@@ -65,102 +50,15 @@
 		: 'bottom-0 h-0'}"
 />
 
-<div class="bg-black py-2 text-sm text-white">
-	<div class="container flex justify-between">
-		<div>
-			{#if locations[$selectedLocation].onlyDelivery}
-				{layout.restaurants.onlyDelivery}
-			{/if}
-		</div>
-		<div class="text-left">
-			📍
-			<button on:click={() => openDialog("locationSelect")} class="link after:!bg-white">
-				{locations[$selectedLocation].city}
-			</button>
-		</div>
-	</div>
-</div>
+<Header />
 
-<header class="overflow-x-hidden">
-	<div class="container flex justify-between py-8">
-		<button on:click={() => goto("home")}>
-			<img class="h-12" src="/logo_w_bg.png" alt="" />
-		</button>
+<main>
+	{#if $pageId}
+		<svelte:component this={pages[$pageId]} />
+	{/if}
+	<slot />
+</main>
 
-		<nav class="flex items-center">
-			<ul class="hidden items-center justify-center gap-10 md:flex">
-				<NavItems />
-			</ul>
-		</nav>
-
-		<div class="md:hidden">
-			<label id="menuOpen" class="relative flex aspect-square h-12 cursor-pointer items-center">
-				<input
-					type="checkbox"
-					class="h-0 w-0 opacity-0"
-					checked={$menuOpen}
-					on:change={(e) => menuOpen.set(!!e.currentTarget?.checked ?? !$menuOpen)}
-				/>
-
-				<svg
-					class="absolute z-[45] h-2 duration-500 {$menuOpen
-						? 'mb-0 mr-0 -rotate-[50deg] fill-background-500 '
-						: 'mb-3 mr-1 -rotate-[25deg] fill-black'}"
-					viewBox="0 0 177 32"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M175.469 31.1465L172.356 1.3493L144.384 2.24472L147.266 28.6552L175.469 31.1465Z"
-					/>
-					<path
-						d="M1.36517 6.8229L2.38282 15.8565L137.865 27.8247L134.295 2.56766L1.36517 6.8229Z"
-					/>
-				</svg>
-				<svg
-					class="absolute z-[45] h-2 duration-500 {$menuOpen
-						? 'ml-0 mt-0 rotate-[35deg] fill-background-500'
-						: 'ml-1 mt-3 -rotate-[12deg] fill-black'}"
-					viewBox="0 0 177 32"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M175.469 31.1465L172.356 1.3493L144.384 2.24472L147.266 28.6552L175.469 31.1465Z"
-					/>
-					<path
-						d="M1.36517 6.8229L2.38282 15.8565L137.865 27.8247L134.295 2.56766L1.36517 6.8229Z"
-					/>
-				</svg>
-			</label>
-
-			<nav>
-				<ul
-					id="menu"
-					class="fixed left-0 z-40 flex h-screen w-screen flex-col items-center justify-center gap-4 bg-black text-2xl text-background-500 duration-500 {$menuOpen
-						? 'top-0'
-						: '-top-[calc(100%+6rem)]'}"
-				>
-					<NavItems />
-				</ul>
-			</nav>
-		</div>
-	</div>
-
-	<main>
-		{#if $pageId}
-			<svelte:component this={pages[$pageId]} />
-		{/if}
-		<slot />
-	</main>
-
-	<footer class="flex justify-center bg-black py-4 text-center text-background-500">
-		Copyright 2023 &copy; {layout.copyright}
-	</footer>
-</header>
-
-<style>
-	#menuOpen:has(> input:checked) + nav > #menu {
-		display: flex;
-	}
-</style>
+<footer class="flex justify-center bg-black py-4 text-center text-background-500">
+	Copyright 2023 &copy; {texts[$lang].layout.copyright}
+</footer>

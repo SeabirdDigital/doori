@@ -5,6 +5,7 @@
 	import LocationSelect from "./LocationSelect.svelte";
 
 	let dialog: HTMLDialogElement;
+	export { dialog };
 
 	export const openDialog = (type: "locationSelect") => {
 		document.getElementById(type)!.style.display = "block";
