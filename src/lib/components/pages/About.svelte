@@ -18,20 +18,20 @@
 		<div
 			class="flex aspect-[0.8] rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square w-full object-cover" src="/kfc.webp" alt="" />
+			<img class="aspect-square w-56 object-cover" src="/kfc.webp" alt="" />
 			<span class="flex flex-1 items-center font-indie text-3xl">K-bowl</span>
 		</div>
 		<div
 			class="flex aspect-[0.8] -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square w-full object-cover" src="/kfc.webp" alt="" />
-			<span class="flex flex-1 items-center font-indie text-3xl">K-bowl</span>
+			<img class="aspect-square w-56 object-cover" src="/bar.webp" alt="" />
+			<span class="flex flex-1 items-center font-indie text-3xl">Malmö</span>
 		</div>
 		<div
 			class="flex aspect-[0.8] flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square w-full object-cover" src="/kfc.webp" alt="" />
-			<span class="flex flex-1 items-center font-indie text-3xl">K-bowl</span>
+			<img class="aspect-square w-56 object-cover" src="/egg.webp" alt="" />
+			<span class="flex flex-1 items-center font-indie text-3xl">Bibimbap</span>
 		</div>
 	</div>
 

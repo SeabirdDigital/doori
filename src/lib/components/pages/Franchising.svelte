@@ -71,8 +71,8 @@
 		<div
 			class="absolute flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
-			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+			<img class="aspect-square h-72 object-cover" src="/egg.webp" alt="" />
+			<span class="py-6 font-indie text-3xl">Bibimbap</span>
 		</div>
 		<div
 			class="absolute flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
@@ -83,8 +83,8 @@
 		<div
 			class="relative flex h-fit w-fit flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
-			<span class="py-6 font-indie text-3xl">K-bowl</span>
+			<img class="aspect-square h-72 object-cover" src="/work.webp" alt="" />
+			<span class="py-6 font-indie text-3xl">Helsingborg</span>
 		</div>
 	</div>
 </div>

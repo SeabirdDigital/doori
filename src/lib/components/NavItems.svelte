@@ -25,11 +25,6 @@
 	<button on:click={() => goto("about")}>{itemNames.about}</button>
 </li>
 <li>
-	<button on:click={() => goto("home", { sectionId: texts[$lang].home.restaurants.toLowerCase() })}>
-		{itemNames.restaurants}
-	</button>
-</li>
-<li>
 	<button on:click={() => goto("franchising")}>{itemNames.franchising}</button>
 </li>
 

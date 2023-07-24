@@ -8,7 +8,6 @@ const sv: Texts = {
 		nav: {
 			menu: "Meny",
 			about: "Om oss",
-			restaurants: "Restauranger",
 			franchising: "Franchising",
 			language: "Språk"
 		},
@@ -40,8 +39,7 @@ const sv: Texts = {
 			heading: "Ny restaurang i Malmö",
 			text: "Vi är glada att meddela att vi har öppnat en ny restaurang i Malmö. Du hittar oss på följande adress: <br><br>Östra Rönneholmsvägen 9<br>211 47 Malmö",
 			learnMore: "Läs mer"
-		},
-		restaurants: "Restauranger"
+		}
 	},
 	menu: {
 		slug: "meny",

@@ -4,6 +4,7 @@
 	import lang from "$lib/stores/lang";
 	import selectedLocation from "$lib/stores/locations";
 	import { goto } from "$lib/utils";
+	import { smoothScroll } from "svelte-smooth-scroll";
 
 	let layout = texts[$lang].layout;
 	$: layout = texts[$lang].layout;
@@ -19,17 +20,6 @@
 <div
 	class="container relative flex flex-row-reverse justify-end pb-32 pt-24 sm:py-16 lg:flex-row lg:justify-center lg:gap-24"
 >
-	<img
-		class="absolute bottom-0 left-2 w-24 rotate-[204deg] sm:-bottom-5 sm:-left-6 lg:bottom-16 lg:left-auto lg:right-32 lg:-rotate-[204deg]"
-		src="/Explode.svg"
-		alt=""
-	/>
-	<img
-		class="absolute left-[42%] top-6 block w-12 -rotate-12 sm:left-auto sm:right-[15%] sm:hidden lg:block"
-		src="/Wavy.svg"
-		alt=""
-	/>
-
 	<div class="sm:hidden">
 		<img class="absolute -left-36 -top-12 h-44" src="/mobile/bowl1.webp" alt="" />
 		<img class="absolute -bottom-8 -right-8 h-36" src="/mobile/bowl2.webp" alt="" />
@@ -105,39 +95,51 @@
 	>
 		<div
 			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url(/kfc.webp);"
+			style="background-image: url(/chicken.webp);"
+			title="Korean Fried Chicken"
+		/>
+		<div
+			class="aspect-[4/3] h-full rounded-md bg-cover"
+			style="background-image: url(/dump.webp);"
+			title="Dumplings"
+		/>
+		<div
+			class="aspect-[4/3] h-full rounded-md bg-cover"
+			style="background-image: url(/egg.webp);"
+			title="Bibimbap"
 		/>
 		<div
 			class="aspect-[4/3] h-full rounded-md bg-cover"
 			style="background-image: url(/kfc.webp);"
+			title="Korean Fried Chicken"
 		/>
 		<div
 			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url(/kfc.webp);"
+			style="background-image: url(/rice.webp);"
+			title="Chikinmayo"
 		/>
 		<div
 			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url(/kfc.webp);"
+			style="background-image: url(/chicken.webp);"
+			title="Korean Fried Chicken"
 		/>
 		<div
 			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url(/kfc.webp);"
-		/>
-		<div
-			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url(/kfc.webp);"
-		/>
-		<div
-			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url(/kfc.webp);"
+			style="background-image: url(/dump.webp);"
+			title="Dumplings"
 		/>
 	</div>
 </div>
 
-<div class="container bg-yellow-50 pb-12 pt-16 sm:pb-24 sm:pt-28">
-	<div class="flex justify-center gap-8">
+<div class="container bg-yellow-100/25 pb-12 pt-16 sm:pb-24 sm:pt-28">
+	<div class="flex items-center justify-center gap-20">
 		<div class="hidden sm:block">
-			<img class="aspect-[4/3] max-h-64 rounded-lg object-cover" src="/kfc.webp" alt="" />
+			<div
+				class="flex aspect-[0.8] w-60 rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+			>
+				<img class="aspect-square w-full object-cover" src="/bar.webp" alt="" />
+				<span class="flex flex-1 items-center font-indie text-3xl">Malmö</span>
+			</div>
 		</div>
 		<div class="flex flex-col gap-6">
 			<div>
@@ -164,7 +166,7 @@
 	<span class="relative block">Korean fried chicken & beyond </span> ✨
 </div>
 
-<div id={home.restaurants.toLowerCase()} class="container my-16 grid gap-8 md:grid-cols-2">
+<div class="container grid gap-8 py-16 md:grid-cols-2">
 	{#each locationsArray as location}
 		<div class="">
 			<h3 class="mb-2 text-4xl font-bold sm:text-5xl lg:mb-4 lg:text-[6vw]">

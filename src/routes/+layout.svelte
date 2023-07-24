@@ -44,10 +44,19 @@
 </script>
 
 <div
-	class="fixed left-0 z-50 w-full bg-yellow-500 duration-500 {$transitionOn
+	class="fixed left-0 z-50 flex w-full items-center justify-center bg-black text-white duration-500 {$transitionOn
 		? 'top-0 h-full'
 		: 'bottom-0 h-0'}"
-/>
+>
+	<div
+		class="flex flex-col items-center justify-center duration-300 {$transitionOn
+			? 'opacity-100'
+			: 'opacity-0'}"
+	>
+		<img class="-mb-6 h-32" src="/logo.webp" alt="" />
+		<span class="sm:text-lg">Korean fried chicken & beyond</span>
+	</div>
+</div>
 
 <Header />
 

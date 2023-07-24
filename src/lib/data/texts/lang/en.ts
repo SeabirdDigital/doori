@@ -75,7 +75,6 @@ const en = {
 		nav: {
 			menu: "Menu",
 			about: "About Us",
-			restaurants: "Restaurants",
 			franchising: "Franchising",
 			language: "Language"
 		},
