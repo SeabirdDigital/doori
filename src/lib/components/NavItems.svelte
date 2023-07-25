@@ -1,12 +1,19 @@
 <script lang="ts">
 	import texts, { languages } from "$lib/data/texts";
+	import type { LanguageId } from "$lib/data/types/texts";
+	import en from "$lib/images/flags/en.svg";
+	import sv from "$lib/images/flags/sv.svg";
 	import lang from "$lib/stores/lang";
 	import pageId from "$lib/stores/pageId";
 	import { goto } from "$lib/utils";
-	import Home from "./pages/Home.svelte";
 
 	let itemNames = texts[$lang].layout.nav;
 	$: itemNames = texts[$lang].layout.nav;
+
+	const flags = {
+		sv,
+		en
+	};
 
 	const switchLang = async () => {
 		const currentIndex = languages.findIndex((l) => l == $lang);
@@ -30,9 +37,5 @@
 
 <button class="flex items-center gap-4 sm:-ml-4" on:click={switchLang}>
 	<span class="sm:hidden">{itemNames.language}</span>
-	<img
-		class="aspect-square h-6"
-		src="/flags/{$lang}.svg"
-		alt="{$lang} flag. Click to switch language."
-	/>
+	<img class="aspect-square h-6" src={flags[$lang]} alt="{$lang} flag. Click to switch language." />
 </button>

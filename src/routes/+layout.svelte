@@ -7,6 +7,7 @@
 	import locations, { locationsArray } from "$lib/data/locations";
 	import texts from "$lib/data/texts";
 	import type { LanguageId } from "$lib/data/types/texts";
+	import Logo from "$lib/images/logo.webp";
 	import { currentLatLng } from "$lib/stores/currentLatLng";
 	import { ipInfo } from "$lib/stores/ipInfo";
 	import lang from "$lib/stores/lang";
@@ -53,7 +54,7 @@
 			? 'opacity-100'
 			: 'opacity-0'}"
 	>
-		<img class="-mb-6 h-32" src="/logo.webp" alt="" />
+		<img class="-mb-6 h-32" src={Logo} alt="" />
 		<span class="sm:text-lg">Korean fried chicken & beyond</span>
 	</div>
 </div>

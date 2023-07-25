@@ -1,5 +1,8 @@
 <script lang="ts">
 	import texts from "$lib/data/texts";
+	import Egg from "$lib/images/egg.webp";
+	import KFC from "$lib/images/kfc.webp";
+	import Work from "$lib/images/work.webp";
 	import lang from "$lib/stores/lang";
 
 	let franchising = texts[$lang].franchising;
@@ -71,19 +74,19 @@
 		<div
 			class="absolute flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/egg.webp" alt="" />
+			<img class="aspect-square h-72 object-cover" src={Egg} alt="" />
 			<span class="py-6 font-indie text-3xl">Bibimbap</span>
 		</div>
 		<div
 			class="absolute flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
+			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="relative flex h-fit w-fit flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/work.webp" alt="" />
+			<img class="aspect-square h-72 object-cover" src={Work} alt="" />
 			<span class="py-6 font-indie text-3xl">Helsingborg</span>
 		</div>
 	</div>
