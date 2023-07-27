@@ -15,12 +15,19 @@
 	import lang from "$lib/stores/lang";
 	import selectedLocation from "$lib/stores/locations";
 	import { goto } from "$lib/utils";
+	import { onMount } from "svelte";
 
 	let layout = texts[$lang].layout;
 	$: layout = texts[$lang].layout;
 
 	let home = texts[$lang].home;
 	$: home = texts[$lang].home;
+
+	let numberOfPictureSets = 2;
+
+	onMount(() => {
+		numberOfPictureSets = Math.ceil(window.innerWidth / 1040);
+	});
 </script>
 
 <svelte:head>
@@ -99,70 +106,65 @@
 			<h2 class="font-indie leading-none">{home.favourites}</h2>
 		</div>
 	</div>
+
 	<div
 		class="flex h-48 -rotate-1 scale-110 gap-4 bg-contain bg-repeat-x py-6"
 		style="background-image: url({Film});"
 	>
-		<div
-			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url({Chicken});"
-			title="Korean Fried Chicken"
-		/>
-		<div
-			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url({Dump});"
-			title="Dumplings"
-		/>
-		<div
-			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url({Egg});"
-			title="Bibimbap"
-		/>
-		<div
-			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url({KFC});"
-			title="Korean Fried Chicken"
-		/>
-		<div
-			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url({Rice});"
-			title="Chikinmayo"
-		/>
-		<div
-			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url({Chicken});"
-			title="Korean Fried Chicken"
-		/>
-		<div
-			class="aspect-[4/3] h-full rounded-md bg-cover"
-			style="background-image: url({Dump});"
-			title="Dumplings"
-		/>
+		{#each Array(numberOfPictureSets) as _}
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({Chicken});"
+				title="Korean Fried Chicken"
+			/>
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({Dump});"
+				title="Dumplings"
+			/>
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({Egg});"
+				title="Bibimbap"
+			/>
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({KFC});"
+				title="Korean Fried Chicken"
+			/>
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({Rice});"
+				title="Chikinmayo"
+			/>
+		{/each}
 	</div>
 </div>
 
-<div class="container bg-yellow-100/25 pb-12 pt-16 sm:pb-24 sm:pt-28">
-	<div class="flex items-center justify-center gap-20">
-		<div class="hidden sm:block">
-			<div
-				class="flex aspect-[0.8] w-60 rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
-			>
-				<img class="aspect-square w-full object-cover" src={Bar} alt="" />
-				<span class="flex flex-1 items-center font-indie text-3xl">Malmö</span>
+<div class="bg-yellow-100/25">
+	<div class="container pb-12 pt-16 sm:pb-24 sm:pt-28">
+		<div class="flex items-center justify-center gap-20">
+			<div class="hidden sm:block">
+				<div
+					class="flex aspect-[0.8] w-60 rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+				>
+					<img class="aspect-square w-full object-cover" src={Bar} alt="" />
+					<span class="flex flex-1 items-center font-indie text-3xl">Malmö</span>
+				</div>
 			</div>
-		</div>
-		<div class="flex flex-col gap-6">
-			<div>
-				<h3 class="mb-2 text-4xl font-bold">{@html home.newsArticle.heading}</h3>
-				<p class="max-w-md">
-					{@html home.newsArticle.text}
-				</p>
-			</div>
+			<div class="flex flex-col gap-6">
+				<div>
+					<h3 class="mb-2 text-4xl font-bold">{@html home.newsArticle.heading}</h3>
+					<p class="max-w-md">
+						{@html home.newsArticle.text}
+					</p>
+				</div>
 
-			<div>
-				<a href="https://www.instagram.com/doori_koreanskmat/">
-					<button class="link">{home.newsArticle.learnMore}</button>
-				</a>
+				<div>
+					<a href="https://www.instagram.com/doori_koreanskmat/">
+						<button class="link">{home.newsArticle.learnMore}</button>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -179,7 +181,7 @@
 <div class="container grid gap-8 py-16 md:grid-cols-2">
 	{#each locationsArray as location}
 		<div class="">
-			<h3 class="mb-2 text-4xl font-bold sm:text-5xl lg:mb-4 lg:text-[6vw]">
+			<h3 class="mb-2 text-4xl font-bold lg:mb-4">
 				{location.city}
 			</h3>
 			<div class="text-xs text-black/60 lg:text-base xl:text-lg">
