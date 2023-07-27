@@ -1,17 +1,17 @@
 <script lang="ts">
 	import locations, { locationsArray } from "$lib/data/locations";
 	import texts from "$lib/data/texts";
-	import Bar from "$lib/images/Bar.webp";
-	import Bowl1 from "$lib/images/Bowl1.webp";
-	import Bowl2 from "$lib/images/Bowl2.webp";
-	import Chopsticks from "$lib/images/Chopsticks.webp";
-	import Egg from "$lib/images/Egg.webp";
-	import Film from "$lib/images/Film.svg";
-	import Stars from "$lib/images/Stars.svg";
+	import Bar from "$lib/images/bar.webp";
+	import Bowl1 from "$lib/images/bowl1.webp";
+	import Bowl2 from "$lib/images/bowl2.webp";
 	import chikinmayo from "$lib/images/chikinmayo.webp";
+	import Chopsticks from "$lib/images/chopsticks.webp";
 	import DumpNKFC from "$lib/images/dumpnkfc.webp";
+	import Egg from "$lib/images/egg.webp";
+	import Film from "$lib/images/film.svg";
 	import KFC from "$lib/images/kfc.webp";
 	import KFCNDump from "$lib/images/kfcndump.webp";
+	import Stars from "$lib/images/stars.svg";
 	import lang from "$lib/stores/lang";
 	import selectedLocation from "$lib/stores/locations";
 	import { goto } from "$lib/utils";
