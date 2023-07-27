@@ -8,10 +8,8 @@
 	import Chopsticks from "$lib/images/chopsticks.webp";
 	import DumpNKFC from "$lib/images/dumpnkfc.webp";
 	import Egg from "$lib/images/egg.webp";
-	import Film from "$lib/images/film.svg";
 	import KFC from "$lib/images/kfc.webp";
 	import KFCNDump from "$lib/images/kfcndump.webp";
-	import Stars from "$lib/images/stars.svg";
 	import lang from "$lib/stores/lang";
 	import selectedLocation from "$lib/stores/locations";
 	import { goto } from "$lib/utils";
@@ -46,7 +44,7 @@
 		<div
 			class="absolute -right-28 -top-24 left-auto z-20 aspect-[116/152] h-20 -rotate-3 lg:-left-4 lg:-top-20 lg:right-auto"
 		>
-			<img class="aspect-[116/152] h-20" src={Stars} alt="" />
+			<img class="aspect-[116/152] h-20" src="/stars.svg" alt="" />
 		</div>
 		<div
 			class="absolute -right-96 -top-12 flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0"
@@ -109,7 +107,7 @@
 
 	<div
 		class="flex h-48 -rotate-1 scale-110 gap-4 bg-contain bg-repeat-x py-6"
-		style="background-image: url({Film});"
+		style="background-image: url(/film.svg);"
 	>
 		{#each Array(numberOfPictureSets) as _}
 			<div

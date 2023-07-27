@@ -106,8 +106,7 @@ const en = {
 			heading: "New restaurant in Malmö",
 			text: "We are happy to announce that we have opened a new restaurant in Malmö. You can find us at the following address: <br><br>Östra Rönneholmsvägen 9<br>211 47 Malmö",
 			learnMore: "Learn more"
-		},
-		restaurants: "Restaurants"
+		}
 	},
 	menu: {
 		slug: "menu",

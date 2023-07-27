@@ -1,8 +1,6 @@
 <script lang="ts">
 	import texts, { languages } from "$lib/data/texts";
 	import type { LanguageId } from "$lib/data/types/texts";
-	import en from "$lib/images/flags/en.svg";
-	import sv from "$lib/images/flags/sv.svg";
 	import lang from "$lib/stores/lang";
 	import pageId from "$lib/stores/pageId";
 	import { goto } from "$lib/utils";
@@ -11,8 +9,8 @@
 	$: itemNames = texts[$lang].layout.nav;
 
 	const flags = {
-		sv,
-		en
+		sv: "/flags/sv.svg",
+		en: "/flags/en.svg"
 	};
 
 	const switchLang = async () => {
