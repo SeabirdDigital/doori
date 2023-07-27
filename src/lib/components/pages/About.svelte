@@ -1,8 +1,8 @@
 <script lang="ts">
 	import texts from "$lib/data/texts";
 	import Bar from "$lib/images/bar.webp";
-	import Egg from "$lib/images/egg.webp";
-	import KFC from "$lib/images/kfc.webp";
+	import Helsingborg from "$lib/images/helsingborg.webp";
+	import Van from "$lib/images/van.webp";
 	import lang from "$lib/stores/lang";
 	import { goto } from "$lib/utils";
 
@@ -21,20 +21,20 @@
 		<div
 			class="flex aspect-[0.8] rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square w-56 object-cover" src={KFC} alt="" />
-			<span class="flex flex-1 items-center font-indie text-3xl">K-bowl</span>
+			<img class="aspect-square w-56 object-cover" src={Helsingborg} alt="" />
+			<span class="flex flex-1 items-center font-indie text-3xl">Helsingborg</span>
 		</div>
 		<div
 			class="flex aspect-[0.8] -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square w-56 object-cover" src={Bar} alt="" />
-			<span class="flex flex-1 items-center font-indie text-3xl">Malmö</span>
+			<img class="aspect-square w-56 object-cover" src={Van} alt="" />
+			<span class="flex flex-1 items-center text-center font-indie text-3xl">Food Truck</span>
 		</div>
 		<div
 			class="flex aspect-[0.8] flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square w-56 object-cover" src={Egg} alt="" />
-			<span class="flex flex-1 items-center font-indie text-3xl">Bibimbap</span>
+			<img class="aspect-square w-56 object-cover" src={Bar} alt="" />
+			<span class="flex flex-1 items-center text-center font-indie text-3xl">Malmö</span>
 		</div>
 	</div>
 
@@ -62,7 +62,7 @@
 >
 	<div>
 		<h2 class="mb-2 text-3xl font-bold">
-			{@html about.recruit.heading}<span class="text-yellow-500">?</span>
+			{@html about.recruit.heading}<span class="text-purple-500">?</span>
 		</h2>
 		<p>{@html about.recruit.text}</p>
 	</div>

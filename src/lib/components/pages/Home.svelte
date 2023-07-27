@@ -4,14 +4,14 @@
 	import Bar from "$lib/images/Bar.webp";
 	import Bowl1 from "$lib/images/Bowl1.webp";
 	import Bowl2 from "$lib/images/Bowl2.webp";
-	import Chicken from "$lib/images/Chicken.webp";
 	import Chopsticks from "$lib/images/Chopsticks.webp";
-	import Dump from "$lib/images/Dump.webp";
 	import Egg from "$lib/images/Egg.webp";
 	import Film from "$lib/images/Film.svg";
-	import Rice from "$lib/images/Rice.webp";
 	import Stars from "$lib/images/Stars.svg";
+	import chikinmayo from "$lib/images/chikinmayo.webp";
+	import DumpNKFC from "$lib/images/dumpnkfc.webp";
 	import KFC from "$lib/images/kfc.webp";
+	import KFCNDump from "$lib/images/kfcndump.webp";
 	import lang from "$lib/stores/lang";
 	import selectedLocation from "$lib/stores/locations";
 	import { goto } from "$lib/utils";
@@ -114,13 +114,18 @@
 		{#each Array(numberOfPictureSets) as _}
 			<div
 				class="aspect-[4/3] h-full rounded-md bg-cover"
-				style="background-image: url({Chicken});"
+				style="background-image: url({DumpNKFC});"
 				title="Korean Fried Chicken"
 			/>
 			<div
 				class="aspect-[4/3] h-full rounded-md bg-cover"
-				style="background-image: url({Dump});"
-				title="Dumplings"
+				style="background-image: url({chikinmayo});"
+				title="Chikinmayo"
+			/>
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({KFCNDump});"
+				title="Dumplings & Korean Fried Chicken"
 			/>
 			<div
 				class="aspect-[4/3] h-full rounded-md bg-cover"
@@ -131,11 +136,6 @@
 				class="aspect-[4/3] h-full rounded-md bg-cover"
 				style="background-image: url({KFC});"
 				title="Korean Fried Chicken"
-			/>
-			<div
-				class="aspect-[4/3] h-full rounded-md bg-cover"
-				style="background-image: url({Rice});"
-				title="Chikinmayo"
 			/>
 		{/each}
 	</div>

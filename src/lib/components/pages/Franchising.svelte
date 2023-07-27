@@ -1,8 +1,8 @@
 <script lang="ts">
 	import texts from "$lib/data/texts";
 	import Egg from "$lib/images/egg.webp";
+	import Happy from "$lib/images/happy.webp";
 	import KFC from "$lib/images/kfc.webp";
-	import Work from "$lib/images/work.webp";
 	import lang from "$lib/stores/lang";
 
 	let franchising = texts[$lang].franchising;
@@ -86,8 +86,8 @@
 		<div
 			class="relative flex h-fit w-fit flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src={Work} alt="" />
-			<span class="py-6 font-indie text-3xl">Helsingborg</span>
+			<img class="aspect-square h-72 object-cover" src={Happy} alt="" />
+			<span class="py-6 text-center font-indie text-3xl">HX Festivalen</span>
 		</div>
 	</div>
 </div>
