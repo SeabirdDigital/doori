@@ -101,12 +101,7 @@ const en = {
 			text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 			buttons: { order: "Order Now", menu: "See Menu" }
 		},
-		favourites: "Our Favourites",
-		newsArticle: {
-			heading: "New restaurant in Malmö",
-			text: "We are happy to announce that we have opened a new restaurant in Malmö. You can find us at the following address: <br><br>Östra Rönneholmsvägen 9<br>211 47 Malmö",
-			learnMore: "Learn more"
-		}
+		restaurants: "Restaurants"
 	},
 	menu: {
 		slug: "menu",
