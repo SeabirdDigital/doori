@@ -1,6 +1,7 @@
 <script lang="ts">
 	import locations from "$lib/data/locations";
 	import texts from "$lib/data/texts";
+	import Logo from "$lib/images/logo.webp";
 	import lang from "$lib/stores/lang";
 	import selectedLocation, { newSelectedLocation } from "$lib/stores/locations";
 	import menuOpen from "$lib/stores/menuOpen";
@@ -43,7 +44,7 @@
 <header class="overflow-x-hidden">
 	<div class="container flex justify-between py-8">
 		<button on:click={() => goto("home")}>
-			<img class="aspect-[85/44] h-12" src="/logo.webp" alt="" />
+			<img class="aspect-[85/44] h-12" src={Logo} alt="" />
 		</button>
 
 		<nav class="flex items-center">

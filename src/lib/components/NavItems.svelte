@@ -1,12 +1,17 @@
 <script lang="ts">
 	import texts, { languages } from "$lib/data/texts";
+	import type { LanguageId } from "$lib/data/types/texts";
 	import lang from "$lib/stores/lang";
 	import pageId from "$lib/stores/pageId";
 	import { goto } from "$lib/utils";
-	import Home from "./pages/Home.svelte";
 
 	let itemNames = texts[$lang].layout.nav;
 	$: itemNames = texts[$lang].layout.nav;
+
+	const flags = {
+		sv: "/flags/sv.svg",
+		en: "/flags/en.svg"
+	};
 
 	const switchLang = async () => {
 		const currentIndex = languages.findIndex((l) => l == $lang);
@@ -25,19 +30,10 @@
 	<button on:click={() => goto("about")}>{itemNames.about}</button>
 </li>
 <li>
-	<button on:click={() => goto("home", { sectionId: texts[$lang].home.restaurants.toLowerCase() })}>
-		{itemNames.restaurants}
-	</button>
-</li>
-<li>
 	<button on:click={() => goto("franchising")}>{itemNames.franchising}</button>
 </li>
 
 <button class="flex items-center gap-4 sm:-ml-4" on:click={switchLang}>
 	<span class="sm:hidden">{itemNames.language}</span>
-	<img
-		class="aspect-square h-6"
-		src="/flags/{$lang}.svg"
-		alt="{$lang} flag. Click to switch language."
-	/>
+	<img class="aspect-square h-6" src={flags[$lang]} alt="{$lang} flag. Click to switch language." />
 </button>

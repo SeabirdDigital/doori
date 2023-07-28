@@ -1,15 +1,31 @@
 <script lang="ts">
 	import locations, { locationsArray } from "$lib/data/locations";
 	import texts from "$lib/data/texts";
+	import Bar from "$lib/images/bar.webp";
+	import Bowl1 from "$lib/images/bowl1.webp";
+	import Bowl2 from "$lib/images/bowl2.webp";
+	import chikinmayo from "$lib/images/chikinmayo.webp";
+	import Chopsticks from "$lib/images/chopsticks.webp";
+	import DumpNKFC from "$lib/images/dumpnkfc.webp";
+	import Egg from "$lib/images/egg.webp";
+	import KFC from "$lib/images/kfc.webp";
+	import KFCNDump from "$lib/images/kfcndump.webp";
 	import lang from "$lib/stores/lang";
 	import selectedLocation from "$lib/stores/locations";
 	import { goto } from "$lib/utils";
+	import { onMount } from "svelte";
 
 	let layout = texts[$lang].layout;
 	$: layout = texts[$lang].layout;
 
 	let home = texts[$lang].home;
 	$: home = texts[$lang].home;
+
+	let numberOfPictureSets = 2;
+
+	onMount(() => {
+		numberOfPictureSets = Math.ceil(window.innerWidth / 1040);
+	});
 </script>
 
 <svelte:head>
@@ -20,27 +36,32 @@
 	class="container relative flex flex-row-reverse justify-end pb-32 pt-24 sm:py-16 lg:flex-row lg:justify-center lg:gap-24"
 >
 	<div class="sm:hidden">
-		<img class="absolute -left-36 -top-12 h-44" src="/mobile/bowl1.webp" alt="" />
-		<img class="absolute -bottom-8 -right-8 h-36" src="/mobile/bowl2.webp" alt="" />
-		<img class="absolute -right-24 -top-20 h-56 rotate-12" src="/mobile/chopsticks.webp" alt="" />
+		<img class="absolute -left-36 -top-12 h-44" src={Bowl1} alt="" />
+		<img class="absolute -bottom-8 -right-8 h-36" src={Bowl2} alt="" />
+		<img class="absolute -right-24 -top-20 h-56 rotate-12" src={Chopsticks} alt="" />
 	</div>
 	<div class="relative hidden sm:block">
 		<div
+			class="absolute -right-28 -top-24 left-auto z-20 aspect-[116/152] h-20 -rotate-3 lg:-left-4 lg:-top-20 lg:right-auto"
+		>
+			<img class="aspect-[116/152] h-20" src="/stars.svg" alt="" />
+		</div>
+		<div
 			class="absolute -right-96 -top-12 flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
+			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="absolute -right-96 -top-12 flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
+			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="absolute -right-96 -top-12 flex flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:relative lg:right-0"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
+			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
 			<span class="py-6 font-indie text-3xl">K-bowl</span>
 		</div>
 	</div>
@@ -77,17 +98,88 @@
 	</div>
 </div>
 
-<div class="flex items-center gap-8 py-12">
-	<div class="h-px flex-1 bg-black lg:w-12 lg:flex-none" />
-	<a href="https://www.instagram.com/doori_koreanskmat/" class="hover:text-yellow-500">Instagram</a>
-	<a href="https://www.facebook.com/Doorikoreanskmat/" class="hover:text-purple-500">Facebook</a>
-	<div class="h-px flex-1 bg-black" />
+<div>
+	<div class="mt-24 flex flex-col items-center">
+		<div class="z-20 -mb-4 rotate-1 bg-yellow-100 px-4 py-3 text-2xl">
+			<h2 class="font-indie leading-none">{home.favourites}</h2>
+		</div>
+	</div>
+
+	<div
+		class="flex h-48 -rotate-1 scale-110 gap-4 bg-contain bg-repeat-x py-6"
+		style="background-image: url(/film.svg);"
+	>
+		{#each Array(numberOfPictureSets) as _}
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({DumpNKFC});"
+				title="Korean Fried Chicken"
+			/>
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({chikinmayo});"
+				title="Chikinmayo"
+			/>
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({KFCNDump});"
+				title="Dumplings & Korean Fried Chicken"
+			/>
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({Egg});"
+				title="Bibimbap"
+			/>
+			<div
+				class="aspect-[4/3] h-full rounded-md bg-cover"
+				style="background-image: url({KFC});"
+				title="Korean Fried Chicken"
+			/>
+		{/each}
+	</div>
 </div>
 
-<div id={home.restaurants.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
+<div class="bg-yellow-100/25">
+	<div class="container pb-12 pt-16 sm:pb-24 sm:pt-28">
+		<div class="flex items-center justify-center gap-20">
+			<div class="hidden sm:block">
+				<div
+					class="flex aspect-[0.8] w-60 rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+				>
+					<img class="aspect-square w-full object-cover" src={Bar} alt="" />
+					<span class="flex flex-1 items-center font-indie text-3xl">Malmö</span>
+				</div>
+			</div>
+			<div class="flex flex-col gap-6">
+				<div>
+					<h3 class="mb-2 text-4xl font-bold">{@html home.newsArticle.heading}</h3>
+					<p class="max-w-md">
+						{@html home.newsArticle.text}
+					</p>
+				</div>
+
+				<div>
+					<a href="https://www.instagram.com/doori_koreanskmat/">
+						<button class="link">{home.newsArticle.learnMore}</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="flex gap-2 whitespace-nowrap bg-black py-3 text-2xl text-white">
+	<span class="relative block" id="first-kfc">Korean fried chicken & beyond </span> ✨
+	<span class="relative block">Korean fried chicken & beyond </span> ✨
+	<span class="relative block">Korean fried chicken & beyond </span> ✨
+	<span class="relative block">Korean fried chicken & beyond </span> ✨
+	<span class="relative block">Korean fried chicken & beyond </span> ✨
+</div>
+
+<div class="container grid gap-8 py-16 md:grid-cols-2">
 	{#each locationsArray as location}
 		<div class="">
-			<h3 class="mb-2 text-4xl font-bold sm:text-5xl lg:mb-4 lg:text-[6vw]">
+			<h3 class="mb-2 text-4xl font-bold lg:mb-4">
 				{location.city}
 			</h3>
 			<div class="text-xs text-black/60 lg:text-base xl:text-lg">
@@ -163,3 +255,20 @@
 		</div>
 	{/each}
 </div>
+
+<div class="" />
+
+<style>
+	@keyframes kfcRoll {
+		0% {
+			margin-left: 0;
+		}
+		100% {
+			margin-left: -474px;
+		}
+	}
+
+	#first-kfc {
+		animation: kfcRoll 10s linear infinite;
+	}
+</style>

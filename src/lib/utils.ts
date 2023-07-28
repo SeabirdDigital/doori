@@ -47,13 +47,13 @@ export const goto = (id: PageId, options?: Partial<GotoOptions>) => {
 	setTimeout(async () => {
 		if (options?.lang) langStore.set(options.lang);
 
-		await svelteGoto(gotoHref + (options?.sectionId ? `#${options.sectionId}` : ""));
+		await svelteGoto(gotoHref);
 
 		pageId.set(id);
 
 		menuOpen.set(false);
 		transitionOn.set(false);
-	}, 500);
+	}, 700);
 };
 
 export const sortLocations = (

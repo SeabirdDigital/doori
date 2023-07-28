@@ -7,6 +7,7 @@
 	import locations, { locationsArray } from "$lib/data/locations";
 	import texts from "$lib/data/texts";
 	import type { LanguageId } from "$lib/data/types/texts";
+	import Logo from "$lib/images/logo.webp";
 	import { currentLatLng } from "$lib/stores/currentLatLng";
 	import { ipInfo } from "$lib/stores/ipInfo";
 	import lang from "$lib/stores/lang";
@@ -44,14 +45,23 @@
 </script>
 
 <div
-	class="fixed left-0 z-50 w-full bg-yellow-500 duration-500 {$transitionOn
+	class="fixed left-0 z-50 flex w-full items-center justify-center bg-black text-white duration-500 {$transitionOn
 		? 'top-0 h-full'
 		: 'bottom-0 h-0'}"
-/>
+>
+	<div
+		class="flex flex-col items-center justify-center duration-300 {$transitionOn
+			? 'opacity-100'
+			: 'opacity-0'}"
+	>
+		<img class="-mb-6 h-32" src={Logo} alt="" />
+		<span class="sm:text-lg">Korean fried chicken & beyond</span>
+	</div>
+</div>
 
 <Header />
 
-<main>
+<main class="-mt-28 overflow-auto overflow-x-hidden pt-28">
 	{#if $pageId}
 		<svelte:component this={pages[$pageId]} />
 	{/if}

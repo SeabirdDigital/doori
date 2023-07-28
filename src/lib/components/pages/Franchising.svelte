@@ -1,5 +1,8 @@
 <script lang="ts">
 	import texts from "$lib/data/texts";
+	import Egg from "$lib/images/egg.webp";
+	import Happy from "$lib/images/happy.webp";
+	import KFC from "$lib/images/kfc.webp";
 	import lang from "$lib/stores/lang";
 
 	let franchising = texts[$lang].franchising;
@@ -71,20 +74,20 @@
 		<div
 			class="absolute flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
-			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+			<img class="aspect-square h-72 object-cover" src={Egg} alt="" />
+			<span class="py-6 font-indie text-3xl">Bibimbap</span>
 		</div>
 		<div
 			class="absolute flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
+			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="relative flex h-fit w-fit flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square h-72 object-cover" src="/kfc.webp" alt="" />
-			<span class="py-6 font-indie text-3xl">K-bowl</span>
+			<img class="aspect-square h-72 object-cover" src={Happy} alt="" />
+			<span class="py-6 text-center font-indie text-3xl">HX Festivalen</span>
 		</div>
 	</div>
 </div>

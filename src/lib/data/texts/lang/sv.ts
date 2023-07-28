@@ -8,7 +8,6 @@ const sv: Texts = {
 		nav: {
 			menu: "Meny",
 			about: "Om oss",
-			restaurants: "Restauranger",
 			franchising: "Franchising",
 			language: "Språk"
 		},
@@ -35,7 +34,12 @@ const sv: Texts = {
 			text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 			buttons: { order: "Beställ nu", menu: "Visa meny" }
 		},
-		restaurants: "Restauranger"
+		favourites: "Våra favoriter",
+		newsArticle: {
+			heading: "Ny restaurang i Malmö",
+			text: "Vi är glada att meddela att vi har öppnat en ny restaurang i Malmö. Du hittar oss på följande adress: <br><br>Östra Rönneholmsvägen 9<br>211 47 Malmö",
+			learnMore: "Läs mer"
+		}
 	},
 	menu: {
 		slug: "meny",
