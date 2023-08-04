@@ -44,30 +44,32 @@
 	});
 </script>
 
-<div
-	class="fixed left-0 z-50 flex w-full items-center justify-center bg-black text-white duration-500 {$transitionOn
-		? 'top-0 h-full'
-		: 'bottom-0 h-0'}"
->
+<div class="overflow-x-hidden">
 	<div
-		class="flex flex-col items-center justify-center duration-300 {$transitionOn
-			? 'opacity-100'
-			: 'opacity-0'}"
+		class="fixed left-0 z-50 flex w-full items-center justify-center bg-black text-white duration-500 {$transitionOn
+			? 'top-0 h-full'
+			: 'bottom-0 h-0'}"
 	>
-		<img class="-mb-6 h-32" src={Logo} alt="" />
-		<span class="sm:text-lg">Korean fried chicken & beyond</span>
+		<div
+			class="flex flex-col items-center justify-center duration-300 {$transitionOn
+				? 'opacity-100'
+				: 'opacity-0'}"
+		>
+			<img class="-mb-6 h-32" src={Logo} alt="" />
+			<span class="sm:text-lg">Korean fried chicken & beyond</span>
+		</div>
 	</div>
+
+	<Header />
+
+	<main>
+		{#if $pageId}
+			<svelte:component this={pages[$pageId]} />
+		{/if}
+		<slot />
+	</main>
+
+	<footer class="flex justify-center bg-black py-4 text-center text-background-500">
+		Copyright 2023 &copy; {texts[$lang].layout.copyright}
+	</footer>
 </div>
-
-<Header />
-
-<main>
-	{#if $pageId}
-		<svelte:component this={pages[$pageId]} />
-	{/if}
-	<slot />
-</main>
-
-<footer class="flex justify-center bg-black py-4 text-center text-background-500">
-	Copyright 2023 &copy; {texts[$lang].layout.copyright}
-</footer>
