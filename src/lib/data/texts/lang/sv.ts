@@ -24,7 +24,7 @@ const sv: Texts = {
 				sun: "Sön"
 			}
 		},
-		copyright: "Seabird Digital UD. Alla rättigheter förbehållna."
+		copyright: "Doo-Ri AB. Alla rättigheter förbehållna."
 	},
 	home: {
 		slug: "/",

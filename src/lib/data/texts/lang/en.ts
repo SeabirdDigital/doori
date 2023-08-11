@@ -91,7 +91,7 @@ const en = {
 				sun: "Sun"
 			}
 		},
-		copyright: "Seabird Digital UD. All rights reserved."
+		copyright: "Doo-Ri AB. All rights reserved."
 	},
 	home: {
 		slug: "/",
