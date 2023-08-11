@@ -15,7 +15,7 @@ const malmö: DooriLocation = {
 	address: `Möllevången<br>`,
 	onlyDelivery: true,
 	phone: "076-167 70 50",
-	foodora: "https://www.foodora.se/restaurant/vf5j/doori-malmo"
+	foodora: "https://www.foodora.se/restaurant/ghco/doori-malmo"
 };
 const helsingborg: DooriLocation = {
 	city: "Helsingborg",
@@ -50,7 +50,7 @@ const trelleborg: DooriLocation = {
 	address: `Centrala Trelleborg<br>`,
 	onlyDelivery: true,
 	phone: "041-064 40",
-	foodora: "https://www.foodora.se/restaurant/vf5j/doori-malmo"
+	foodora: "https://www.foodora.se/restaurant/datj/doori-trelleborg"
 };
 const lund: DooriLocation = {
 	city: "Lund",
