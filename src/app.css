@@ -2,17 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-	--background-100: #fefefd;
-	--background-200: #fdfdfb;
-	--background-300: #fcfbf9;
-	--background-400: #fbfaf7;
-	--background-500: #faf9f5;
-	--background-600: #c8c7c4;
-	--background-700: #969593;
-	--background-800: #646462;
-	--background-900: #323231;
-	--background: #faf9f5;
+body {
+	@apply bg-background text-brown;
 }
 
 h1 {

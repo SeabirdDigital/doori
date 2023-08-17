@@ -98,7 +98,12 @@ const locationsObject = {
 const locations: { [key in LocationId]: DooriLocation } = { ...locationsObject };
 export default locations;
 
-export const locationsArray = Object.entries(locations).map((l) => ({
+const locationsArray = Object.entries(locations).map((l) => ({
 	...l[1],
 	id: l[0] as LocationId
 }));
+console.log(locationsArray);
+locationsArray.sort((l) => (l.id == "helsingborg" ? 1 : 0));
+console.log(locationsArray);
+
+export { locationsArray };

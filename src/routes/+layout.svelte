@@ -17,6 +17,8 @@
 	import transitionOn from "$lib/stores/transitionOn";
 	import { goto, latLng2LngLat, sortLocations } from "$lib/utils";
 	import "@fontsource/indie-flower";
+	import "@fontsource/quicksand/500.css";
+	import "@fontsource/quicksand/700.css";
 	import "@fontsource/space-mono/400.css";
 	import "@fontsource/space-mono/700.css";
 	import { json } from "@sveltejs/kit";
@@ -69,7 +71,7 @@
 		<slot />
 	</main>
 
-	<footer class="flex justify-center bg-black py-4 text-center text-background-500">
+	<footer class="text-background-500 flex justify-center bg-black py-4 text-center">
 		Copyright 2023 &copy; {texts[$lang].layout.copyright}
 	</footer>
 </div>
