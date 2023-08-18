@@ -39,7 +39,7 @@
 <dialog
 	on:close={onCloseDialog}
 	on:click={onDialogClick}
-	class="border-2 border-black bg-background-500 p-0 outline-none"
+	class="border-2 border-black bg-white p-0 outline-none"
 	bind:this={dialog}
 >
 	<LocationSelect />

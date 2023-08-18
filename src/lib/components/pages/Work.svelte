@@ -17,7 +17,7 @@
 <div class="container grid-cols-2 pb-24 pt-14 lg:grid">
 	<div class="flex items-center">
 		<form
-			class=" h-fit rotate-[1deg] bg-black px-6 py-10 text-background-500"
+			class=" h-fit rotate-[1deg] bg-black px-6 py-10 text-white"
 			action="https://api.staticforms.xyz/submit"
 			method="post"
 		>
@@ -25,7 +25,7 @@
 				<!-- TODO: Add own accessKey from https://www.staticforms.xyz/ -->
 				<input type="hidden" name="accessKey" value="e44fc5d0-0b52-4cb1-9f79-fefc3800d89c" />
 
-				<h1 class="mb-4">{@html work.form.heading}<span class="text-purple-500">.</span></h1>
+				<h1 class="mb-4">{@html work.form.heading}</h1>
 
 				<div class="grid grid-cols-2 gap-x-8 gap-y-2">
 					<div>

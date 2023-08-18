@@ -12,7 +12,7 @@
 
 <div class="flex justify-center">
 	<h1 class="my-12 text-6xl">
-		{menu.heading}<span class="text-purple-500">.</span>
+		{menu.heading}
 	</h1>
 </div>
 

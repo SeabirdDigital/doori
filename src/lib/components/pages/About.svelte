@@ -41,7 +41,7 @@
 	<div class="flex flex-col gap-6">
 		<div class="flex flex-col gap-4">
 			<h1>
-				{@html about.main.heading}<span class="text-purple-500">.</span>
+				{@html about.main.heading}
 			</h1>
 			<p class="">
 				{@html about.main.text}
@@ -71,7 +71,7 @@
 			<button class="h-fit border-b-2 border-black"> {about.recruit.buttons.work} </button>
 			<button
 				on:click={() => goto("franchising")}
-				class="relative flex items-center gap-2 bg-black fill-background-500 px-4 py-3 text-background-500"
+				class="relative flex items-center gap-2 bg-black fill-white px-4 py-3 text-white"
 			>
 				{about.recruit.buttons.franchisee}
 				<div class="-mr-2">

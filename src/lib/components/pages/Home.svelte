@@ -21,6 +21,12 @@
 	let home = texts[$lang].home;
 	$: home = texts[$lang].home;
 
+	const lArray = locationsArray.sort((l) => {
+		console.log(l.id == "helsingborg");
+		return l.id == "helsingborg" || l.id == "malmö" ? -1 : 1;
+	});
+	console.log(lArray[0]);
+
 	let numberOfPictureSets = 2;
 
 	onMount(() => {
@@ -69,7 +75,7 @@
 	<div class="flex flex-col gap-6">
 		<div class="flex flex-col gap-4">
 			<h1>
-				{@html home.hero.heading}<span class="text-purple-500">.</span>
+				{@html home.hero.heading}
 			</h1>
 			<p class="hidden max-w-lg sm:block">
 				{@html home.hero.text}
@@ -106,7 +112,7 @@
 </div>
 
 <div id={home.restaurants.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
-	{#each locationsArray as location}
+	{#each lArray as location}
 		<div class="">
 			<h3 class="mb-2 text-4xl font-bold lg:mb-4">
 				{location.city}

@@ -71,7 +71,7 @@
 		<slot />
 	</main>
 
-	<footer class="text-background-500 flex justify-center bg-black py-4 text-center">
+	<footer class="flex justify-center bg-brown py-4 text-center text-white">
 		Copyright 2023 &copy; {texts[$lang].layout.copyright}
 	</footer>
 </div>

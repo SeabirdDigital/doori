@@ -43,7 +43,7 @@
 							class="absolute right-1/2 top-1/2 grid aspect-square h-8 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full duration-200 {$newSelectedLocation ==
 							location.id
 								? 'z-30 scale-110 bg-black'
-								: 'z-10 scale-100 bg-background-900 hover:scale-110'}"
+								: 'z-10 scale-100 bg-neutral-900 hover:scale-110'}"
 						>
 							<span>
 								<img src="/doori-d.webp" class="h-4" alt="" />

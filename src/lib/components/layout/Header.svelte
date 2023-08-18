@@ -25,7 +25,7 @@
 
 <Dialog bind:dialog />
 
-<div class="bg-black py-2 text-sm text-white">
+<div class="bg-brown py-2 text-sm text-white">
 	<div class="container flex justify-between">
 		<div>
 			{#if locations[$selectedLocation].onlyDelivery}
@@ -64,7 +64,7 @@
 
 				<svg
 					class="absolute z-[45] h-2 duration-500 {$menuOpen
-						? 'mb-0 mr-0 -rotate-[50deg] fill-background-500 '
+						? 'mb-0 mr-0 -rotate-[50deg] fill-white '
 						: 'mb-3 mr-1 -rotate-[25deg] fill-black'}"
 					viewBox="0 0 177 32"
 					fill="none"
@@ -79,7 +79,7 @@
 				</svg>
 				<svg
 					class="absolute z-[45] h-2 duration-500 {$menuOpen
-						? 'ml-0 mt-0 rotate-[35deg] fill-background-500'
+						? 'ml-0 mt-0 rotate-[35deg] fill-white'
 						: 'ml-1 mt-3 -rotate-[12deg] fill-black'}"
 					viewBox="0 0 177 32"
 					fill="none"
@@ -97,7 +97,7 @@
 			<nav>
 				<ul
 					id="menu"
-					class="fixed left-0 z-40 flex h-screen w-screen flex-col items-center justify-center gap-4 bg-black text-2xl text-background-500 duration-500 {$menuOpen
+					class="fixed left-0 z-40 flex h-screen w-screen flex-col items-center justify-center gap-4 bg-black text-2xl text-white duration-500 {$menuOpen
 						? 'top-0'
 						: '-top-[calc(100%+6rem)]'}"
 				>
