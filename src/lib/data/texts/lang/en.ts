@@ -144,6 +144,11 @@ const en = {
 				work: "Work",
 				franchisee: "Franchisee"
 			}
+		},
+		dictionary: {
+			noun: "noun",
+			definition:
+				'"Doori" or "Duri" is an indigenous Korean name. It is a Gyeongsang dialect word for "two", as well as a homophone of a differently-spelled standard Korean word (둘이) meaning "two people" or "a couple"'
 		}
 	},
 	work: {

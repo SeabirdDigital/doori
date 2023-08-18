@@ -43,10 +43,21 @@
 			<h1>
 				{@html about.main.heading}
 			</h1>
-			<p class="">
+			<p class="max-w-2xl">
 				{@html about.main.text}
 			</p>
 		</div>
+	</div>
+
+	<div>
+		<div class="flex items-end gap-2">
+			<h3 class="text-4xl font-bold">doori</h3>
+			<span class="text-3xl italic">{about.dictionary.noun}</span>
+		</div>
+		<span>/duːrə/</span>
+		<p class="max-w-2xl">
+			{about.dictionary.definition}
+		</p>
 	</div>
 </div>
 

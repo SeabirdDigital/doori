@@ -145,6 +145,11 @@ const sv: Texts = {
 				work: "Jobb",
 				franchisee: "Franchisetagare"
 			}
+		},
+		dictionary: {
+			noun: "noun",
+			definition:
+				'"Doori" eller "Duri" är ett inhemskt koreanskt namn. Det är ett Gyeongsang-dialektord för "två", såväl som en homofon av ett koreanskt standardord (둘이) som betyder "två personer" eller "ett par"'
 		}
 	},
 	work: {
