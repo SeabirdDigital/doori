@@ -28,7 +28,7 @@ button {
 
 	height: 1.5px;
 	width: 100%;
-	background-color: black;
+	background-color: #786b59;
 
 	transition-duration: 400ms;
 }
@@ -49,7 +49,7 @@ button {
 
 	height: 1.5px;
 	width: 0;
-	background-color: black;
+	background-color: #786b59;
 
 	transition-duration: 400ms;
 }
@@ -71,7 +71,7 @@ nav > ul > li > button::after {
 
 	height: 1.5px;
 	width: 0;
-	background-color: black;
+	background-color: #786b59;
 	transition-duration: 400ms;
 }
 .link.inverse:hover::after,
@@ -112,9 +112,9 @@ button.full.to-borders:hover {
 	align-items: center;
 	gap: 0.5rem;
 
-	border: 1.5px solid black;
-	color: black;
-	fill: black;
+	border: 1.5px solid #786b59;
+	color: #786b59;
+	fill: #786b59;
 	background-color: transparent;
 
 	padding: 0.75rem 1rem;

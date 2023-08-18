@@ -105,10 +105,10 @@
 </div>
 
 <div class="flex items-center gap-8 py-12">
-	<div class="h-px flex-1 bg-black lg:w-12 lg:flex-none" />
+	<div class="h-px flex-1 bg-brown lg:w-12 lg:flex-none" />
 	<a href="https://www.instagram.com/doori_koreanskmat/" class="hover:text-yellow-500">Instagram</a>
 	<a href="https://www.facebook.com/Doorikoreanskmat/" class="hover:text-purple-500">Facebook</a>
-	<div class="h-px flex-1 bg-black" />
+	<div class="h-px flex-1 bg-brown" />
 </div>
 
 <div id={home.restaurants.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">

@@ -42,7 +42,7 @@
 						<div
 							class="absolute right-1/2 top-1/2 grid aspect-square h-8 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full duration-200 {$newSelectedLocation ==
 							location.id
-								? 'z-30 scale-110 bg-black'
+								? 'z-30 scale-110 bg-brown'
 								: 'z-10 scale-100 bg-neutral-900 hover:scale-110'}"
 						>
 							<span>
@@ -59,9 +59,9 @@
 				{/each}
 			</MapLibre>
 		</div>
-		<div class="flex flex-col justify-between border-black sm:border-l-2">
+		<div class="flex flex-col justify-between border-grey sm:border-l-2">
 			<ul>
-				<li class="item border-b-2 border-black px-4 py-2 text-xs">
+				<li class="item border-b-2 border-grey px-4 py-2 text-xs">
 					📍 {$ipInfo?.city}
 				</li>
 				{#each $locationsInOrder as location}

@@ -17,7 +17,7 @@
 <div class="container grid-cols-2 pb-24 pt-14 lg:grid">
 	<div class="flex items-center">
 		<form
-			class=" h-fit rotate-[1deg] bg-black px-6 py-10 text-white"
+			class=" h-fit rotate-[1deg] bg-brown px-6 py-10 text-white"
 			action="https://api.staticforms.xyz/submit"
 			method="post"
 		>

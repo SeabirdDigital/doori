@@ -117,7 +117,7 @@ const en = {
 			text: "With my interest in Korean food, we started our journey in 2021 from a small but cute food truck and wanted to introduce through it homemade Korean food that is both authentic and tasty!<br><br>At Roskildegatan 2 in Helsingborg, we continue to prepare our most popular dish, Korean Fried Chicken. This, together with our homemade sauces and other dishes, we have just made available through our virtual kitchens in Malmö, Lund, Trelleborg, and Växjö so that our customers can order food online for deliveries (on foodora) and take away.<br><br>One of the main reasons we started Doori was to spread joy and make it easy for our customers to enjoy really good Korean food. We therefore continue to expand to different parts of Skåne.<br><br>Follow us on Instagram and join us on our exciting journey!"
 		},
 		recruit: {
-			heading: "Like what you see",
+			heading: "Like what you see?",
 			text: "Become part of the family and become an<br />employee or franchisee!",
 			buttons: {
 				work: "Work",

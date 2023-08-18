@@ -12,8 +12,9 @@ export default {
 				indie: "'Indie Flower', sans-serif"
 			},
 			colors: {
-				background: "#fff6eb",
-				brown: "#786b59"
+				background: "#fff9f2",
+				brown: "#786b59",
+				grey: "#545454"
 			}
 		},
 		plugins: []

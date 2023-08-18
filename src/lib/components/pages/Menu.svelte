@@ -27,7 +27,7 @@
 							<h3 class="font-bold">
 								{@html item.name}
 							</h3>
-							<span class="flex-1 border-b border-dashed border-black" />
+							<span class="flex-1 border-b border-dashed border-brown" />
 							<p class="">{item.price} kr</p>
 						</div>
 						<p>{@html item.description}</p>

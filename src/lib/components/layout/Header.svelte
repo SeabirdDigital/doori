@@ -30,6 +30,10 @@
 		<div>
 			{#if locations[$selectedLocation].onlyDelivery}
 				{layout.restaurants.onlyDelivery}
+			{:else}
+				<span class="hidden sm:block">
+					{locations[$selectedLocation].address.replace("<br>", ", ")}
+				</span>
 			{/if}
 		</div>
 		<div class="text-left">
@@ -65,7 +69,7 @@
 				<svg
 					class="absolute z-[45] h-2 duration-500 {$menuOpen
 						? 'mb-0 mr-0 -rotate-[50deg] fill-white '
-						: 'mb-3 mr-1 -rotate-[25deg] fill-black'}"
+						: 'mb-3 mr-1 -rotate-[25deg] fill-brown'}"
 					viewBox="0 0 177 32"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +84,7 @@
 				<svg
 					class="absolute z-[45] h-2 duration-500 {$menuOpen
 						? 'ml-0 mt-0 rotate-[35deg] fill-white'
-						: 'ml-1 mt-3 -rotate-[12deg] fill-black'}"
+						: 'ml-1 mt-3 -rotate-[12deg] fill-brown'}"
 					viewBox="0 0 177 32"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +101,7 @@
 			<nav>
 				<ul
 					id="menu"
-					class="fixed left-0 z-40 flex h-screen w-screen flex-col items-center justify-center gap-4 bg-black text-2xl text-white duration-500 {$menuOpen
+					class="fixed left-0 z-40 flex h-screen w-screen flex-col items-center justify-center gap-4 bg-brown text-2xl text-white duration-500 {$menuOpen
 						? 'top-0'
 						: '-top-[calc(100%+6rem)]'}"
 				>

@@ -51,10 +51,10 @@
 </div>
 
 <div class="flex items-center gap-8 py-16">
-	<div class="h-px flex-1 bg-black lg:w-12 lg:flex-none" />
+	<div class="h-px flex-1 bg-brown lg:w-12 lg:flex-none" />
 	<a href="https://www.instagram.com/doori_koreanskmat/" class="hover:text-yellow-500">Instagram</a>
 	<a href="https://www.facebook.com/Doorikoreanskmat/" class="hover:text-purple-500">Facebook</a>
-	<div class="h-px flex-1 bg-black" />
+	<div class="h-px flex-1 bg-brown" />
 </div>
 
 <div
@@ -62,17 +62,16 @@
 >
 	<div>
 		<h2 class="mb-2 text-3xl font-bold">
-			{@html about.recruit.heading}<span class="text-purple-500">?</span>
+			{@html about.recruit.heading}
 		</h2>
 		<p>{@html about.recruit.text}</p>
 	</div>
 	<div>
 		<div class="flex items-center gap-6">
-			<button class="h-fit border-b-2 border-black"> {about.recruit.buttons.work} </button>
-			<button
-				on:click={() => goto("franchising")}
-				class="relative flex items-center gap-2 bg-black fill-white px-4 py-3 text-white"
-			>
+			<a href="mailto:jobb@doori.se">
+				<button class="link"> {about.recruit.buttons.work} </button>
+			</a>
+			<button on:click={() => goto("franchising")} class="full to-extend">
 				{about.recruit.buttons.franchisee}
 				<div class="-mr-2">
 					<svg

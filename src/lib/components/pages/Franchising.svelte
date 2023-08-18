@@ -16,7 +16,7 @@
 <div class="container grid-cols-2 pb-24 pt-14 lg:grid">
 	<div class="flex items-center">
 		<form
-			class=" h-fit rotate-[1deg] bg-black px-6 py-10 text-white"
+			class=" h-fit rotate-[1deg] bg-brown px-6 py-10 text-white"
 			action="https://api.staticforms.xyz/submit"
 			method="post"
 		>
@@ -29,22 +29,28 @@
 				<div class="grid grid-cols-2 gap-x-8 gap-y-2">
 					<div>
 						<label for="name">{@html franchising.form.name}</label>
-						<input type="text" name="name" id="name" required />
+						<input type="text" placeholder="Anders Andersson" name="name" id="name" required />
 					</div>
 
 					<div>
 						<label for="email">{@html franchising.form.email}</label>
-						<input type="text" name="email" id="email" required />
+						<input
+							type="text"
+							placeholder="anders.andersson@aol.com"
+							name="email"
+							id="email"
+							required
+						/>
 					</div>
 
 					<div>
 						<label for="phone">{@html franchising.form.phone}</label>
-						<input type="text" name="phone" id="phone" required />
+						<input type="text" placeholder="1234567890" name="phone" id="phone" required />
 					</div>
 
 					<div>
 						<label for="$stad">{@html franchising.form.city}</label>
-						<input type="text" name="$stad" id="$stad" required />
+						<input type="text" placeholder="Helsingborg" name="$stad" id="$stad" required />
 					</div>
 
 					<div>
@@ -65,7 +71,11 @@
 				<input type="hidden" name="redirectTo" value="https://example.com/contact/success" />
 				<input type="text" name="honeypot" style="display: none;" />
 
-				<input class="mt-6 bg-purple-500 py-8" type="submit" value={franchising.form.submit} />
+				<input
+					class="mt-6 bg-black py-8 !text-white"
+					type="submit"
+					value={franchising.form.submit}
+				/>
 			</div>
 		</form>
 	</div>

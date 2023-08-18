@@ -115,7 +115,7 @@ const sv: Texts = {
 			text: "Med mitt intresse för koreansk mat startade vi vår resa 2021 från en liten men söt food truck och ville genom den introducera hemlagad koreansk mat som är både autentisk och smakrik!<br><br>På Roskildegatan 2 i Helsingborg fortsätter vi att tillaga vår mest populära maträtt, Korean Fried Chicken. Denna, tillsammans med våra hemlagad såser och andra rätter, hav vi precis gjort tillgängliga genom våra virtuella kök i Malmö, Lund, Trelleborg, och Växjö så att våra kunder kan beställa mat online för leveranser (på foodora) och take away.<br><br>En av de främsta anledningarna till att vi startade Doori var för att sprida glädje och göra det lätt för våra kunder att njuta av riktigt god koreansk mat. Vi fortsätter därför att expandera till olika delar av Skåne.<br><br>Följ oss på Instagram och häng med på vår spännande resa!"
 		},
 		recruit: {
-			heading: "Gillar du vad du ser",
+			heading: "Gillar du vad du ser?",
 			text: "Bli en del av familjen och bli<br />anställd eller franchisetagare!",
 			buttons: {
 				work: "Jobb",

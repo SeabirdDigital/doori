@@ -2,19 +2,20 @@ import type { DooriLocation, LocationId } from "./types/locations";
 
 const malmö: DooriLocation = {
 	city: "Malmö",
-	latLng: [55.5970445, 13.0070001],
+	latLng: [55.5964701, 13.0088436],
 	openingHours: {
 		monday: undefined,
-		tuesday: "15:45 - 20:30",
-		wednesday: "15:30 - 20:30",
-		thursday: "15:30 - 20:30",
-		friday: "16:00 - 21:00",
-		saturday: "16:00 - 20:45",
-		sunday: "15:30 - 20:30"
+		tuesday: "11:00 - 20:45",
+		wednesday: "11:00 - 20:45",
+		thursday: "11:00 - 20:45",
+		friday: "11:00 - 21:00",
+		saturday: "11:00 - 21:00",
+		sunday: "11:00 - 20:45"
 	},
-	address: `Möllevången<br>`,
-	onlyDelivery: true,
-	phone: "076-167 70 50",
+	address: `Bergsgatan 15<br>211 54 Malmö`,
+	onlyDelivery: false,
+	phone: "073-494 66 30",
+	maps: "https://goo.gl/maps/SsiSSqL3yuv4zs5x5",
 	foodora: "https://www.foodora.se/restaurant/ghco/doori-malmo"
 };
 const helsingborg: DooriLocation = {
