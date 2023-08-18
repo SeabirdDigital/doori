@@ -6,8 +6,9 @@
 	import Bowl2 from "$lib/images/bowl2.webp";
 	import chikinmayo from "$lib/images/chikinmayo.webp";
 	import Chopsticks from "$lib/images/chopsticks.webp";
+	import Double from "$lib/images/double.webp";
 	import DumpNKFC from "$lib/images/dumpnkfc.webp";
-	import Egg from "$lib/images/egg.webp";
+	import egg from "$lib/images/egg.webp";
 	import KFC from "$lib/images/kfc.webp";
 	import KFCNDump from "$lib/images/kfcndump.webp";
 	import lang from "$lib/stores/lang";
@@ -39,7 +40,7 @@
 </svelte:head>
 
 <div
-	class="container relative flex flex-row-reverse justify-end pb-32 pt-24 sm:py-16 lg:flex-row lg:justify-center lg:gap-24"
+	class="container relative flex flex-row-reverse justify-end pb-32 pt-24 sm:pb-16 sm:pt-16 lg:flex-row lg:justify-center lg:gap-24 lg:pt-8"
 >
 	<div class="sm:hidden">
 		<img class="absolute -left-36 -top-12 h-44" src={Bowl1} alt="" />
@@ -48,31 +49,26 @@
 	</div>
 	<div class="relative hidden sm:block">
 		<div
-			class="absolute -right-28 -top-24 left-auto z-20 aspect-[116/152] h-20 -rotate-3 lg:-left-4 lg:-top-20 lg:right-auto"
-		>
-			<img class="aspect-[116/152] h-20" src="/stars.svg" alt="" />
-		</div>
-		<div
-			class="absolute -right-96 -top-12 flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0"
+			class="absolute -right-96 -top-20 flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0 lg:top-0"
 		>
 			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
-			class="absolute -right-96 -top-12 flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0"
+			class="absolute -right-96 -top-20 flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0 lg:top-0"
 		>
 			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
 			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
-			class="absolute -right-96 -top-12 flex flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:relative lg:right-0"
+			class="absolute -right-96 -top-20 flex flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:relative lg:right-0 lg:top-0"
 		>
-			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
-			<span class="py-6 font-indie text-3xl">K-bowl</span>
+			<img class="aspect-square h-72 object-cover" src={Double} alt="" />
+			<span class="py-6 font-indie text-3xl">K-bowl + Chikinmayo</span>
 		</div>
 	</div>
 
-	<div class="flex flex-col gap-6">
+	<div class="flex flex-col justify-center gap-6">
 		<div class="flex flex-col gap-4">
 			<h1>
 				{@html home.hero.heading}
@@ -109,6 +105,76 @@
 	<a href="https://www.instagram.com/doori_koreanskmat/" class="hover:text-yellow-500">Instagram</a>
 	<a href="https://www.facebook.com/Doorikoreanskmat/" class="hover:text-purple-500">Facebook</a>
 	<div class="h-px flex-1 bg-brown" />
+</div>
+
+<div
+	class="container relative flex flex-row-reverse items-center justify-end pb-32 pt-24 sm:py-16 lg:flex-row lg:justify-center lg:gap-8"
+>
+	<div class="flex flex-col gap-6 lg:w-1/2">
+		<div class="flex flex-col gap-4">
+			<h2 class="text-4xl font-bold">
+				{@html home.sauce.heading}
+			</h2>
+			<p class="hidden max-w-md sm:block">
+				{@html home.sauce.text}
+			</p>
+
+			{#each home.sauce.sauces as sauce}
+				<h4 class="text-2xl font-bold">{sauce.name}</h4>
+				<p class="lg:max-w-lg">{sauce.description}</p>
+			{/each}
+		</div>
+	</div>
+
+	<div class="relative hidden lg:block">
+		<div
+			class="absolute right-0 flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+		>
+			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
+			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+		</div>
+		<div
+			class="absolute right-0 flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+		>
+			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
+			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+		</div>
+		<div
+			class="relative right-0 flex flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+		>
+			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
+			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+		</div>
+	</div>
+</div>
+
+<div class="container mb-24 mt-16 hidden justify-center sm:flex">
+	<div class="relative flex max-w-4xl items-center justify-center">
+		<div
+			class="flex aspect-[0.8] rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+		>
+			<img class="aspect-square w-56 object-cover" src={KFC} alt="" />
+			<span class="flex flex-1 items-center font-indie text-3xl">K-bowl</span>
+		</div>
+		<div
+			class="flex aspect-[0.8] -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+		>
+			<img class="aspect-square w-56 object-cover" src={chikinmayo} alt="" />
+			<span class="flex flex-1 items-center text-center font-indie text-3xl">Chikinmayo</span>
+		</div>
+		<div
+			class="hidden aspect-[0.8] flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 md:flex"
+		>
+			<img class="aspect-square w-56 object-cover" src={DumpNKFC} alt="" />
+			<span class="flex flex-1 items-center text-center font-indie text-3xl">Dumplings</span>
+		</div>
+		<div
+			class="flex aspect-[0.8] rotate-[8deg] flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
+		>
+			<img class="aspect-square w-56 object-cover" src={egg} alt="" />
+			<span class="flex flex-1 items-center text-center font-indie text-3xl">Bibimbap</span>
+		</div>
+	</div>
 </div>
 
 <div id={home.restaurants.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">

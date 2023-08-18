@@ -34,6 +34,30 @@ const sv: Texts = {
 			text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 			buttons: { order: "Beställ nu", menu: "Visa meny" }
 		},
+		sauce: {
+			heading: "Såser",
+			text: "Korean fried chicken med valfri hemmagjord sås:",
+			sauces: [
+				{
+					name: "Go sås",
+					description:
+						"Denna sås är vår mest populära sås och är en förkortning för Gochujang-sås. Go såsen är baserat på chili paste från Korea och trots färgen är den inte så stark.",
+					price: 20
+				},
+				{
+					name: "So sås",
+					description:
+						"Grunden för So såsen är vitlökssoja. Denna sås är populär bland de som gillar mildare smak.",
+					price: 20
+				},
+				{
+					name: "He sås",
+					description:
+						"He såsen är en starkare version av Go såsen för de som uppskattar starkare mat.",
+					price: 20
+				}
+			]
+		},
 		restaurants: "Restauranger"
 	},
 	menu: {
@@ -112,7 +136,7 @@ const sv: Texts = {
 		title: "Om Oss | Doori",
 		main: {
 			heading: "Om oss",
-			text: "Med mitt intresse för koreansk mat startade vi vår resa 2021 från en liten men söt food truck och ville genom den introducera hemlagad koreansk mat som är både autentisk och smakrik!<br><br>På Roskildegatan 2 i Helsingborg fortsätter vi att tillaga vår mest populära maträtt, Korean Fried Chicken. Denna, tillsammans med våra hemlagad såser och andra rätter, hav vi precis gjort tillgängliga genom våra virtuella kök i Malmö, Lund, Trelleborg, och Växjö så att våra kunder kan beställa mat online för leveranser (på foodora) och take away.<br><br>En av de främsta anledningarna till att vi startade Doori var för att sprida glädje och göra det lätt för våra kunder att njuta av riktigt god koreansk mat. Vi fortsätter därför att expandera till olika delar av Skåne.<br><br>Följ oss på Instagram och häng med på vår spännande resa!"
+			text: "Allt började 2021 när jag och en kompis bestämde oss för att testa på att hyra en liten food truck över sommaren. Vi körde Skåne runt för att visa vad det koreanska köket har att erbjuda. Väldigt snabbt hade vi ett svar: koreansk mat var riktigt uppskattad och Korean Fried Chicken var utan tvekan favoriträtten!<br><br>Till nästa sommar hade vi hittat den minsta restaurangen vi kunde hitta i Helsingborg och efter tolv dagar av intensivt fixande och fejande hade vi öppnat vår första restaurang!<br><br>Sen har det gått i en rasande fart och man kan nu hitta vår Korean Fried Chicken i Lund, Trelleborg, Höganäs, Växjö och i Malmö. I skrivande stund håller vi också precis på att öppna vår allra första franchise utanför Helsingborg som finns på Bergsgatan 15 i Malmö, välkomna dit!<br><br>Med en liten verksamhet har vi ett stort uppdrag: att sprida glädjen av vällagad autentisk koreansk mat till så många som möjligt. De flesta vet inte hur koreansk mat smakar så kom in och prova vår mat och följ oss gärna på vår spännande resa."
 		},
 		recruit: {
 			heading: "Gillar du vad du ser?",

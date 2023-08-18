@@ -1,6 +1,7 @@
 <script lang="ts">
 	import locations, { locationsArray } from "$lib/data/locations";
 	import type { LocationId } from "$lib/data/types/locations";
+	import DooriD from "$lib/images/doori-d.webp";
 	import { currentLatLng } from "$lib/stores/currentLatLng";
 	import { ipInfo } from "$lib/stores/ipInfo";
 	import selectedLocation, { locationsInOrder, newSelectedLocation } from "$lib/stores/locations";
@@ -46,7 +47,7 @@
 								: 'z-10 scale-100 bg-neutral-900 hover:scale-110'}"
 						>
 							<span>
-								<img src="/doori-d.webp" class="h-4" alt="" />
+								<img src={DooriD} class="h-4" alt="" />
 							</span>
 						</div>
 
