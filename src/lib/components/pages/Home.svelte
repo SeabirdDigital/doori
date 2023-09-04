@@ -68,7 +68,7 @@
 			<h1>
 				{@html home.hero.heading}
 			</h1>
-			<p class="hidden max-w-lg sm:block">
+			<p class="max-w-lg">
 				{@html home.hero.text}
 			</p>
 		</div>
