@@ -18,8 +18,8 @@
 
 <div class="container mb-12">
 	{#each menu.menu as category}
-		<div class="my-4">
-			<h2 class="mb-6 text-3xl">{category.name}</h2>
+		<div class="mb-12">
+			<h2 class="mb-4 text-3xl">{category.name}</h2>
 			<div class="grid gap-8 lg:grid-cols-2">
 				{#each category.items as item}
 					<div>

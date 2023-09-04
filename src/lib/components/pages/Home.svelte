@@ -1,7 +1,6 @@
 <script lang="ts">
-	import locations, { locationsArray } from "$lib/data/locations";
+	import { locationsArray } from "$lib/data/locations";
 	import texts from "$lib/data/texts";
-	import Bar from "$lib/images/bar.webp";
 	import Bowl1 from "$lib/images/bowl1.webp";
 	import Bowl2 from "$lib/images/bowl2.webp";
 	import chikinmayo from "$lib/images/chikinmayo.webp";
@@ -10,9 +9,7 @@
 	import DumpNKFC from "$lib/images/dumpnkfc.webp";
 	import egg from "$lib/images/egg.webp";
 	import KFC from "$lib/images/kfc.webp";
-	import KFCNDump from "$lib/images/kfcndump.webp";
 	import lang from "$lib/stores/lang";
-	import selectedLocation from "$lib/stores/locations";
 	import { goto } from "$lib/utils";
 	import { onMount } from "svelte";
 
@@ -23,10 +20,8 @@
 	$: home = texts[$lang].home;
 
 	const lArray = locationsArray.sort((l) => {
-		console.log(l.id == "helsingborg");
 		return l.id == "helsingborg" || l.id == "malmö" ? -1 : 1;
 	});
-	console.log(lArray[0]);
 
 	let numberOfPictureSets = 2;
 
@@ -79,7 +74,7 @@
 		</div>
 
 		<div class="flex items-center gap-6">
-			<a href={locations[$selectedLocation].foodora}>
+			<a href="https://qopla.com/restaurant/doori/qDQjQjbxQE/order">
 				<button class="full to-extend">
 					{home.hero.buttons.order}
 					<div class="-mr-2">
@@ -108,7 +103,7 @@
 </div>
 
 <div
-	class="container relative flex flex-row-reverse items-center justify-end pb-32 pt-24 sm:py-16 lg:flex-row lg:justify-center lg:gap-8"
+	class="container relative flex flex-row-reverse items-center justify-end pb-32 pt-16 sm:py-16 lg:flex-row lg:justify-center lg:gap-8"
 >
 	<div class="flex flex-col gap-6 lg:w-1/2">
 		<div class="flex flex-col gap-4">

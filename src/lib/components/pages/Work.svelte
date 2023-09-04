@@ -1,10 +1,7 @@
 <script lang="ts">
 	import { locationsArray } from "$lib/data/locations";
 	import texts from "$lib/data/texts";
-	import { currentLatLng } from "$lib/stores/currentLatLng";
 	import lang from "$lib/stores/lang";
-	import { locationsInOrder } from "$lib/stores/locations";
-	import { sortLocations } from "$lib/utils";
 
 	let work = texts[$lang].work;
 	$: work = texts[$lang].work;
@@ -47,7 +44,7 @@
 						<label for="$where">{@html work.form.where}</label>
 						<select name="$where" id="$where" required>
 							<option value="">{work.form.choose}</option>
-							{#each $locationsInOrder as location}
+							{#each locationsArray as location}
 								<option value={location.city}>
 									{location.city}
 								</option>

@@ -1,7 +1,6 @@
 import { goto as svelteGoto } from "$app/navigation";
 import { get } from "svelte/store";
 import texts, { isPageId } from "./data/texts";
-import type { LocationInArray } from "./data/types/locations";
 import type { LanguageId, PageId } from "./data/types/texts";
 import langStore from "./stores/lang";
 import menuOpen from "./stores/menuOpen";
@@ -54,15 +53,4 @@ export const goto = (id: PageId, options?: Partial<GotoOptions>) => {
 		menuOpen.set(false);
 		transitionOn.set(false);
 	}, 700);
-};
-
-export const sortLocations = (
-	locationsArray: LocationInArray[],
-	currentLatLng: [number, number]
-) => {
-	return locationsArray.sort(
-		(l1, l2) =>
-			getDistanceFromLatLngInKm(currentLatLng, l1.latLng) -
-			getDistanceFromLatLngInKm(currentLatLng, l2.latLng)
-	);
 };

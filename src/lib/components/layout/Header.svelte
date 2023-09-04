@@ -1,49 +1,14 @@
 <script lang="ts">
-	import locations from "$lib/data/locations";
 	import texts from "$lib/data/texts";
 	import Logo from "$lib/images/logo.webp";
 	import lang from "$lib/stores/lang";
-	import selectedLocation, { newSelectedLocation } from "$lib/stores/locations";
 	import menuOpen from "$lib/stores/menuOpen";
 	import { goto } from "$lib/utils";
-	import Dialog from "../Dialog/Dialog.svelte";
 	import NavItems from "../NavItems.svelte";
 
 	let layout = texts[$lang].layout;
 	$: layout = texts[$lang].layout;
-
-	let dialog: HTMLDialogElement;
-
-	const openDialog = (type: "locationSelect") => {
-		document.getElementById(type)!.style.display = "block";
-
-		if (type == "locationSelect") newSelectedLocation.set($selectedLocation);
-
-		dialog.showModal();
-	};
 </script>
-
-<Dialog bind:dialog />
-
-<div class="bg-brown py-2 text-sm text-white">
-	<div class="container flex justify-between">
-		<div>
-			{#if locations[$selectedLocation].onlyDelivery}
-				{layout.restaurants.onlyDelivery}
-			{:else}
-				<span class="hidden sm:block">
-					{locations[$selectedLocation].address.replace("<br>", ", ")}
-				</span>
-			{/if}
-		</div>
-		<div class="text-left">
-			📍
-			<button on:click={() => openDialog("locationSelect")} class="link after:!bg-white">
-				{locations[$selectedLocation].city}
-			</button>
-		</div>
-	</div>
-</div>
 
 <header class="overflow-x-hidden">
 	<div class="container flex justify-between py-8">
