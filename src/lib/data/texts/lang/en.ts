@@ -97,7 +97,7 @@ const en = {
 		slug: "/",
 		title: "Doori | Korean fried chicken & beyond",
 		hero: {
-			heading: "Korean fried<br>chicken & beyond",
+			heading: "KOREAN<br>FRIED<br>CHICKEN<br>& beyond",
 			text: "",
 			buttons: { order: "Order Now", menu: "See Menu" }
 		},

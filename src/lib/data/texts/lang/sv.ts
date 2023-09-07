@@ -30,7 +30,7 @@ const sv: Texts = {
 		slug: "/",
 		title: "Doori | Korean fried chicken & beyond",
 		hero: {
-			heading: "Korean fried<br>chicken & beyond",
+			heading: "KOREAN<br>FRIED<br>CHICKEN<br>& beyond",
 			text: "",
 			buttons: { order: "Beställ nu", menu: "Visa meny" }
 		},
