@@ -231,22 +231,6 @@
 						</button>
 					</a>
 				{/if}
-				<a href={location.order}>
-					<button class="borders to-full">
-						{location.order.includes("foodora") ? "Foodora" : home.hero.buttons.order}
-						<div class="-mr-2">
-							<svg
-								class="-rotate-90"
-								xmlns="http://www.w3.org/2000/svg"
-								height="22"
-								viewBox="0 -960 960 960"
-								width="22"
-							>
-								<path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z" />
-							</svg>
-						</div>
-					</button>
-				</a>
 				{#if location.reservation}
 					<a href={location.reservation}>
 						<button class="borders to-full">
@@ -265,6 +249,22 @@
 						</button>
 					</a>
 				{/if}
+				<a href={location.order}>
+					<button class="borders to-full">
+						{location.order.includes("foodora") ? "Foodora" : home.hero.buttons.order}
+						<div class="-mr-2">
+							<svg
+								class="-rotate-90"
+								xmlns="http://www.w3.org/2000/svg"
+								height="22"
+								viewBox="0 -960 960 960"
+								width="22"
+							>
+								<path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z" />
+							</svg>
+						</div>
+					</button>
+				</a>
 			</div>
 		</div>
 	{/each}

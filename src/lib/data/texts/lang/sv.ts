@@ -24,7 +24,7 @@ const sv: Texts = {
 				sun: "Sön"
 			},
 			find: "Hitta hit",
-			reservation: "Boka bord"
+			reserve: "Boka bord"
 		},
 		copyright: "Doo-Ri AB. Alla rättigheter förbehållna."
 	},
