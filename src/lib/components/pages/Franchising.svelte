@@ -1,7 +1,7 @@
 <script lang="ts">
 	import texts from "$lib/data/texts";
 	import Egg from "$lib/images/egg.webp";
-	import Happy from "$lib/images/happy.webp";
+	import Happy from "$lib/images/franchise.jpg";
 	import KFC from "$lib/images/kfc.webp";
 	import lang from "$lib/stores/lang";
 

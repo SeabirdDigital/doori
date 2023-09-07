@@ -1,7 +1,7 @@
 <script lang="ts">
 	import texts from "$lib/data/texts";
-	import Bar from "$lib/images/bar.webp";
 	import Helsingborg from "$lib/images/helsingborg.webp";
+	import Malmo from "$lib/images/malmo.jpg";
 	import Van from "$lib/images/van.webp";
 	import lang from "$lib/stores/lang";
 	import { goto } from "$lib/utils";
@@ -33,7 +33,7 @@
 		<div
 			class="flex aspect-[0.8] flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
-			<img class="aspect-square w-56 object-cover" src={Bar} alt="" />
+			<img class="aspect-square w-56 object-cover" src={Malmo} alt="" />
 			<span class="flex flex-1 items-center text-center font-indie text-3xl">Malmö</span>
 		</div>
 	</div>
