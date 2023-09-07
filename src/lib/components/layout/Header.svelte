@@ -1,6 +1,6 @@
 <script lang="ts">
 	import texts from "$lib/data/texts";
-	import Logo from "$lib/images/logo.webp";
+	import Logo from "$lib/images/logo.png";
 	import lang from "$lib/stores/lang";
 	import menuOpen from "$lib/stores/menuOpen";
 	import { goto } from "$lib/utils";
@@ -13,7 +13,7 @@
 <header class="overflow-x-hidden">
 	<div class="container flex justify-between py-8">
 		<button on:click={() => goto("home")}>
-			<img class="aspect-[85/44] h-12" src={Logo} alt="" />
+			<img class="aspect-[86/34] h-10" src={Logo} alt="" />
 		</button>
 
 		<nav class="flex items-center">
