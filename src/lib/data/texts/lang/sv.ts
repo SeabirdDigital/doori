@@ -22,7 +22,9 @@ const sv: Texts = {
 				fri: "Fre",
 				sat: "Lör",
 				sun: "Sön"
-			}
+			},
+			find: "Hitta hit",
+			reservation: "Boka bord"
 		},
 		copyright: "Doo-Ri AB. Alla rättigheter förbehållna."
 	},

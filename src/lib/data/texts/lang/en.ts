@@ -80,7 +80,9 @@ const en = {
 				fri: "Fri",
 				sat: "Sat",
 				sun: "Sun"
-			}
+			},
+			find: "Find us",
+			reserve: "Reserve a table"
 		},
 		copyright: "Doo-Ri AB. All rights reserved."
 	},

@@ -15,8 +15,9 @@ const malmö: DooriLocation = {
 	address: `Bergsgatan 15<br>211 54 Malmö`,
 	onlyDelivery: false,
 	phone: "073-494 66 30",
-	maps: "https://goo.gl/maps/SsiSSqL3yuv4zs5x5",
-	foodora: "https://www.foodora.se/restaurant/ghco/doori-malmo"
+	maps: "https://goo.gl/maps/ErazMwcWypr9tsVb9",
+	order: "https://www.foodora.se/restaurant/ghco/doori-malmo",
+	reservation: "#"
 };
 const helsingborg: DooriLocation = {
 	city: "Helsingborg",
@@ -33,7 +34,7 @@ const helsingborg: DooriLocation = {
 	address: "Roskildegatan 2<br>252 21 Helsingborg",
 	onlyDelivery: false,
 	phone: "072-249 11 98",
-	foodora: "https://www.foodora.se/restaurant/pzqr/doori",
+	order: "https://qopla.com/restaurant/doori---helsingborg/qDQjQjbxQE/order",
 	maps: "https://goo.gl/maps/GpiwtjJ5tXuz5Qfq5"
 };
 const trelleborg: DooriLocation = {
@@ -51,7 +52,7 @@ const trelleborg: DooriLocation = {
 	address: `Centrala Trelleborg<br>`,
 	onlyDelivery: true,
 	phone: "041-064 40",
-	foodora: "https://www.foodora.se/restaurant/datj/doori-trelleborg"
+	order: "https://www.foodora.se/restaurant/datj/doori-trelleborg"
 };
 const lund: DooriLocation = {
 	city: "Lund",
@@ -68,7 +69,7 @@ const lund: DooriLocation = {
 	address: `Centrala Staden<br>`,
 	onlyDelivery: true,
 	phone: "076-167 70 50",
-	foodora: "https://www.foodora.se/restaurant/xalr/doori-lund"
+	order: "https://www.foodora.se/restaurant/xalr/doori-lund"
 };
 const växjö: DooriLocation = {
 	city: "Växjö",
@@ -85,7 +86,7 @@ const växjö: DooriLocation = {
 	address: ``,
 	onlyDelivery: true,
 	phone: "047-02 27 55",
-	foodora: "https://www.foodora.se/restaurant/hst4/doori-vaxjo"
+	order: "https://www.foodora.se/restaurant/hst4/doori-vaxjo"
 };
 
 const locationsObject = {

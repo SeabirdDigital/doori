@@ -14,7 +14,8 @@ export type DooriLocation = {
 	address: string;
 	onlyDelivery: boolean;
 	phone: string;
-	foodora: string;
+	order: string;
+	reservation?: string;
 	maps?: string;
 };
 
