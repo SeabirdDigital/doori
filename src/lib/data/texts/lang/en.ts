@@ -8,26 +8,22 @@ const menu: Menu = [
 				name: "K-bowl",
 				longName: true,
 				description:
-					"Doori's fried chicken with your choice of homemade sauce, served with rice and pickled radish.",
-				price: 139
+					"Doori's fried chicken with your choice of homemade sauce, served with rice and pickled radish."
 			},
 			{
 				name: "Fried dumplings",
 				longName: true,
-				description: "With cream cheese, crab sticks and sweet chili sauce.",
-				price: 59
+				description: "With cream cheese, crab sticks and sweet chili sauce."
 			},
 			{
 				name: "Chikinmayo",
 				description:
-					"Korean Fried Chicken with rice and scrambled eggs, topped with soy sauce, teriyaki sauce and mayonnaise. Mix before eating to make it taste better.",
-				price: 139
+					"Korean Fried Chicken with rice and scrambled eggs, topped with soy sauce, teriyaki sauce and mayonnaise. Mix before eating to make it taste better."
 			},
 			{
 				name: "Bibimbap",
 				description:
-					"Bibimbap is rice served in a bowl covered with seasoned vegetables, beef and topped with egg sunny side up. Doori's gochujang sauce is served on the side.",
-				price: 149
+					"Bibimbap is rice served in a bowl covered with seasoned vegetables, beef and topped with egg sunny side up. Doori's gochujang sauce is served on the side."
 			}
 		]
 	},
@@ -37,31 +33,26 @@ const menu: Menu = [
 			{
 				name: "Pickled radish",
 				longName: true,
-				description: "",
-				price: 29
+				description: ""
 			},
 			{
 				name: "Kimchi",
-				description: "",
-				price: 59
+				description: ""
 			},
 			{
 				name: "Go sauce",
 				description:
-					"This sauce is our most popular sauce and is short for Gochujang sauce. The Go sauce is based on chili paste from Korea and despite the color it is not that strong.",
-				price: 20
+					"This sauce is our most popular sauce and is short for Gochujang sauce. The Go sauce is based on chili paste from Korea and despite the color it is not that strong."
 			},
 			{
 				name: "So sauce",
 				description:
-					"The basis of the So sauce is garlic soy. This sauce is popular with those who like a milder taste.",
-				price: 20
+					"The basis of the So sauce is garlic soy. This sauce is popular with those who like a milder taste."
 			},
 			{
 				name: "He sauce",
 				description:
-					"The He sauce is a stronger version of the Go sauce for those who appreciate stronger food.",
-				price: 20
+					"The He sauce is a stronger version of the Go sauce for those who appreciate stronger food."
 			}
 		]
 	}

@@ -41,20 +41,17 @@ const sv: Texts = {
 				{
 					name: "Go sås",
 					description:
-						"Denna sås är vår mest populära sås och är en förkortning för Gochujang-sås. Go såsen är baserat på chili paste från Korea och trots färgen är den inte så stark.",
-					price: 20
+						"Denna sås är vår mest populära sås och är en förkortning för Gochujang-sås. Go såsen är baserat på chili paste från Korea och trots färgen är den inte så stark."
 				},
 				{
 					name: "So sås",
 					description:
-						"Grunden för So såsen är vitlökssoja. Denna sås är populär bland de som gillar mildare smak.",
-					price: 20
+						"Grunden för So såsen är vitlökssoja. Denna sås är populär bland de som gillar mildare smak."
 				},
 				{
 					name: "He sås",
 					description:
-						"He såsen är en starkare version av Go såsen för de som uppskattar starkare mat.",
-					price: 20
+						"He såsen är en starkare version av Go såsen för de som uppskattar starkare mat."
 				}
 			]
 		},
@@ -72,26 +69,22 @@ const sv: Texts = {
 						name: "K-bowl",
 						longName: true,
 						description:
-							"Dooris friterade kyckling med valfri hemlagad sås, serverad med ris och picklad rättika.",
-						price: 139
+							"Dooris friterade kyckling med valfri hemlagad sås, serverad med ris och picklad rättika."
 					},
 					{
 						name: "Friterade dumplings",
 						longName: true,
-						description: "Med cream cheese, crab sticks och sweet chili sås.",
-						price: 59
+						description: "Med cream cheese, crab sticks och sweet chili sås."
 					},
 					{
 						name: "Chikinmayo",
 						description:
-							"Korean Fried Chicken med ris och scramble ägg, toppad med so sås, teriyakisås och majonnäs. Blanda innan du äter så smakar det bättre.",
-						price: 139
+							"Korean Fried Chicken med ris och scramble ägg, toppad med so sås, teriyakisås och majonnäs. Blanda innan du äter så smakar det bättre."
 					},
 					{
 						name: "Bibimbap",
 						description:
-							"Bibimbap är ris som serveras i en skål täckt med kryddade grönsaker, nötkött och toppad med ägg sunny side up. Dooris gochujangsås är serverad vid sidan om.",
-						price: 149
+							"Bibimbap är ris som serveras i en skål täckt med kryddade grönsaker, nötkött och toppad med ägg sunny side up. Dooris gochujangsås är serverad vid sidan om."
 					}
 				]
 			},
@@ -101,31 +94,26 @@ const sv: Texts = {
 					{
 						name: "Picklad rättika",
 						longName: true,
-						description: "",
-						price: 29
+						description: ""
 					},
 					{
 						name: "Kimchi",
-						description: "",
-						price: 59
+						description: ""
 					},
 					{
 						name: "Go sås",
 						description:
-							"Denna sås är vår mest populära sås och är en förkortning för Gochujang-sås. Go såsen är baserat på chili paste från Korea och trots färgen är den inte så stark.",
-						price: 20
+							"Denna sås är vår mest populära sås och är en förkortning för Gochujang-sås. Go såsen är baserat på chili paste från Korea och trots färgen är den inte så stark."
 					},
 					{
 						name: "So sås",
 						description:
-							"Grunden för So såsen är vitlökssoja. Denna sås är populär bland de som gillar mildare smak.",
-						price: 20
+							"Grunden för So såsen är vitlökssoja. Denna sås är populär bland de som gillar mildare smak."
 					},
 					{
 						name: "He sås",
 						description:
-							"He såsen är en starkare version av Go såsen för de som uppskattar starkare mat.",
-						price: 20
+							"He såsen är en starkare version av Go såsen för de som uppskattar starkare mat."
 					}
 				]
 			}

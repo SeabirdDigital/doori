@@ -13,7 +13,6 @@ type Item = {
 	name: string;
 	longName?: boolean;
 	description: string;
-	price: number | string;
 };
 
 type LanguageId = keyof typeof textObject;
