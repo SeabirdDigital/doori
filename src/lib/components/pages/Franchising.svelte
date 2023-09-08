@@ -97,7 +97,9 @@
 			class="relative flex h-fit w-fit flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
 			<img class="aspect-square h-72 object-cover" src={Happy} alt="" />
-			<span class="py-6 text-center font-indie text-3xl" />
+			<span class="py-4 text-center font-indie text-2xl leading-none"
+				>How Doori<br />Malmö Started</span
+			>
 		</div>
 	</div>
 </div>
