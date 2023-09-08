@@ -14,7 +14,7 @@ const malmö: DooriLocation = {
 	},
 	address: `Bergsgatan 15<br>211 54 Malmö`,
 	onlyDelivery: false,
-	phone: "073-494 66 30",
+	phone: "076-009 37 07",
 	maps: "https://goo.gl/maps/ErazMwcWypr9tsVb9",
 	order: "https://www.foodora.se/restaurant/ghco/doori-malmo",
 	reservation: "#"
@@ -33,7 +33,7 @@ const helsingborg: DooriLocation = {
 	},
 	address: "Roskildegatan 2<br>252 21 Helsingborg",
 	onlyDelivery: false,
-	phone: "072-249 11 98",
+	phone: "076-860 56 59",
 	order: "https://qopla.com/restaurant/doori---helsingborg/qDQjQjbxQE/order",
 	maps: "https://goo.gl/maps/GpiwtjJ5tXuz5Qfq5"
 };
