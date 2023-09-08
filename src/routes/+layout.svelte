@@ -3,7 +3,7 @@
 	import pages from "$lib/components/pages";
 	import texts from "$lib/data/texts";
 	import type { LanguageId } from "$lib/data/types/texts";
-	import Logo from "$lib/images/logo.webp";
+	import LogoWhite from "$lib/images/logo_white.png";
 	import lang from "$lib/stores/lang";
 	import menuOpen from "$lib/stores/menuOpen";
 	import pageId from "$lib/stores/pageId";
@@ -44,7 +44,7 @@
 				? 'opacity-100'
 				: 'opacity-0'}"
 		>
-			<img class="-mb-6 h-32" src={Logo} alt="" />
+			<img class="mb-6 h-10" src={LogoWhite} alt="" />
 			<span class="sm:text-lg">Korean fried chicken & beyond</span>
 		</div>
 	</div>
