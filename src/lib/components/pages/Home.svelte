@@ -74,22 +74,20 @@
 		</div>
 
 		<div class="flex items-center gap-6">
-			<a href="https://qopla.com/restaurant/doori/qDQjQjbxQE/order">
-				<button class="full to-extend">
-					{home.hero.buttons.order}
-					<div class="-mr-2">
-						<svg
-							class="-rotate-90"
-							xmlns="http://www.w3.org/2000/svg"
-							height="22"
-							viewBox="0 -960 960 960"
-							width="22"
-						>
-							<path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z" />
-						</svg>
-					</div>
-				</button>
-			</a>
+			<button class="full to-extend" on:click={() => goto("home", { sectionId: "restauranger" })}>
+				{home.hero.buttons.order}
+				<div class="-mr-2">
+					<svg
+						class="-rotate-90"
+						xmlns="http://www.w3.org/2000/svg"
+						height="22"
+						viewBox="0 -960 960 960"
+						width="22"
+					>
+						<path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z" />
+					</svg>
+				</div>
+			</button>
 			<button on:click={() => goto("menu")} class="link"> {home.hero.buttons.menu}</button>
 		</div>
 	</div>

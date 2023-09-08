@@ -41,7 +41,9 @@ export const goto = (id: PageId, options?: Partial<GotoOptions>) => {
 
 	if (!isPageId(id)) throw new Error("No page found");
 
-	const gotoHref = `/${lang}/${texts[lang][id].slug}`;
+	const gotoHref = `/${lang}/${texts[lang][id].slug}${
+		options?.sectionId ? "#" + options.sectionId : ""
+	}`;
 
 	setTimeout(async () => {
 		if (options?.lang) langStore.set(options.lang);
