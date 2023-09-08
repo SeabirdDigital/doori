@@ -9,7 +9,8 @@ export default {
 			},
 			fontFamily: {
 				quicksand: "'Quicksand', sans-serif",
-				indie: "'Indie Flower', sans-serif"
+				indie: "'Indie Flower', sans-serif",
+				sang: "'SangSangRock', sans-serif"
 			},
 			colors: {
 				background: "#fff9f2",

@@ -65,7 +65,7 @@
 
 	<div class="flex flex-col justify-center gap-6">
 		<div class="flex flex-col gap-4">
-			<h1 class="text-5xl">
+			<h1 class="font-sang text-5xl font-normal">
 				{@html home.hero.heading}
 			</h1>
 			<p class="max-w-lg">
