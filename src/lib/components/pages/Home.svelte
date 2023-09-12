@@ -230,7 +230,11 @@
 					</a>
 				{/if}
 				{#if location.reservation}
-					<a href={location.reservation}>
+					<span
+						data-glf-cuid="dc6565be-b5ee-4453-94d7-ebb4e5e24942"
+						data-glf-ruid="fb989147-9e2b-4f64-8bc9-94e12d64a65d"
+						data-glf-reservation="true"
+					>
 						<button class="borders to-full">
 							{layout.restaurants.reserve}
 							<div class="-mr-2">
@@ -245,7 +249,7 @@
 								</svg>
 							</div>
 						</button>
-					</a>
+					</span>
 				{/if}
 				<a href={location.order}>
 					<button class="borders to-full">
@@ -266,4 +270,8 @@
 			</div>
 		</div>
 	{/each}
+</div>
+
+<div>
+	<script src="https://www.fbgcdn.com/embedder/js/ewm2.js" defer async></script>
 </div>
