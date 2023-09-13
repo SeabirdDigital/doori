@@ -65,10 +65,10 @@ const sv: Texts = {
 		heading: "Meny",
 		menu: [
 			{
-				name: "Lunch",
+				name: "",
 				items: [
 					{
-						name: "K-bowl",
+						name: "Korean Fried Chicken",
 						longName: true,
 						description:
 							"Dooris friterade kyckling med valfri hemlagad sås, serverad med ris och picklad rättika."
@@ -99,7 +99,7 @@ const sv: Texts = {
 						description: ""
 					},
 					{
-						name: "Kimchi",
+						name: "Hemmagjord Kimchi",
 						description: ""
 					},
 					{

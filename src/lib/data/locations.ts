@@ -10,9 +10,9 @@ const malmö: DooriLocation = {
 		thursday: "11:00 - 20:45",
 		friday: "11:00 - 21:00",
 		saturday: "11:00 - 21:00",
-		sunday: "11:00 - 20:45"
+		sunday: undefined
 	},
-	address: `Bergsgatan 15<br>211 54 Malmö`,
+	address: `Bergsgatan 15A<br>211 54 Malmö`,
 	onlyDelivery: false,
 	phone: "076-009 37 07",
 	maps: "https://goo.gl/maps/ErazMwcWypr9tsVb9",
@@ -26,9 +26,9 @@ const helsingborg: DooriLocation = {
 		monday: undefined,
 		tuesday: "11:15 - 19:00",
 		wednesday: "11:30 - 19:00",
-		thursday: "11:15 - 20:00",
-		friday: "11:15 - 20:00",
-		saturday: "11:15 - 20:00",
+		thursday: "11:30 - 20:00",
+		friday: "11:30 - 20:00",
+		saturday: "11:30 - 20:00",
 		sunday: undefined
 	},
 	address: "Roskildegatan 2<br>252 21 Helsingborg",
@@ -42,16 +42,16 @@ const trelleborg: DooriLocation = {
 	latLng: [55.3748484, 13.1500905],
 	openingHours: {
 		monday: undefined,
-		tuesday: "11:00 - 20:45",
-		wednesday: "11:00 - 20:45",
-		thursday: "11:00 - 21:00",
-		friday: "11:00 - 21:00",
-		saturday: "11:45 - 21:00",
-		sunday: "11:30 - 20:45"
+		tuesday: "11:30 - 20:45",
+		wednesday: "11:30 - 20:45",
+		thursday: "11:30 - 20:45",
+		friday: "11:30 - 14:00/15:15 - 20:45 21:00",
+		saturday: "12:00 - 20:45",
+		sunday: "12:00 - 20:45"
 	},
-	address: `Centrala Trelleborg<br>`,
+	address: "",
 	onlyDelivery: true,
-	phone: "041-064 40",
+	phone: "041-06 440",
 	order: "https://www.foodora.se/restaurant/datj/doori-trelleborg"
 };
 const lund: DooriLocation = {
@@ -63,10 +63,10 @@ const lund: DooriLocation = {
 		wednesday: "11:00 - 20:45",
 		thursday: "11:00 - 20:45",
 		friday: "11:00 - 20:45",
-		saturday: "11:30 - 20:45",
-		sunday: "11:30 - 21:00"
+		saturday: "12:30 - 20:45",
+		sunday: undefined
 	},
-	address: `Centrala Staden<br>`,
+	address: "",
 	onlyDelivery: true,
 	phone: "076-167 70 50",
 	order: "https://www.foodora.se/restaurant/xalr/doori-lund"
@@ -78,12 +78,12 @@ const växjö: DooriLocation = {
 		monday: "12:00 - 21:00",
 		tuesday: "12:00 - 21:00",
 		wednesday: "12:00 - 21:00",
-		thursday: "11:30 - 21:00",
-		friday: "12:00 - 20:45",
-		saturday: "11:00 - 21:15",
-		sunday: "11:00 - 21:00"
+		thursday: "11:30 - 20:45",
+		friday: "12:00 - 21:00",
+		saturday: "11:30 - 21:00",
+		sunday: "12:00 - 21:00"
 	},
-	address: ``,
+	address: "",
 	onlyDelivery: true,
 	phone: "047-02 27 55",
 	order: "https://www.foodora.se/restaurant/hst4/doori-vaxjo"

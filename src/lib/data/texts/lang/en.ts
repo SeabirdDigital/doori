@@ -2,10 +2,10 @@ import type { Menu } from "$lib/data/types/texts";
 
 const menu: Menu = [
 	{
-		name: "Lunch",
+		name: "",
 		items: [
 			{
-				name: "K-bowl",
+				name: "Korean Fried Chicken",
 				longName: true,
 				description:
 					"Doori's fried chicken with your choice of homemade sauce, served with rice and pickled radish."
@@ -36,7 +36,7 @@ const menu: Menu = [
 				description: ""
 			},
 			{
-				name: "Kimchi",
+				name: "Homemade Kimchi",
 				description: ""
 			},
 			{
@@ -128,7 +128,7 @@ const en = {
 		title: "About Us | Doori",
 		main: {
 			heading: "About Us",
-			text: "It all started in 2021 when a friend and I decided to try renting a small food truck over the summer. We drove around Scania to show what Korean cuisine has to offer. Very quickly we got an answer: Korean food was really appreciated and Korean Fried Chicken was undoubtedly the favorite dish!<br><br>By the next summer we had found the smallest restaurant we could find in Helsingborg and after twelve days of intensive fixing and sweeping had we opened our first restaurant!<br><br>Since then everything has gone at breakneck speed and in addition to Helsingborg, you can now find our Korean Fried Chicken in Lund, Trelleborg, Växjö and in Malmö.<br><br>With a small business, we have a big mission: to spread the joy of well-prepared authentic Korean food to as many people as possible. Most people don't know what Korean food tastes like, so come in and try our food and feel free to follow us on our exciting journey."
+			text: "It all started in 2021 when a friend and I decided to try renting a small food truck over the summer. We drove around Scania to show what Korean cuisine has to offer. Very quickly we got an answer: Korean food was really appreciated and Korean Fried Chicken was undoubtedly the favorite dish!<br><br>By the next summer we had found the smallest restaurant we could find in Helsingborg and after twelve days of intensive fixing and sweeping we had opened our first restaurant!<br><br>Since then everything has gone at breakneck speed and in addition to Helsingborg, you can now find our Korean Fried Chicken in Lund, Trelleborg, Växjö and in Malmö.<br><br>We are a small business with a big mission: to spread the joy of high quality, authentic Korean food to as many people as possible. Most people don't know what Korean food tastes like, so come and try our food and feel free to follow us on our exciting journey."
 		},
 		recruit: {
 			heading: "Like what you see?",
