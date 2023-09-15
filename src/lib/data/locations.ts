@@ -5,12 +5,12 @@ const malmö: DooriLocation = {
 	latLng: [55.5964701, 13.0088436],
 	openingHours: {
 		monday: undefined,
-		tuesday: "11:00 - 20:45",
-		wednesday: "11:00 - 20:45",
-		thursday: "11:00 - 20:45",
-		friday: "11:00 - 21:00",
-		saturday: "11:00 - 21:00",
-		sunday: undefined
+		tuesday: "11:30 - 21:00",
+		wednesday: "11:30 - 21:00",
+		thursday: "11:30 - 21:00",
+		friday: "11:30 - 21:30",
+		saturday: "11:30 - 21:30",
+		sunday: "12:00 - 20:00"
 	},
 	address: `Bergsgatan 15A<br>211 54 Malmö`,
 	onlyDelivery: false,
@@ -24,7 +24,7 @@ const helsingborg: DooriLocation = {
 	latLng: [56.0491065, 12.6707987],
 	openingHours: {
 		monday: undefined,
-		tuesday: "11:15 - 19:00",
+		tuesday: "11:30 - 19:00",
 		wednesday: "11:30 - 19:00",
 		thursday: "11:30 - 20:00",
 		friday: "11:30 - 20:00",
@@ -63,7 +63,7 @@ const lund: DooriLocation = {
 		wednesday: "11:00 - 20:45",
 		thursday: "11:00 - 20:45",
 		friday: "11:00 - 20:45",
-		saturday: "12:30 - 20:45",
+		saturday: "12:00 - 20:45",
 		sunday: undefined
 	},
 	address: "",
