@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidate } from "$app/navigation";
 	import { page } from "$app/stores";
 	import Header from "$lib/components/layout/Header.svelte";
 	import pages from "$lib/components/pages";
@@ -13,7 +14,7 @@
 	import "@fontsource/space-mono/400.css";
 	import "@fontsource/space-mono/700.css";
 	import { onMount } from "svelte";
-	import "../app.css";
+	import "../../app.css";
 
 	export let data;
 

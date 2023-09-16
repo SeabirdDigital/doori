@@ -1,6 +1,5 @@
-import { isLanguageId } from "$lib/data/texts";
 import type { LanguageId } from "$lib/data/types/texts";
-import { supabase } from "$lib/supabaseClient";
+import { isLanguageId } from "$lib/stores/lang";
 import { error, redirect, type ServerLoad } from "@sveltejs/kit";
 
 export type IpInfo = {
@@ -15,12 +14,14 @@ export type IpInfo = {
 	timezone: string;
 };
 
-export const load: ServerLoad = async ({ cookies, params }) => {
+export const load: ServerLoad = async ({ cookies, params, locals: { supabase, getSession } }) => {
 	let lang = params.path?.split("/")[0] as LanguageId;
 	let rest = params.path?.split("/").slice(1).join("/");
 	if (rest === "") rest = "/";
 
+	console.log(lang, params);
 	if (!isLanguageId(lang)) {
+		console.log(lang);
 		lang = (cookies.get("lang") as LanguageId) ?? "sv";
 
 		throw redirect(302, `/${lang}${rest ? "/" + rest : ""}`);
@@ -39,7 +40,7 @@ export const load: ServerLoad = async ({ cookies, params }) => {
 
 	const layoutDataArray = (await supabase.from("doori").select("*").eq("page", "layout")).data;
 	if (!layoutDataArray) throw error(500, "Something went wrong");
-	const layoutData = layoutDataArray.reduce(
+	const layoutData: Record<string, string> = layoutDataArray.reduce(
 		(obj, item) => Object.assign(obj, { [item.name]: item.value }),
 		{}
 	);
@@ -70,5 +71,12 @@ export const load: ServerLoad = async ({ cookies, params }) => {
 
 	cookies.set("lang", lang, { path: "/" });
 
-	return { lang, id, pageData, layoutData, menuData };
+	return {
+		lang,
+		id,
+		pageData,
+		layoutData,
+		menuData,
+		session: await getSession()
+	};
 };
