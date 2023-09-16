@@ -2,8 +2,6 @@
 	import { page } from "$app/stores";
 	import Header from "$lib/components/layout/Header.svelte";
 	import pages from "$lib/components/pages";
-	import texts from "$lib/data/texts";
-	import type { LanguageId } from "$lib/data/types/texts";
 	import LogoWhite from "$lib/images/logo_white.png";
 	import lang from "$lib/stores/lang";
 	import menuOpen from "$lib/stores/menuOpen";
@@ -48,7 +46,7 @@
 		</div>
 	</div>
 
-	<Header />
+	<Header layoutData={data.layoutData} />
 
 	<main>
 		{#if $pageId}
@@ -64,6 +62,6 @@
 	</main>
 
 	<footer class="flex justify-center bg-brown py-4 text-center text-white">
-		Copyright 2023 &copy; {texts[$lang].layout.copyright}
+		Copyright 2023 &copy; {data.layoutData.copyright}
 	</footer>
 </div>

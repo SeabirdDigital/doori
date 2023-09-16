@@ -1,13 +1,11 @@
 <script lang="ts">
-	import texts from "$lib/data/texts";
 	import Logo from "$lib/images/logo.png";
 	import lang from "$lib/stores/lang";
 	import menuOpen from "$lib/stores/menuOpen";
 	import { goto } from "$lib/utils";
 	import NavItems from "../NavItems.svelte";
 
-	let layout = texts[$lang].layout;
-	$: layout = texts[$lang].layout;
+	export let layoutData: Record<string, string>;
 </script>
 
 <header class="overflow-x-hidden">
@@ -18,7 +16,7 @@
 
 		<nav class="flex items-center">
 			<ul class="hidden items-center justify-center gap-10 md:flex">
-				<NavItems />
+				<NavItems {layoutData} />
 			</ul>
 		</nav>
 
@@ -70,7 +68,7 @@
 						? 'top-0'
 						: '-top-[calc(100%+6rem)]'}"
 				>
-					<NavItems />
+					<NavItems {layoutData} />
 				</ul>
 			</nav>
 		</div>
