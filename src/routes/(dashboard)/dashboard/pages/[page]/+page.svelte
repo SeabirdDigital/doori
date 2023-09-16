@@ -9,11 +9,12 @@
 	const save = async () => {
 		const items = (await data.supabase.from("doori").select("*").eq("page", $page.params.page))
 			.data;
-		items?.forEach((i) => {
+		items?.forEach(async (i) => {
 			const newValue = pageData[i.language][i.name];
 			if (i.value != newValue) {
 				console.log({ ...i, value: newValue });
-				data.supabase.from("doori").update({ ...i, value: newValue });
+				const thing = await data.supabase.from("doori").update({ value: newValue }).eq("id", i.id);
+				console.log(thing);
 			}
 		});
 	};
