@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from "$app/stores";
 	import Header from "$lib/components/layout/Header.svelte";
 	import pages from "$lib/components/pages";
 	import texts from "$lib/data/texts";
@@ -6,7 +7,7 @@
 	import LogoWhite from "$lib/images/logo_white.png";
 	import lang from "$lib/stores/lang";
 	import menuOpen from "$lib/stores/menuOpen";
-	import pageId from "$lib/stores/pageId";
+	import { pageId } from "$lib/stores/page";
 	import transitionOn from "$lib/stores/transitionOn";
 	import "@fontsource/indie-flower";
 	import "@fontsource/quicksand/500.css";
@@ -17,8 +18,6 @@
 	import "../app.css";
 
 	export let data;
-
-	lang.set(data.lang as LanguageId);
 
 	pageId.set(data.id);
 
@@ -53,7 +52,13 @@
 
 	<main>
 		{#if $pageId}
-			<svelte:component this={pages[$pageId]} />
+			<svelte:component
+				this={pages[$pageId]}
+				pageData={data.pageData}
+				menuData={data.menuData}
+				layoutData={data.layoutData}
+				lang={data.lang}
+			/>
 		{/if}
 		<slot />
 	</main>

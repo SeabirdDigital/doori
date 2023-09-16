@@ -1,8 +1,7 @@
 <script lang="ts">
 	import texts, { languages } from "$lib/data/texts";
-	import type { LanguageId } from "$lib/data/types/texts";
 	import lang from "$lib/stores/lang";
-	import pageId from "$lib/stores/pageId";
+	import { pageId } from "$lib/stores/page";
 	import { goto } from "$lib/utils";
 
 	let itemNames = texts[$lang].layout.nav;

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { locationsArray } from "$lib/data/locations";
-	import texts from "$lib/data/texts";
 	import Bowl1 from "$lib/images/bowl1.webp";
 	import Bowl2 from "$lib/images/bowl2.webp";
 	import chikinmayo from "$lib/images/chikinmayo.webp";
@@ -9,15 +8,21 @@
 	import DumpNKFC from "$lib/images/dumpnkfc.webp";
 	import egg from "$lib/images/egg.webp";
 	import KFC from "$lib/images/kfc.webp";
-	import lang from "$lib/stores/lang";
 	import { goto } from "$lib/utils";
 	import { onMount } from "svelte";
 
-	let layout = texts[$lang].layout;
-	$: layout = texts[$lang].layout;
+	export let pageData: {
+		[page: string]: { sv: Record<string, string>; en: Record<string, string> };
+	};
 
-	let home = texts[$lang].home;
-	$: home = texts[$lang].home;
+	export let lang: "sv" | "en";
+
+	let home = pageData.home[lang];
+	$: home = pageData.home[lang];
+
+	export let layoutData: Record<string, string>;
+	const layout = layoutData;
+	const weekdays = JSON.parse(layout.weekdays);
 
 	const lArray = locationsArray.sort((l) => {
 		return l.id == "helsingborg" || l.id == "malmö" ? -1 : 1;
@@ -66,16 +71,16 @@
 	<div class="flex flex-col justify-center gap-6">
 		<div class="flex flex-col gap-4">
 			<h1 class="font-sang text-5xl font-normal">
-				{@html home.hero.heading}
+				{@html home.heroHeading}
 			</h1>
 			<p class="max-w-lg">
-				{@html home.hero.text}
+				{@html home.heroText}
 			</p>
 		</div>
 
 		<div class="flex items-center gap-6">
 			<button class="full to-extend" on:click={() => goto("home", { sectionId: "restauranger" })}>
-				{home.hero.buttons.order}
+				{home.heroOrder}
 				<div class="-mr-2">
 					<svg
 						class="-rotate-90"
@@ -88,7 +93,7 @@
 					</svg>
 				</div>
 			</button>
-			<button on:click={() => goto("menu")} class="link"> {home.hero.buttons.menu}</button>
+			<button on:click={() => goto("menu")} class="link"> {home.heroMenu}</button>
 		</div>
 	</div>
 </div>
@@ -106,16 +111,18 @@
 	<div class="flex flex-col gap-6 lg:w-1/2">
 		<div class="flex flex-col gap-4">
 			<h2 class="text-4xl font-bold">
-				{@html home.sauce.heading}
+				{@html home.sauceHeading}
 			</h2>
 			<p class="hidden max-w-md sm:block">
-				{@html home.sauce.text}
+				{@html home.sauceText}
 			</p>
 
-			{#each home.sauce.sauces as sauce}
-				<h4 class="text-2xl font-bold">{sauce.name}</h4>
-				<p class="lg:max-w-lg">{sauce.description}</p>
-			{/each}
+			{#if home.sauces}
+				{#each JSON.parse(home.sauces) as sauce}
+					<h4 class="text-2xl font-bold">{sauce.name}</h4>
+					<p class="lg:max-w-lg">{sauce.description}</p>
+				{/each}
+			{/if}
 		</div>
 	</div>
 
@@ -170,7 +177,7 @@
 	</div>
 </div>
 
-<div id={home.restaurants.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
+<div id={home.restaurants?.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
 	{#each lArray as location}
 		<div class="">
 			<h3 class="mb-2 text-4xl font-bold lg:mb-4">
@@ -178,32 +185,25 @@
 			</h3>
 			<div class="text-xs text-black/60 lg:text-base xl:text-lg">
 				<div>
-					{layout.restaurants.weekdays.mon}: {location.openingHours.monday ??
-						layout.restaurants.closed}
-					{layout.restaurants.weekdays.tue}: {location.openingHours.tuesday ??
-						layout.restaurants.closed}
+					{weekdays.mon}: {location.openingHours.monday ?? layout.closed}
+					{weekdays.tue}: {location.openingHours.tuesday ?? layout.closed}
 				</div>
 				<div>
-					{layout.restaurants.weekdays.wed}: {location.openingHours.wednesday ??
-						layout.restaurants.closed}
-					{layout.restaurants.weekdays.thu}: {location.openingHours.thursday ??
-						layout.restaurants.closed}
+					{weekdays.wed}: {location.openingHours.wednesday ?? layout.closed}
+					{weekdays.thu}: {location.openingHours.thursday ?? layout.closed}
 				</div>
 				<div>
-					{layout.restaurants.weekdays.fri}: {location.openingHours.friday ??
-						layout.restaurants.closed}
-					{layout.restaurants.weekdays.sat}: {location.openingHours.saturday ??
-						layout.restaurants.closed}
+					{weekdays.fri}: {location.openingHours.friday ?? layout.closed}
+					{weekdays.sat}: {location.openingHours.saturday ?? layout.closed}
 				</div>
 				<div>
-					{layout.restaurants.weekdays.sun}: {location.openingHours.sunday ??
-						layout.restaurants.closed}
+					{weekdays.sun}: {location.openingHours.sunday ?? layout.closed}
 				</div>
 			</div>
 			<div class="my-4 flex justify-between text-sm lg:justify-start">
 				<div class="h-12 w-auto lg:w-64">
 					{@html location.address}
-					<span>{location.onlyDelivery ? layout.restaurants.onlyDelivery : ""}</span>
+					<span>{location.onlyDelivery ? layout.onlyDelivery : ""}</span>
 				</div>
 				<div>
 					{location.phone}
@@ -214,7 +214,7 @@
 				{#if location.maps}
 					<a href={location.maps}>
 						<button class="borders to-full">
-							{layout.restaurants.find}
+							{layout.find}
 							<div class="-mr-2">
 								<svg
 									class="-rotate-90"
@@ -232,7 +232,7 @@
 				{#if location.reservation}
 					<a href={location.reservation}>
 						<button class="borders to-full">
-							{layout.restaurants.reserve}
+							{layout.reserve}
 							<div class="-mr-2">
 								<svg
 									class="-rotate-90"
@@ -249,7 +249,7 @@
 				{/if}
 				<a href={location.order}>
 					<button class="borders to-full">
-						{location.order.includes("foodora") ? "Foodora" : home.hero.buttons.order}
+						{location.order.includes("foodora") ? "Foodora" : home.heroOrder}
 						<div class="-mr-2">
 							<svg
 								class="-rotate-90"

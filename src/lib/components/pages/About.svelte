@@ -1,13 +1,17 @@
 <script lang="ts">
-	import texts from "$lib/data/texts";
 	import Helsingborg from "$lib/images/helsingborg.webp";
 	import Malmo from "$lib/images/malmo.jpg";
 	import Van from "$lib/images/van.webp";
-	import lang from "$lib/stores/lang";
 	import { goto } from "$lib/utils";
 
-	let about = texts[$lang].about;
-	$: about = texts[$lang].about;
+	export let pageData: {
+		[page: string]: { sv: Record<string, string>; en: Record<string, string> };
+	};
+
+	export let lang: "sv" | "en";
+
+	let about = pageData.about[lang];
+	$: about = pageData.about[lang];
 </script>
 
 <svelte:head>
@@ -41,10 +45,10 @@
 	<div class="flex flex-col gap-6">
 		<div class="flex flex-col gap-4">
 			<h1>
-				{@html about.main.heading}
+				{@html about.mainHeading}
 			</h1>
 			<p class="max-w-2xl">
-				{@html about.main.text}
+				{@html about.mainText}
 			</p>
 		</div>
 	</div>
@@ -52,11 +56,11 @@
 	<div>
 		<div class="flex items-end gap-2">
 			<h3 class="text-4xl font-bold">doori</h3>
-			<span class="text-3xl italic">{about.dictionary.noun}</span>
+			<span class="text-3xl italic">{about.dictionaryNoun}</span>
 		</div>
 		<span>/duːrə/</span>
 		<p class="max-w-2xl">
-			{about.dictionary.definition}
+			{about.dictionaryDefinition}
 		</p>
 	</div>
 </div>
@@ -73,17 +77,17 @@
 >
 	<div>
 		<h2 class="mb-2 text-3xl font-bold">
-			{@html about.recruit.heading}
+			{@html about.recruitHeading}
 		</h2>
-		<p>{@html about.recruit.text}</p>
+		<p>{@html about.recruitText}</p>
 	</div>
 	<div>
 		<div class="flex items-center gap-6">
 			<a href="mailto:jobb@doori.se">
-				<button class="link"> {about.recruit.buttons.work} </button>
+				<button class="link"> {about.recruitWork} </button>
 			</a>
 			<button on:click={() => goto("franchising")} class="full to-extend">
-				{about.recruit.buttons.franchisee}
+				{about.recruitFranchisee}
 				<div class="-mr-2">
 					<svg
 						class="-rotate-90"

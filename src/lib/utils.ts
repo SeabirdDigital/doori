@@ -4,7 +4,7 @@ import texts, { isPageId } from "./data/texts";
 import type { LanguageId, PageId } from "./data/types/texts";
 import langStore from "./stores/lang";
 import menuOpen from "./stores/menuOpen";
-import pageId from "./stores/pageId";
+import { pageId } from "./stores/page";
 import transitionOn from "./stores/transitionOn";
 
 export const getDistanceFromLatLngInKm = (
