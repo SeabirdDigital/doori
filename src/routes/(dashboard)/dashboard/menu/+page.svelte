@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
+	import { deepEqual } from "$lib/utils.js";
 
 	export let data;
 
@@ -7,15 +8,11 @@
 	let menu = data.menu;
 
 	const save = async () => {
-		const items = (await data.supabase.from("doori_menu").select("*").eq("language", lang)).data;
-		items?.forEach(async (item) => {
-			const newValue = menu[item.language]
-				.find((c) => c.name == item.category)
-				?.items.find((i) => i.id == item.id);
+		const c = (await data.supabase.from("doori_menu").select("*")).data;
+		c?.forEach(async (item) => {
+			const newValue = menu[item.language].find((c: any) => c.id == item.id);
 
-			console.log(item.name, newValue.name);
-
-			if (item != newValue) {
+			if (!deepEqual(item, newValue)) {
 				const thing = await data.supabase.from("doori_menu").update(newValue).eq("id", item.id);
 				console.log(thing);
 			}
@@ -33,23 +30,19 @@
 		{#key lang}
 			{#each menu[lang] as c, i}
 				<div>
-					<input type="text" id="c{i}" bind:value={menu[lang][i].name} />
+					<input type="text" id="c{i}" bind:value={c.category_name} />
 
 					<div>
-						{#each menu[lang][i].items as item, j}
+						{#each c.items as item, j}
 							<div>
-								<input type="text" id="name{j}" bind:value={menu[lang][i].items[j].name} />
-								<input
-									type="checkbox"
-									id="longName{j}"
-									bind:value={menu[lang][i].items[j].longName}
-								/>
+								<input type="text" id="name{j}" bind:value={c.items[j].name} />
+								<input type="checkbox" id="longName{j}" bind:value={c.items[j].longName} />
 								<div>
 									<textarea
 										id="description{j}"
 										cols="30"
 										rows="10"
-										bind:value={menu[lang][i].items[j].description}
+										bind:value={c.items[j].description}
 									/>
 								</div>
 							</div>

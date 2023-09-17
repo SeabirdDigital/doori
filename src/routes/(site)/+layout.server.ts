@@ -60,13 +60,14 @@ export const load: ServerLoad = async ({ cookies, params, locals: { supabase, ge
 
 	const menuDataArray = (await supabase.from("doori_menu").select("*")).data;
 	if (!menuDataArray) throw error(404, "Menu not found");
-	const menuData: { [lang: string]: { name: string; items: any[] }[] } = {};
-	menuDataArray.forEach((item) => {
-		if (!menuData[item.language]) menuData[item.language] = [];
 
-		const category = menuData[item.language].find((c) => c.name === item.category);
-		if (!category) menuData[item.language].push({ name: item.category, items: [item] });
-		else category.items.push(item);
+	menuDataArray.sort((a, b) => a.order - b.order);
+
+	const menuData: { [lang: string]: { name: string; items: any[] }[] } = {};
+	menuDataArray.forEach((c) => {
+		if (!menuData[c.language]) menuData[c.language] = [];
+
+		menuData[c.language].push({ name: c.category_name, items: c.items });
 	});
 
 	cookies.set("lang", lang, { path: "/" });
