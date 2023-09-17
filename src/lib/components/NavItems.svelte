@@ -5,7 +5,7 @@
 
 	export let layoutData: Record<string, string>;
 
-	const flags = {
+	const flags: { [lang: string]: string } = {
 		sv: "/flags/sv.svg",
 		en: "/flags/en.svg"
 	};

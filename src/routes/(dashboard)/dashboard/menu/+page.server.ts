@@ -6,7 +6,7 @@ export const load: ServerLoad = async ({ locals: { supabase } }) => {
 
 	menuDataArray.sort((a, b) => a.order - b.order);
 
-	const menu: any = {};
+	const menu: Menu = {};
 	menuDataArray.forEach((c) => {
 		if (!menu[c.language]) menu[c.language] = [];
 

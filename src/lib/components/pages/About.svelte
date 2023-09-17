@@ -4,9 +4,7 @@
 	import Van from "$lib/images/van.webp";
 	import { goto } from "$lib/utils";
 
-	export let pageData: {
-		[page: string]: { sv: Record<string, string>; en: Record<string, string> };
-	};
+	export let pageData: PageData;
 
 	export let lang: "sv" | "en";
 

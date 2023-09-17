@@ -1,5 +1,4 @@
-import type { LanguageId } from "$lib/data/types/texts";
-import { isLanguageId } from "$lib/stores/lang";
+import { isLanguageId } from "$lib/utils";
 import { error, redirect, type ServerLoad } from "@sveltejs/kit";
 
 export type IpInfo = {
@@ -15,14 +14,12 @@ export type IpInfo = {
 };
 
 export const load: ServerLoad = async ({ cookies, params, locals: { supabase, getSession } }) => {
-	let lang = params.path?.split("/")[0] as LanguageId;
+	let lang = params.path?.split("/")[0];
 	let rest = params.path?.split("/").slice(1).join("/");
 	if (rest === "") rest = "/";
 
-	console.log(lang, params);
-	if (!isLanguageId(lang)) {
-		console.log(lang);
-		lang = (cookies.get("lang") as LanguageId) ?? "sv";
+	if (!isLanguageId(lang ?? "")) {
+		lang = cookies.get("lang") ?? "sv";
 
 		throw redirect(302, `/${lang}${rest ? "/" + rest : ""}`);
 	}
@@ -47,7 +44,7 @@ export const load: ServerLoad = async ({ cookies, params, locals: { supabase, ge
 
 	const pageDataArray = (await supabase.from("doori").select("*")).data;
 	if (!pageDataArray) throw error(404, "Page not found");
-	const pageData = pageDataArray.reduce((obj, item) => {
+	const pageData: PageData = pageDataArray.reduce((obj, item) => {
 		if (!obj[item.page])
 			obj[item.page] = {
 				sv: {},
@@ -63,14 +60,14 @@ export const load: ServerLoad = async ({ cookies, params, locals: { supabase, ge
 
 	menuDataArray.sort((a, b) => a.order - b.order);
 
-	const menuData: { [lang: string]: { name: string; items: any[] }[] } = {};
+	const menuData: Menu = {};
 	menuDataArray.forEach((c) => {
 		if (!menuData[c.language]) menuData[c.language] = [];
 
-		menuData[c.language].push({ name: c.category_name, items: c.items });
+		menuData[c.language].push(c);
 	});
 
-	cookies.set("lang", lang, { path: "/" });
+	if (lang) cookies.set("lang", lang, { path: "/" });
 
 	return {
 		lang,

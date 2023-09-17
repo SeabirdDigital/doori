@@ -1,15 +1,8 @@
 <script lang="ts">
-	export let pageData: {
-		[page: string]: { sv: Record<string, string>; en: Record<string, string> };
-	};
+	export let pageData: PageData;
 
 	export let lang: "sv" | "en";
-	export let menuData: {
-		[lang: string]: {
-			name: string;
-			items: any[];
-		}[];
-	};
+	export let menuData: Menu;
 
 	let menu = pageData.menu[lang];
 	$: menu = pageData.menu[lang];
@@ -31,7 +24,7 @@
 <div class="container mb-12">
 	{#each categories as category}
 		<div class="mb-12">
-			<h2 class="mb-4 text-3xl">{category.name ?? ""}</h2>
+			<h2 class="mb-4 text-3xl">{category.category_name ?? ""}</h2>
 			<div class="grid gap-8 lg:grid-cols-2">
 				{#each category.items as item}
 					<div>

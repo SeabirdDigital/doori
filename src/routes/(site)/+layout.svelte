@@ -6,7 +6,7 @@
 	import LogoWhite from "$lib/images/logo_white.png";
 	import lang from "$lib/stores/lang";
 	import menuOpen from "$lib/stores/menuOpen";
-	import { pageId } from "$lib/stores/page";
+	import { pageData, pageId } from "$lib/stores/page";
 	import transitionOn from "$lib/stores/transitionOn";
 	import "@fontsource/indie-flower";
 	import "@fontsource/quicksand/500.css";
@@ -19,6 +19,7 @@
 	export let data;
 
 	pageId.set(data.id);
+	pageData.set(data.pageData);
 
 	onMount(() => {
 		menuOpen.subscribe((value) => {

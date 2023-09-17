@@ -11,9 +11,7 @@
 	import { goto } from "$lib/utils";
 	import { onMount } from "svelte";
 
-	export let pageData: {
-		[page: string]: { sv: Record<string, string>; en: Record<string, string> };
-	};
+	export let pageData: PageData;
 
 	export let lang: "sv" | "en";
 

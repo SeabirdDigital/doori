@@ -1,12 +1,13 @@
 <script lang="ts">
-	import texts from "$lib/data/texts";
 	import Egg from "$lib/images/egg.webp";
 	import Happy from "$lib/images/franchise.jpg";
 	import KFC from "$lib/images/kfc.webp";
 	import lang from "$lib/stores/lang";
 
-	let franchising = texts[$lang].franchising;
-	$: franchising = texts[$lang].franchising;
+	export let pageData: PageData;
+
+	let franchising = pageData.franchising[$lang];
+	$: franchising = pageData.franchising[$lang];
 </script>
 
 <svelte:head>
@@ -24,16 +25,16 @@
 				<!-- TODO: Add own accessKey from https://www.staticforms.xyz/ -->
 				<input type="hidden" name="accessKey" value="e44fc5d0-0b52-4cb1-9f79-fefc3800d89c" />
 
-				<h1 class="mb-4">{@html franchising.form.heading}</h1>
+				<h1 class="mb-4">{@html franchising.formHeading}</h1>
 
 				<div class="grid grid-cols-2 gap-x-8 gap-y-2">
 					<div>
-						<label for="name">{@html franchising.form.name}</label>
+						<label for="name">{@html franchising.name}</label>
 						<input type="text" placeholder="Anders Andersson" name="name" id="name" required />
 					</div>
 
 					<div>
-						<label for="email">{@html franchising.form.email}</label>
+						<label for="email">{@html franchising.email}</label>
 						<input
 							type="text"
 							placeholder="anders.andersson@aol.com"
@@ -44,22 +45,22 @@
 					</div>
 
 					<div>
-						<label for="phone">{@html franchising.form.phone}</label>
+						<label for="phone">{@html franchising.phone}</label>
 						<input type="text" placeholder="1234567890" name="phone" id="phone" required />
 					</div>
 
 					<div>
-						<label for="$stad">{@html franchising.form.city}</label>
+						<label for="$stad">{@html franchising.city}</label>
 						<input type="text" placeholder="Helsingborg" name="$stad" id="$stad" required />
 					</div>
 
 					<div>
-						<label for="$typ">{@html franchising.form.type}</label>
+						<label for="$typ">{@html franchising.type}</label>
 						<select name="$typ" id="$typ" required>
-							<option value="">{franchising.form.choose}</option>
-							{#each Object.keys(franchising.form.types) as typeId}
-								<option value={texts.sv.franchising.form.types[typeId]}>
-									{franchising.form.types[typeId]}
+							<option value="">{franchising.choose}</option>
+							{#each Object.keys(franchising.types) as typeId}
+								<option value={JSON.parse(pageData.franchising.en.types)[typeId]}>
+									{JSON.parse(franchising.types)[typeId]}
 								</option>
 							{/each}
 						</select>
@@ -71,11 +72,7 @@
 				<input type="hidden" name="redirectTo" value="https://example.com/contact/success" />
 				<input type="text" name="honeypot" style="display: none;" />
 
-				<input
-					class="mt-6 bg-black py-8 !text-white"
-					type="submit"
-					value={franchising.form.submit}
-				/>
+				<input class="mt-6 bg-black py-8 !text-white" type="submit" value={franchising.submit} />
 			</div>
 		</form>
 	</div>
