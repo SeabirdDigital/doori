@@ -67,6 +67,10 @@ export const load: ServerLoad = async ({ cookies, params, locals: { supabase, ge
 		menuData[c.language].push(c);
 	});
 
+	const locations = await (
+		await supabase.from("doori_locations").select("*")
+	).data?.sort((a, b) => a.order - b.order);
+
 	if (lang) cookies.set("lang", lang, { path: "/" });
 
 	return {
@@ -74,6 +78,7 @@ export const load: ServerLoad = async ({ cookies, params, locals: { supabase, ge
 		id,
 		pageData,
 		layoutData,
+		locations,
 		menuData,
 		session: await getSession()
 	};

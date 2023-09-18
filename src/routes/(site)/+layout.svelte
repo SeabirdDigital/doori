@@ -56,6 +56,7 @@
 				this={pages[$pageId]}
 				pageData={data.pageData}
 				menuData={data.menuData}
+				locations={data.locations}
 				layoutData={data.layoutData}
 				lang={data.lang}
 			/>

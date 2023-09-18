@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { locationsArray } from "$lib/data/locations";
 	import Bowl1 from "$lib/images/bowl1.webp";
 	import Bowl2 from "$lib/images/bowl2.webp";
 	import chikinmayo from "$lib/images/chikinmayo.webp";
@@ -12,6 +11,8 @@
 	import { onMount } from "svelte";
 
 	export let pageData: PageData;
+	export let locations: any[];
+	console.log(locations);
 
 	export let lang: "sv" | "en";
 
@@ -21,10 +22,6 @@
 	export let layoutData: Record<string, string>;
 	const layout = layoutData;
 	const weekdays = JSON.parse(layout.weekdays);
-
-	const lArray = locationsArray.sort((l) => {
-		return l.id == "helsingborg" || l.id == "malmö" ? -1 : 1;
-	});
 
 	let numberOfPictureSets = 2;
 
@@ -176,7 +173,7 @@
 </div>
 
 <div id={home.restaurants?.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
-	{#each lArray as location}
+	{#each locations as location}
 		<div class="">
 			<h3 class="mb-2 text-4xl font-bold lg:mb-4">
 				{location.city}
@@ -200,7 +197,7 @@
 			</div>
 			<div class="my-4 flex justify-between text-sm lg:justify-start">
 				<div class="h-12 w-auto lg:w-64">
-					{@html location.address}
+					{@html location.address ?? ""}
 					<span>{location.onlyDelivery ? layout.onlyDelivery : ""}</span>
 				</div>
 				<div>
@@ -245,9 +242,9 @@
 						</button>
 					</a>
 				{/if}
-				<a href={location.order}>
+				<a href={location.orderLink}>
 					<button class="borders to-full">
-						{location.order.includes("foodora") ? "Foodora" : home.heroOrder}
+						{location.orderLink.includes("foodora") ? "Foodora" : home.heroOrder}
 						<div class="-mr-2">
 							<svg
 								class="-rotate-90"
