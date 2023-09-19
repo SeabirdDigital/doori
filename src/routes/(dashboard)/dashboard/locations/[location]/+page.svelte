@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Accordion, Button, Space, Switch, TextInput } from "@svelteuidev/core";
+
 	export let data;
 
 	let l = data.location;
@@ -10,31 +12,27 @@
 	};
 </script>
 
-<div>
-	<input type="text" id="city" bind:value={l.city} />
-</div>
-<div>
-	<input type="text" id="address" bind:value={l.address} />
-</div>
-<div>
-	<input type="checkbox" id="onlyDelivery" bind:value={l.onlyDelivery} />
-</div>
-<div>
-	<input type="url" id="orderLink" bind:value={l.orderLink} />
-</div>
-<div>
-	<input type="url" id="maps" bind:value={l.maps} />
-</div>
-<div>
-	<input type="url" id="reservation" bind:value={l.reservation} />
-</div>
-
-<div>
-	{#each ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"] as day}
+<Accordion defaultValue="general">
+	<Accordion.Item value="general">
+		<div slot="control">General</div>
+		<TextInput label="City" bind:value={l.city} />
+		<TextInput label="Address" bind:value={l.address} />
+		<Switch label="Only Delivery" bind:checked={l.onlyDelivery} />
+		<TextInput label="Order Link" bind:value={l.orderLink} />
+		<TextInput label="Maps Link" bind:value={l.maps} />
+	</Accordion.Item>
+	<Accordion.Item value="openingHours">
+		<div slot="control">Opening Hours</div>
 		<div>
-			<input type="text" id={day} bind:value={l.openingHours[day]} />
+			{#each ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"] as day}
+				<div>
+					<TextInput label={day} bind:value={l.openingHours[day]} />
+				</div>
+			{/each}
 		</div>
-	{/each}
-</div>
+	</Accordion.Item>
+</Accordion>
 
-<button on:click={save}>Save</button>
+<Space h={24} />
+
+<Button on:click={save}>Save</Button>

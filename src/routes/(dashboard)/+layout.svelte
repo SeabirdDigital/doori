@@ -39,9 +39,9 @@
 			style="position:absolute;display:flex;align-items:center;justify-content:space-between;"
 			slot="header"
 		>
-			<Button>h</Button>
-			<Button>h</Button>
-			<Button>h</Button>
+			<div />
+			<div />
+			<div />
 		</Header>
 
 		<slot />

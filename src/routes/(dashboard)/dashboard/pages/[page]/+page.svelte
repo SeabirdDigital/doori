@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
+	import { Button, NativeSelect, Space, TextInput, Textarea } from "@svelteuidev/core";
 
 	export let data;
 
@@ -20,33 +21,36 @@
 	};
 </script>
 
-<div>
-	<select name="language" id="lang" bind:value={lang}>
-		<option value="sv">Svenska</option>
-		<option value="en">English</option>
-	</select>
+<NativeSelect
+	data={[
+		{ label: "Svenska", value: "sv" },
+		{ label: "English", value: "en" }
+	]}
+	bind:value={lang}
+	label="Choose language"
+/>
 
-	<div>
-		{#key lang}
-			<div>
-				<input type="text" id="title" bind:value={pageData[lang].title} />
-			</div>
-			<div>
-				<input type="text" id="slug" bind:value={pageData[lang].slug} />
-			</div>
+<Space h={24} />
 
-			{#each Object.entries(pageData[lang]).filter((p) => p[0]
-						.toLowerCase()
-						.endsWith("heading") || p[0].toLowerCase().endsWith("text")) as p}
-				<div>
-					{#if p[0].toLowerCase().endsWith("heading")}
-						<input type="text" id={p[0]} bind:value={pageData[lang][p[0]]} />
-					{:else}
-						<textarea id={p[0]} cols="30" rows="10" bind:value={pageData[lang][p[0]]} />
-					{/if}
-				</div>
-			{/each}
-		{/key}
-	</div>
-	<button on:click={save}>Save</button>
-</div>
+{#key lang}
+	<TextInput label="Title" bind:value={pageData[lang].title} />
+	<TextInput label="Slug" bind:value={pageData[lang].slug} />
+
+	<Space h={24} />
+
+	{#each Object.entries(pageData[lang]).filter((p) => p[0].toLowerCase().endsWith("heading") || p[0]
+				.toLowerCase()
+				.endsWith("text")) as p}
+		<div>
+			{#if p[0].toLowerCase().endsWith("heading")}
+				<TextInput label={p[0]} bind:value={pageData[lang][p[0]]} />
+			{:else}
+				<Textarea label={p[0]} bind:value={pageData[lang][p[0]]} />
+			{/if}
+		</div>
+	{/each}
+{/key}
+
+<Space h={24} />
+
+<Button on:click={save}>Save</Button>

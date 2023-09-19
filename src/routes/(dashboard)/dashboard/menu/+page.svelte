@@ -1,6 +1,14 @@
 <script lang="ts">
-	import { page } from "$app/stores";
 	import { deepEqual } from "$lib/utils.js";
+	import {
+		Accordion,
+		Button,
+		NativeSelect,
+		Space,
+		Switch,
+		TextInput,
+		Textarea
+	} from "@svelteuidev/core";
 
 	export let data;
 
@@ -20,37 +28,42 @@
 	};
 </script>
 
+<NativeSelect
+	data={[
+		{ label: "Svenska", value: "sv" },
+		{ label: "English", value: "en" }
+	]}
+	bind:value={lang}
+	label="Choose language"
+/>
+
 <div>
-	<select name="language" id="lang" bind:value={lang}>
-		<option value="sv">Svenska</option>
-		<option value="en">English</option>
-	</select>
+	{#key lang}
+		{#each menu[lang] as c, i}
+			<Space h={24} />
+			<div>
+				<TextInput label="Category Name" bind:value={c.category_name} />
 
-	<div>
-		{#key lang}
-			{#each menu[lang] as c, i}
-				<div>
-					<input type="text" id="c{i}" bind:value={c.category_name} />
-
+				<Space h={8} />
+				<Accordion>
 					<div>
 						{#each c.items as item, j}
-							<div>
-								<input type="text" id="name{j}" bind:value={c.items[j].name} />
-								<input type="checkbox" id="longName{j}" bind:value={c.items[j].longName} />
-								<div>
-									<textarea
-										id="description{j}"
-										cols="30"
-										rows="10"
-										bind:value={c.items[j].description}
-									/>
-								</div>
-							</div>
+							<Accordion.Item value={j}>
+								<div slot="control">{item.name}</div>
+								<TextInput label="Dish Name" bind:value={item.name} />
+								<Space h={8} />
+								<Switch label="Long name" bind:checked={item.longName} />
+								<Space h={8} />
+								<Textarea label="Description" bind:value={item.description} />
+							</Accordion.Item>
 						{/each}
 					</div>
-				</div>
-			{/each}
-		{/key}
-	</div>
-	<button on:click={save}>Save</button>
+				</Accordion>
+			</div>
+		{/each}
+	{/key}
 </div>
+
+<Space h={24} />
+
+<Button on:click={save}>Save</Button>
