@@ -13,7 +13,7 @@
 			<Card>
 				<Group position="apart">
 					<Text grow size="lg">{l.city}</Text>
-					<Button on:click={() => goto("/dashboard/pages/" + l.city)}>Edit</Button>
+					<Button on:click={() => goto("/dashboard/locations/" + l.city)}>Edit</Button>
 				</Group>
 			</Card>
 		{/each}
