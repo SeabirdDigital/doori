@@ -12,7 +12,6 @@
 
 	export let pageData: PageData;
 	export let locations: any[];
-	console.log(locations);
 
 	export let lang: "sv" | "en";
 
@@ -22,6 +21,29 @@
 	export let layoutData: Record<string, string>;
 	const layout = layoutData;
 	const weekdays = JSON.parse(layout.weekdays);
+
+	let openingHours: { [city: string]: { first: string; last?: string; times: string }[] } = {};
+	locations.forEach((l) => {
+		const times: { first: string; last?: string; times: string }[] = [];
+
+		["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].reduce<
+			{ day: string; time: string } | undefined
+		>((last, day) => {
+			const time = l.openingHours[day];
+
+			if (last && last.time == time) times[times.length - 1].last = day;
+			else {
+				times.push({
+					first: day,
+					times: time
+				});
+			}
+
+			return { day, time };
+		}, undefined);
+
+		openingHours[l.city] = times;
+	});
 
 	let numberOfPictureSets = 2;
 
@@ -174,29 +196,21 @@
 
 <div id={home.restaurants?.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
 	{#each locations as location}
-		<div class="">
+		<div class="flex flex-col">
 			<h3 class="mb-2 text-4xl font-bold lg:mb-4">
 				{location.city}
 			</h3>
-			<div class="text-xs text-black/60 lg:text-base xl:text-lg">
-				<div>
-					{weekdays.mon}: {location.openingHours.monday ?? layout.closed}
-					{weekdays.tue}: {location.openingHours.tuesday ?? layout.closed}
-				</div>
-				<div>
-					{weekdays.wed}: {location.openingHours.wednesday ?? layout.closed}
-					{weekdays.thu}: {location.openingHours.thursday ?? layout.closed}
-				</div>
-				<div>
-					{weekdays.fri}: {location.openingHours.friday ?? layout.closed}
-					{weekdays.sat}: {location.openingHours.saturday ?? layout.closed}
-				</div>
-				<div>
-					{weekdays.sun}: {location.openingHours.sunday ?? layout.closed}
-				</div>
+			<div class="text-black/60 lg:text-base xl:text-lg">
+				{#each openingHours[location.city] as h}
+					{#if h.times}
+						<div>
+							{weekdays[h.first.substr(0, 3)]}{h.last ? "-" + weekdays[h.last.substr(0, 3)] : ""}: {h.times}
+						</div>
+					{/if}
+				{/each}
 			</div>
 			<div class="my-4 flex justify-between text-sm lg:justify-start">
-				<div class="h-12 w-auto lg:w-64">
+				<div class="w-auto lg:w-64">
 					{@html location.address ?? ""}
 					<span>{location.onlyDelivery ? layout.onlyDelivery : ""}</span>
 				</div>
@@ -205,29 +219,13 @@
 				</div>
 			</div>
 
-			<div class="mt-6 flex gap-6">
+			<div class="flex-1" />
+
+			<div class="mt-3 flex gap-6">
 				{#if location.maps}
 					<a href={location.maps}>
 						<button class="borders to-full">
 							{layout.find}
-							<div class="-mr-2">
-								<svg
-									class="-rotate-90"
-									xmlns="http://www.w3.org/2000/svg"
-									height="22"
-									viewBox="0 -960 960 960"
-									width="22"
-								>
-									<path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z" />
-								</svg>
-							</div>
-						</button>
-					</a>
-				{/if}
-				{#if location.reservation}
-					<a href={location.reservation}>
-						<button class="borders to-full">
-							{layout.reserve}
 							<div class="-mr-2">
 								<svg
 									class="-rotate-90"
