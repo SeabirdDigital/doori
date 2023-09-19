@@ -1,15 +1,21 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
+	import { Button, Card, Group, Stack, Text } from "@svelteuidev/core";
+
 	export let data;
 
 	const locations = data.locations;
 </script>
 
-{#if locations}
-	{#each locations as l}
-		<div>
-			<a href="/dashboard/locations/{l.city}">
-				{l.city}
-			</a>
-		</div>
-	{/each}
-{/if}
+<Stack>
+	{#if locations}
+		{#each locations as l}
+			<Card>
+				<Group position="apart">
+					<Text grow size="lg">{l.city}</Text>
+					<Button on:click={() => goto("/dashboard/pages/" + l.city)}>Edit</Button>
+				</Group>
+			</Card>
+		{/each}
+	{/if}
+</Stack>

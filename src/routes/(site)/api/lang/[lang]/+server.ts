@@ -1,6 +1,4 @@
-import { pageData } from "$lib/stores/page";
 import type { RequestHandler } from "@sveltejs/kit";
-import { get } from "svelte/store";
 
 export const POST: RequestHandler = async (event) => {
 	const lang = event.params.lang;
@@ -9,7 +7,10 @@ export const POST: RequestHandler = async (event) => {
 			status: 400
 		});
 
-	if (get(pageData).home[lang] === undefined) {
+	if (
+		(await event.locals.supabase.from("doori").select("*").eq("language", lang).single()).data ===
+		null
+	) {
 		return new Response("Language not found", {
 			status: 400
 		});

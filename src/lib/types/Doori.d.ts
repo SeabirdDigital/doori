@@ -13,5 +13,6 @@ type Category = {
 
 type Item = {
 	name: string;
+	longName: boolean;
 	description: string;
 };

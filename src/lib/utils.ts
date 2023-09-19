@@ -30,7 +30,7 @@ export const goto = (id: string, options?: Partial<GotoOptions>) => {
 	}, 700);
 };
 
-export const deepEqual = (x: never, y: never): boolean => {
+export const deepEqual = (x: any, y: any): boolean => {
 	const ok = Object.keys,
 		tx = typeof x,
 		ty = typeof y;
