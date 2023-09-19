@@ -1,17 +1,15 @@
 <script lang="ts">
-	import texts, { languages } from "$lib/data/texts";
-	import type { LanguageId } from "$lib/data/types/texts";
 	import lang from "$lib/stores/lang";
-	import pageId from "$lib/stores/pageId";
+	import { pageId } from "$lib/stores/page";
 	import { goto } from "$lib/utils";
 
-	let itemNames = texts[$lang].layout.nav;
-	$: itemNames = texts[$lang].layout.nav;
+	export let layoutData: Record<string, string>;
 
-	const flags = {
+	const flags: { [lang: string]: string } = {
 		sv: "/flags/sv.svg",
 		en: "/flags/en.svg"
 	};
+	const languages = ["sv", "en"] as const;
 
 	const switchLang = async () => {
 		const currentIndex = languages.findIndex((l) => l == $lang);
@@ -24,16 +22,16 @@
 </script>
 
 <li>
-	<button on:click={() => goto("menu")}>{itemNames.menu}</button>
+	<button on:click={() => goto("menu")}>{layoutData.menu}</button>
 </li>
 <li>
-	<button on:click={() => goto("about")}>{itemNames.about}</button>
+	<button on:click={() => goto("about")}>{layoutData.about}</button>
 </li>
 <li>
-	<button on:click={() => goto("franchising")}>{itemNames.franchising}</button>
+	<button on:click={() => goto("franchising")}>{layoutData.franchising}</button>
 </li>
 
 <button class="flex items-center gap-4 sm:-ml-4" on:click={switchLang}>
-	<span class="sm:hidden">{itemNames.language}</span>
+	<span class="sm:hidden">{layoutData.language}</span>
 	<img class="aspect-square h-6" src={flags[$lang]} alt="{$lang} flag. Click to switch language." />
 </button>

@@ -1,12 +1,12 @@
 <script lang="ts">
+	import { invalidate } from "$app/navigation";
+	import { page } from "$app/stores";
 	import Header from "$lib/components/layout/Header.svelte";
 	import pages from "$lib/components/pages";
-	import texts from "$lib/data/texts";
-	import type { LanguageId } from "$lib/data/types/texts";
 	import LogoWhite from "$lib/images/logo_white.png";
 	import lang from "$lib/stores/lang";
 	import menuOpen from "$lib/stores/menuOpen";
-	import pageId from "$lib/stores/pageId";
+	import { pageData, pageId } from "$lib/stores/page";
 	import transitionOn from "$lib/stores/transitionOn";
 	import "@fontsource/indie-flower";
 	import "@fontsource/quicksand/500.css";
@@ -14,13 +14,12 @@
 	import "@fontsource/space-mono/400.css";
 	import "@fontsource/space-mono/700.css";
 	import { onMount } from "svelte";
-	import "../app.css";
+	import "../../app.css";
 
 	export let data;
 
-	lang.set(data.lang as LanguageId);
-
 	pageId.set(data.id);
+	pageData.set(data.pageData);
 
 	onMount(() => {
 		menuOpen.subscribe((value) => {
@@ -49,16 +48,23 @@
 		</div>
 	</div>
 
-	<Header />
+	<Header layoutData={data.layoutData} />
 
 	<main>
 		{#if $pageId}
-			<svelte:component this={pages[$pageId]} />
+			<svelte:component
+				this={pages[$pageId]}
+				pageData={data.pageData}
+				menuData={data.menuData}
+				locations={data.locations}
+				layoutData={data.layoutData}
+				lang={data.lang}
+			/>
 		{/if}
 		<slot />
 	</main>
 
 	<footer class="flex justify-center bg-brown py-4 text-center text-white">
-		Copyright 2023 &copy; {texts[$lang].layout.copyright}
+		Copyright 2023 &copy; {data.layoutData.copyright}
 	</footer>
 </div>

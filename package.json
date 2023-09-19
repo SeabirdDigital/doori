@@ -36,6 +36,13 @@
 	"dependencies": {
 		"@fontsource/indie-flower": "^5.0.3",
 		"@fontsource/space-mono": "^5.0.3",
+		"@supabase/auth-helpers-sveltekit": "^0.10.2",
+		"@supabase/supabase-js": "^2.33.2",
+		"@svelteuidev/composables": "^0.15.3",
+		"@svelteuidev/core": "^0.15.3",
+		"@svelteuidev/dates": "^0.15.3",
+		"@svelteuidev/preprocessors": "^0.15.3",
+		"dayjs": "^1.11.9",
 		"svelte-maplibre": "^0.3.2",
 		"svelte-smooth-scroll": "^1.0.2"
 	}

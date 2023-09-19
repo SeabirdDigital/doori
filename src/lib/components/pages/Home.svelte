@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { locationsArray } from "$lib/data/locations";
-	import texts from "$lib/data/texts";
 	import Bowl1 from "$lib/images/bowl1.webp";
 	import Bowl2 from "$lib/images/bowl2.webp";
 	import chikinmayo from "$lib/images/chikinmayo.webp";
@@ -9,18 +7,42 @@
 	import DumpNKFC from "$lib/images/dumpnkfc.webp";
 	import egg from "$lib/images/egg.webp";
 	import KFC from "$lib/images/kfc.webp";
-	import lang from "$lib/stores/lang";
 	import { goto } from "$lib/utils";
 	import { onMount } from "svelte";
 
-	let layout = texts[$lang].layout;
-	$: layout = texts[$lang].layout;
+	export let pageData: PageData;
+	export let locations: any[];
 
-	let home = texts[$lang].home;
-	$: home = texts[$lang].home;
+	export let lang: "sv" | "en";
 
-	const lArray = locationsArray.sort((l) => {
-		return l.id == "helsingborg" || l.id == "malmö" ? -1 : 1;
+	let home = pageData.home[lang];
+	$: home = pageData.home[lang];
+
+	export let layoutData: Record<string, string>;
+	const layout = layoutData;
+	const weekdays = JSON.parse(layout.weekdays);
+
+	let openingHours: { [city: string]: { first: string; last?: string; times: string }[] } = {};
+	locations.forEach((l) => {
+		const times: { first: string; last?: string; times: string }[] = [];
+
+		["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].reduce<
+			{ day: string; time: string } | undefined
+		>((last, day) => {
+			const time = l.openingHours[day];
+
+			if (last && last.time == time) times[times.length - 1].last = day;
+			else {
+				times.push({
+					first: day,
+					times: time
+				});
+			}
+
+			return { day, time };
+		}, undefined);
+
+		openingHours[l.city] = times;
 	});
 
 	let numberOfPictureSets = 2;
@@ -66,16 +88,16 @@
 	<div class="flex flex-col justify-center gap-6">
 		<div class="flex flex-col gap-4">
 			<h1 class="font-sang text-5xl font-normal">
-				{@html home.hero.heading}
+				{@html home.heroHeading}
 			</h1>
 			<p class="max-w-lg">
-				{@html home.hero.text}
+				{@html home.heroText}
 			</p>
 		</div>
 
 		<div class="flex items-center gap-6">
 			<button class="full to-extend" on:click={() => goto("home", { sectionId: "restauranger" })}>
-				{home.hero.buttons.order}
+				{home.heroOrder}
 				<div class="-mr-2">
 					<svg
 						class="-rotate-90"
@@ -88,7 +110,7 @@
 					</svg>
 				</div>
 			</button>
-			<button on:click={() => goto("menu")} class="link"> {home.hero.buttons.menu}</button>
+			<button on:click={() => goto("menu")} class="link"> {home.heroMenu}</button>
 		</div>
 	</div>
 </div>
@@ -106,16 +128,18 @@
 	<div class="flex flex-col gap-6 lg:w-1/2">
 		<div class="flex flex-col gap-4">
 			<h2 class="text-4xl font-bold">
-				{@html home.sauce.heading}
+				{@html home.sauceHeading}
 			</h2>
 			<p class="hidden max-w-md sm:block">
-				{@html home.sauce.text}
+				{@html home.sauceText}
 			</p>
 
-			{#each home.sauce.sauces as sauce}
-				<h4 class="text-2xl font-bold">{sauce.name}</h4>
-				<p class="lg:max-w-lg">{sauce.description}</p>
-			{/each}
+			{#if home.sauces}
+				{#each JSON.parse(home.sauces) as sauce}
+					<h4 class="text-2xl font-bold">{sauce.name}</h4>
+					<p class="lg:max-w-lg">{sauce.description}</p>
+				{/each}
+			{/if}
 		</div>
 	</div>
 
@@ -170,51 +194,38 @@
 	</div>
 </div>
 
-<div id={home.restaurants.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
-	{#each lArray as location}
-		<div class="">
+<div id={home.restaurants?.toLowerCase()} class="container grid gap-8 pb-16 md:grid-cols-2">
+	{#each locations as location}
+		<div class="flex flex-col">
 			<h3 class="mb-2 text-4xl font-bold lg:mb-4">
 				{location.city}
 			</h3>
-			<div class="text-xs text-black/60 lg:text-base xl:text-lg">
-				<div>
-					{layout.restaurants.weekdays.mon}: {location.openingHours.monday ??
-						layout.restaurants.closed}
-					{layout.restaurants.weekdays.tue}: {location.openingHours.tuesday ??
-						layout.restaurants.closed}
-				</div>
-				<div>
-					{layout.restaurants.weekdays.wed}: {location.openingHours.wednesday ??
-						layout.restaurants.closed}
-					{layout.restaurants.weekdays.thu}: {location.openingHours.thursday ??
-						layout.restaurants.closed}
-				</div>
-				<div>
-					{layout.restaurants.weekdays.fri}: {location.openingHours.friday ??
-						layout.restaurants.closed}
-					{layout.restaurants.weekdays.sat}: {location.openingHours.saturday ??
-						layout.restaurants.closed}
-				</div>
-				<div>
-					{layout.restaurants.weekdays.sun}: {location.openingHours.sunday ??
-						layout.restaurants.closed}
-				</div>
+			<div class="text-black/60 lg:text-base xl:text-lg">
+				{#each openingHours[location.city] as h}
+					{#if h.times}
+						<div>
+							{weekdays[h.first.substr(0, 3)]}{h.last ? "-" + weekdays[h.last.substr(0, 3)] : ""}: {h.times}
+						</div>
+					{/if}
+				{/each}
 			</div>
 			<div class="my-4 flex justify-between text-sm lg:justify-start">
-				<div class="h-12 w-auto lg:w-64">
-					{@html location.address}
-					<span>{location.onlyDelivery ? layout.restaurants.onlyDelivery : ""}</span>
+				<div class="w-auto lg:w-64">
+					{@html location.address ?? ""}
+					<span>{location.onlyDelivery ? layout.onlyDelivery : ""}</span>
 				</div>
 				<div>
 					{location.phone}
 				</div>
 			</div>
 
-			<div class="mt-6 flex gap-6">
+			<div class="flex-1" />
+
+			<div class="mt-3 flex gap-6">
 				{#if location.maps}
 					<a href={location.maps}>
 						<button class="borders to-full">
-							{layout.restaurants.find}
+							{layout.find}
 							<div class="-mr-2">
 								<svg
 									class="-rotate-90"
@@ -229,27 +240,9 @@
 						</button>
 					</a>
 				{/if}
-				{#if location.reservation}
-					<a href={location.reservation}>
-						<button class="borders to-full">
-							{layout.restaurants.reserve}
-							<div class="-mr-2">
-								<svg
-									class="-rotate-90"
-									xmlns="http://www.w3.org/2000/svg"
-									height="22"
-									viewBox="0 -960 960 960"
-									width="22"
-								>
-									<path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z" />
-								</svg>
-							</div>
-						</button>
-					</a>
-				{/if}
-				<a href={location.order}>
+				<a href={location.orderLink}>
 					<button class="borders to-full">
-						{location.order.includes("foodora") ? "Foodora" : home.hero.buttons.order}
+						{location.orderLink.includes("foodora") ? "Foodora" : home.heroOrder}
 						<div class="-mr-2">
 							<svg
 								class="-rotate-90"

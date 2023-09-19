@@ -1,9 +1,14 @@
 <script lang="ts">
-	import texts from "$lib/data/texts";
-	import lang from "$lib/stores/lang";
+	export let pageData: PageData;
 
-	let menu = texts[$lang].menu;
-	$: menu = texts[$lang].menu;
+	export let lang: "sv" | "en";
+	export let menuData: Menu;
+
+	let menu = pageData.menu[lang];
+	$: menu = pageData.menu[lang];
+
+	let categories = menuData[lang];
+	$: categories = menuData[lang];
 </script>
 
 <svelte:head>
@@ -17,9 +22,9 @@
 </div>
 
 <div class="container mb-12">
-	{#each menu.menu as category}
+	{#each categories as category}
 		<div class="mb-12">
-			<h2 class="mb-4 text-3xl">{category.name}</h2>
+			<h2 class="mb-4 text-3xl">{category.category_name ?? ""}</h2>
 			<div class="grid gap-8 lg:grid-cols-2">
 				{#each category.items as item}
 					<div>

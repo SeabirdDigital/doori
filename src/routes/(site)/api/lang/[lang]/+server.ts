@@ -1,15 +1,16 @@
-import texts from "$lib/data/texts";
-import type { LanguageId } from "$lib/data/types/texts";
 import type { RequestHandler } from "@sveltejs/kit";
 
 export const POST: RequestHandler = async (event) => {
-	const lang = event.params.lang as LanguageId;
+	const lang = event.params.lang;
 	if (!lang)
 		return new Response(undefined, {
 			status: 400
 		});
 
-	if (texts[lang] === undefined) {
+	if (
+		(await event.locals.supabase.from("doori").select("*").eq("language", lang).single()).data ===
+		null
+	) {
 		return new Response("Language not found", {
 			status: 400
 		});
