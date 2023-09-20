@@ -36,18 +36,13 @@
 	<TextInput label="Title" bind:value={pageData[lang].title} />
 	<TextInput label="Slug" bind:value={pageData[lang].slug} />
 
-	<Space h={24} />
+	{#each Object.entries(pageData[lang]).filter((p) => typeof p != "string") as s}
+		<Space h={24} />
 
-	{#each Object.entries(pageData[lang]).filter((p) => p[0].toLowerCase().endsWith("heading") || p[0]
-				.toLowerCase()
-				.endsWith("text")) as p}
-		<div>
-			{#if p[0].toLowerCase().endsWith("heading")}
-				<TextInput label={p[0]} bind:value={pageData[lang][p[0]]} />
-			{:else}
-				<Textarea label={p[0]} bind:value={pageData[lang][p[0]]} />
-			{/if}
-		</div>
+		{#if typeof s[1] != "string"}
+			<TextInput label="Heading" bind:value={s[1].heading} />
+			<Textarea label="Text" bind:value={s[1].text} />
+		{/if}
 	{/each}
 {/key}
 
