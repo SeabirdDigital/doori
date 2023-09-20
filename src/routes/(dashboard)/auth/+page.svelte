@@ -1,15 +1,15 @@
 <!-- // src/routes/auth/+page.svelte -->
 <script>
+	import { Button, NativeSelect, Space, TextInput, Textarea } from "@svelteuidev/core";
+
 	export let data;
 </script>
 
-{JSON.stringify(data.session)}
-
 <form method="post" action="?/signin">
-	<input name="email" />
-	<input type="password" name="password" />
-	<button>Sign in</button>
-</form>
-<form method="post" action="?/logout">
-	<button>Logout</button>
+	<TextInput type="email" name="email" />
+	<TextInput type="password" name="password" />
+
+	<Space h={24} />
+
+	<Button>Sign in</Button>
 </form>

@@ -36,12 +36,18 @@
 	<AppShell>
 		<Header
 			height={64}
-			style="position:absolute;display:flex;align-items:center;justify-content:space-between;"
+			style="position:absolute;display:flex;align-items:center;justify-content:space-between;padding-left:24px;padding-right:24px;"
 			slot="header"
 		>
+			<div>Dashboard</div>
 			<div />
-			<div />
-			<div />
+			<div>
+				{#if session != null}
+					<form action="/auth?/logout" method="post">
+						<Button type="submit">Logout</Button>
+					</form>
+				{/if}
+			</div>
 		</Header>
 
 		<slot />
