@@ -69,19 +69,21 @@
 			class="absolute -right-96 -top-20 flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0 lg:top-0"
 		>
 			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
-			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+			<span class="py-6 text-center font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="absolute -right-96 -top-20 flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:right-0 lg:top-0"
 		>
 			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
-			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+			<span class="py-6 text-center font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="absolute -right-96 -top-20 flex flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25 lg:relative lg:right-0 lg:top-0"
 		>
 			<img class="aspect-square h-72 object-cover" src={Double} alt="" />
-			<span class="py-6 font-indie text-3xl">K-bowl + Chikinmayo</span>
+			<span class="py-6 text-center font-indie text-2xl">
+				Korean Fried<br />Chicken + Chikinmayo
+			</span>
 		</div>
 	</div>
 
@@ -148,19 +150,19 @@
 			class="absolute right-0 flex rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
 			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
-			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+			<span class="py-6 text-center font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="absolute right-0 flex -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
 			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
-			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+			<span class="py-6 text-center font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 		<div
 			class="relative right-0 flex flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
 			<img class="aspect-square h-72 object-cover" src={KFC} alt="" />
-			<span class="py-6 font-indie text-3xl">Korean Fried Chicken</span>
+			<span class="py-6 text-center font-indie text-3xl">Korean Fried Chicken</span>
 		</div>
 	</div>
 </div>
@@ -171,7 +173,9 @@
 			class="flex aspect-[0.8] rotate-6 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
 		>
 			<img class="aspect-square w-56 object-cover" src={KFC} alt="" />
-			<span class="flex flex-1 items-center font-indie text-3xl">K-bowl</span>
+			<span class="flex flex-1 items-center text-center font-indie text-2xl"
+				>Korean Fried Chicken</span
+			>
 		</div>
 		<div
 			class="flex aspect-[0.8] -rotate-12 flex-col items-center bg-white p-4 pb-0 shadow-md shadow-black/25"
@@ -226,6 +230,24 @@
 					<a href={location.maps}>
 						<button class="borders to-full">
 							{layout.find}
+							<div class="-mr-2">
+								<svg
+									class="-rotate-90"
+									xmlns="http://www.w3.org/2000/svg"
+									height="22"
+									viewBox="0 -960 960 960"
+									width="22"
+								>
+									<path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z" />
+								</svg>
+							</div>
+						</button>
+					</a>
+				{/if}
+				{#if location.reservation}
+					<a href={location.reservation}>
+						<button class="borders to-full">
+							{layout.reserve}
 							<div class="-mr-2">
 								<svg
 									class="-rotate-90"
